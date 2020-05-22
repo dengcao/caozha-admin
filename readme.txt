@@ -3,10 +3,10 @@ caozha-admin 1.0.0 使用手册
 【快速安装】
 
 1、PHP版本必须7.1及以上。
-2、上传目录/Src/内所有源码到服务器，并设置网站的根目录指向目录/Src/public/。
+2、上传目录/Src/内所有源码到服务器，并设置网站的根目录指向目录/Src/public/。（TP6.0要求）
 3、将/Database/目录里的.sql文件导入到MYSQL数据库。
 4、修改文件/Src/config/database.php，配置您的数据库信息（如果是本地测试，还需要修改文件/Src/.env，本地测试会优先使用此配置文件）。
-
+5、后台访问地址：http://您的域名/index.php/admin/index/login
 
 【开发】
 
