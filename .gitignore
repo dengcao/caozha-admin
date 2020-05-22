@@ -1,0 +1,8 @@
+/.idea
+/.vscode
+*.log
+/.env
+/.image
+**/*.pid
+runtime/
+install.lock
