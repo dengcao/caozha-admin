@@ -243,15 +243,43 @@ return [
         },
         {
           "title": "文件上传",
-          "href": "'.url("admin/demo/upload").'",
+          "href": "",
           "icon": "fa fa-arrow-up",
-          "target": "_self"
+          "target": "_self",
+          "child": [
+            {
+              "title": "用UEditor上传",
+              "href": "/static/admin/caozha/ueditor/demo_upload.html",
+              "icon": "fa fa-snowflake-o",
+              "target": "_self"
+            },
+            {
+              "title": "zyupload",
+              "href": "'.url("admin/demo/upload").'",
+              "icon": "fa fa-shield",
+              "target": "_self"
+            }
+          ]
         },
         {
           "title": "富文本编辑器",
-          "href": "'.url("admin/demo/editor").'",
+          "href": "",
           "icon": "fa fa-edit",
-          "target": "_self"
+          "target": "_self",
+          "child": [
+            {
+              "title": "百度UEditor",
+              "href": "'.url("admin/demo/ueditor").'",
+              "icon": "fa fa-snowflake-o",
+              "target": "_self"
+            },
+            {
+              "title": "wangEditor",
+              "href": "'.url("admin/demo/editor").'",
+              "icon": "fa fa-shield",
+              "target": "_self"
+            }
+          ]
         },
         {
           "title": "省市县区选择器",

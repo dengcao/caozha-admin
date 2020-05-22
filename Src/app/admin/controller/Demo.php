@@ -39,6 +39,12 @@ class Demo
         return View::fetch('demo/editor');
     }
 
+    public function ueditor()
+    {
+        // 模板输出
+        return View::fetch('demo/ueditor');
+    }
+
     public function table_select()
     {
         // 模板输出

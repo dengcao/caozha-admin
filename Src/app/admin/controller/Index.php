@@ -106,6 +106,15 @@ class Index
                     Session::set('admin_role_name', trim($roles->role_name)."(停用)");//权限组名称
                 }
             }
+
+            //session赋值给外部程序调用
+            ini_set('session.gc_maxlifetime', "86400"); // 有效期，86400秒=24小时
+            ini_set("session.cookie_lifetime","86400");
+            session_start();
+            $_SESSION["caozha_admin_id"]=$admin->admin_id;
+            $_SESSION["caozha_admin_name"]=$admin->admin_name;
+            //end
+
             write_syslog(array("log_content"=>"登陆成功"));//记录系统日志
             return result_json(1,"登陆成功！加载中，请稍候……");
         }
@@ -122,6 +131,13 @@ class Index
         }
         write_syslog(array("log_content"=>"退出登陆"));//记录系统日志
         Session::clear();//清空
+
+        //清空 （原session赋值给外部程序调用）
+        session_start();
+        if(isset($_SESSION["caozha_admin_id"])){unset($_SESSION["caozha_admin_id"]);}
+        if(isset($_SESSION["caozha_admin_name"])){unset($_SESSION["caozha_admin_name"]);}
+        //end
+
         caozha_success("退出登陆成功！",url("admin/index/login"));
     }
 
