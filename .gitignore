@@ -4,5 +4,5 @@
 /.env
 /.image
 **/*.pid
-runtime/
+Src/runtime/
 install.lock
