@@ -1,8 +1,5 @@
 /.idea
 /.vscode
-*.log
-/.env
 /.image
-**/*.pid
-Src/runtime/
-install.lock
+/Src/runtime/
+/install.lock
