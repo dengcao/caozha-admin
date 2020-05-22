@@ -1,6 +1,6 @@
 caozha-admin 1.0.0 使用手册
 
-【安装】
+【快速安装】
 
 1、PHP版本必须7.1及以上。
 2、上传目录/Src/内所有源码到服务器，并设置网站的根目录指向目录/Src/public/。
@@ -11,8 +11,9 @@ caozha-admin 1.0.0 使用手册
 【开发】
 
 准备
-使用本源码之前，建议先熟悉ThinkPHP6.0的多应用模式。ThinkPHP6.0开发手册：https://www.kancloud.cn/manual/thinkphp6_0/1037479
-
+使用本源码之前，建议先熟悉ThinkPHP6.0的多应用模式和LayUI框架。
+ThinkPHP 6.0 开发手册：https://www.kancloud.cn/manual/thinkphp6_0/1037479
+LayUI 2.x 开发手册：https://www.layui.com/doc/
 
 正式
 一、数据库配置
