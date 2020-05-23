@@ -31,7 +31,7 @@ caozha-admin是一个通用的PHP网站后台开发框架，基于开源的Think
 
 4、修改文件/Src/config/database.php，配置您的数据库信息（如果是本地测试，还需要修改文件/Src/.env，本地测试会优先使用此配置文件）。
 
-5、后台访问地址：http://您的域名/index.php/admin/index/login
+5、后台访问地址：http://您的域名/index.php/admin/index/login   (账号：caozha   密码：123456)
 
  
 ***开发手册***
