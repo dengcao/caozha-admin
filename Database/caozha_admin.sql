@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2020-05-21 18:52:32
+-- 生成日期： 2020-05-25 18:09:23
 -- 服务器版本： 5.7.26
 -- PHP 版本： 7.3.4
 
@@ -52,7 +52,7 @@ CREATE TABLE `cz_administrators` (
 --
 
 INSERT INTO `cz_administrators` (`admin_id`, `admin_name`, `admin_password`, `admin_password_rnd`, `role_id`, `is_enabled`, `real_name`, `tel`, `email`, `wechat`, `qq`, `last_login_ip`, `last_login_time`, `last_logout_time`, `login_times`, `admin_remarks`) VALUES
-(1, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, 1, 1, '草札', '1320000000', 'dzh188@qq.com', 'wx', 'qq', '127.0.0.1', '2020-05-21 10:50:04', '2020-05-21 10:49:46', 36, NULL),
+(1, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, 1, 1, '草札', '1320000000', 'dzh188@qq.com', 'wx', 'qq', '127.0.0.1', '2020-05-25 18:06:52', '2020-05-21 10:49:46', 37, NULL),
 (2, 'dd78', 'ee04ddc4fea36f4ce797766b6c4f66a4', NULL, 2, 1, '查订单', '', '', NULL, NULL, '223.74.103.196', '2018-10-27 19:56:03', '2018-10-27 17:59:46', 4, NULL),
 (3, 'xgd', '0b9c6913e2cc2a29571cdf8d5b590baf', NULL, 2, 1, '小谢', '', '', NULL, NULL, '113.65.207.15', '2018-10-27 18:15:00', '2017-05-26 17:11:30', 113, NULL),
 (4, 'lb', 'f49c5286a10a22228c79793732acf431', NULL, 2, 0, '邱总', '', '', '', '', '14.145.253.14', '2015-11-04 10:20:05', '2015-10-21 17:54:09', 12, ''),
@@ -65,7 +65,7 @@ INSERT INTO `cz_administrators` (`admin_id`, `admin_name`, `admin_password`, `ad
 (11, 'hedan', '5aca2c7cb35fe3210b25e6acf56fca1d', NULL, 2, 1, '核单', '', '', '', '', '14.23.122.114', '2017-05-11 11:59:40', '2014-12-03 09:52:39', 4505, ''),
 (12, 'weixin', '8cdec0532ce92d9e43556d14a52ce87a', NULL, 3, 1, '微信运营', '', '', '', '', '113.111.8.55', '2018-10-18 10:32:47', '2017-09-23 19:40:22', 520, ''),
 (14, 'weixin3', '5fd9cd58f4e516bae46557b355c5208a', NULL, 2, 0, '微信客服', '', '', '', '', '113.65.207.203', '2018-10-29 09:38:36', '2018-10-27 18:11:30', 8, ''),
-(24, 'test1', '5fd9cd58f4e516bae46557b355c5208a', NULL, 2, 1, '凤燕2', '', '', '', '', NULL, NULL, NULL, NULL, ''),
+(24, 'test1', '5fd9cd58f4e516bae46557b355c5208a', NULL, 2, 1, '凤2', '', '', '', '', NULL, NULL, NULL, NULL, ''),
 (25, 'test2', '5fd9cd58f4e516bae46557b355c5208a', NULL, 2, 1, '', '', '', '', '', NULL, NULL, NULL, NULL, '');
 
 -- --------------------------------------------------------
@@ -180,7 +180,9 @@ INSERT INTO `cz_syslog` (`log_id`, `log_content`, `log_user`, `log_ip`, `log_dat
 (70, '修改管理员账号：test1，ID：24', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-05-21 11:32:47'),
 (71, '修改我的资料或密码', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-05-21 11:33:21'),
 (72, '修改我的资料或密码', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-05-21 15:01:59'),
-(73, '修改系统设置', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-05-21 17:53:41');
+(73, '修改系统设置', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-05-21 17:53:41'),
+(74, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-05-25 18:06:52'),
+(75, '修改管理员账号：test1，ID：24', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-05-25 18:07:14');
 
 -- --------------------------------------------------------
 
@@ -248,7 +250,7 @@ ALTER TABLE `cz_roles`
 -- 使用表AUTO_INCREMENT `cz_syslog`
 --
 ALTER TABLE `cz_syslog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- 使用表AUTO_INCREMENT `cz_web_config`
