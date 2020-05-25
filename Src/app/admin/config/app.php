@@ -216,6 +216,11 @@ return [
               "target": "_self"
             }
           ]
+        }, {
+          "title": "日期时间选择",
+          "href": "'.url("admin/demo/laydate").'",
+          "icon": "fa fa-calendar",
+          "target": "_self"
         },
         {
           "title": "图标列表",

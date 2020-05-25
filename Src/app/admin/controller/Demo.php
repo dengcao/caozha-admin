@@ -57,6 +57,12 @@ class Demo
         return View::fetch('demo/upload');
     }
 
+    public function laydate()
+    {
+        // 模板输出
+        return View::fetch('demo/laydate');
+    }
+
     public function color_select()
     {
         // 模板输出
