@@ -16,6 +16,8 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 6、整合了百度UEditor等各种常用插件，可去演示页面查看调用。
 
+7、无限级别分类
+
 主要提供了以上基础功能，您可以在此基础上拓展和开发出不同的应用。
 
 
@@ -45,7 +47,9 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
  
 ### 更新说明
 
-此源码为1.0.0版本，后期将陆续开发更多功能的版本。
+此为1.1.0版本，主要更新：
+1、新增了：无限级别分类
+2、修复若干小BUG
 
 ### 赞助支持：
 
@@ -64,6 +68,8 @@ GitHub：https://github.com/cao-zha/caozha-admin
 
 ### 界面预览
 
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0531/221652_31b46dd9_7397417.png "8.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0531/221706_b4fc6e99_7397417.png "9.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0522/111034_0fcc6524_7397417.png "1.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0522/111043_e0a9482f_7397417.png "2.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0522/111051_b6abdc55_7397417.png "3.png")
