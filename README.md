@@ -1,4 +1,4 @@
-# caozha-admin 后台管理框架
+# caozha-admin 后台管理框架 1.1.0
 
 caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP6.0.2、layui2.5.4、layuimini v2以及font-awesome-4.7.0开发，特点：易上手，零门槛，界面清爽极简 。
 
