@@ -1,4 +1,4 @@
-caozha-admin 1.0.0 使用手册
+﻿caozha-admin 1.0.0 使用手册
 
 【快速安装】
 
@@ -111,6 +111,23 @@ write_syslog($array)
 示例：
 
 write_syslog(array("log_content"=>"删除系统日志"));//记录系统日志
+
+
+
+
+4、无限级别的分类系统
+
+打开应用配置文件：Src/app/admin/config/app.php，找到：
+
+//分类，栏目类型ID
+'caozha_category_types' => array(0 => "内部栏目",1 => "单网页",2 => "外部链接"),
+//分类，模型ID，0=系统，1=文章`
+'caozha_category_modelid' => array(0 => "系统内置",1 => "文章模型",2 => "下载模型",3 => "图片模型",4 => "视频模型"),
+
+此处可以配置分类的类型，模型。对应数据库表为：cz_category。
+
+另外，有一点值得说明的是，在控制器app\admin\controller\Category.php下，有一个方法：delete_category_content($catid, $modelid)，需要在您开发的时候加上删除文章、图片等数据的代码（如果有的话）。
+
 
 
 
