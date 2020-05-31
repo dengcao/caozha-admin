@@ -23,7 +23,7 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 ### 安装使用
 
-***快速安装***
+**快速安装**
 
 1、PHP版本必须7.1及以上。
 
@@ -35,14 +35,12 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 5、后台访问地址：http://您的域名/index.php/admin/index/login   (账号：caozha   密码：123456)
 
- ~~~~
-***开发手册***
 
-参考Wiki：
+**开发手册**
 
-国内：https://gitee.com/caozha/caozha-admin/wikis
+码云Wiki：[https://gitee.com/caozha/caozha-admin/wikis](https://gitee.com/caozha/caozha-admin/wikis)
 
-国外：https://github.com/cao-zha/caozha-admin/wiki
+GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/cao-zha/caozha-admin/wiki)
 
  
 ### 更新说明
