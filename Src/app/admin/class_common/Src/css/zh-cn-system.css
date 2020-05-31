@@ -1,0 +1,20 @@
+﻿body{color:#444; height:100%;}
+a{text-decoration:none; color:#444}
+
+
+/*栏目菜单*/
+.cat-menu{ width:180px; margin:10px 8px 0 0; }
+.cat-menu div.content{padding-left:8px}
+
+/*内容菜单*/
+.content-menu{ padding:0 0 6px}
+.content-menu a:hover{text-decoration: none}
+.content-menu a em{display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline;}
+.content-menu a.add,.content-menu a.add em,
+	.content-menu a.on,.content-menu a.on em{background: url(../img/bnt_bg.png) no-repeat;height:28px; line-height:28px;*line-height:28px}
+.content-menu span{color:#ddd; padding:0 8px}
+.content-menu a{cursor:pointer;}
+.content-menu a.add{ padding:0 0 0 5px;}
+.content-menu a.add em{ padding:0 10px 0 5px;color:#fff;background-position: right top}
+.content-menu a.on{background-position: left -40px;*background-position: left -41px;_background-position: left -39px; color:#fff; padding:0 0 0 5px;}
+.content-menu a.on em{background-position: right -40px;*background-position: right -41px;_background-position: right -39px; padding:0 10px 0 5px}

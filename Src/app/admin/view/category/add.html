@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>添加 - Powered by __CAOZHA-SYS-NAME__ __CAOZHA-SYS-VERSION__</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+    <script src="__CAOZHA-STATIC__/js/jquery-3.4.1.min.js"></script>
+    <script src="__CAOZHA-STATIC__/js/all.js"></script>
+    <link rel="stylesheet" href="__CAOZHA-STATIC__/css/style.css" media="all">
+</head>
+<body>
+<form class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">上级分类</label>
+        <div class="layui-input-block">
+            <select name="parentid" style="width:350px;" lay-verify="required" lay-reqtext="请选择上级分类">
+                <option value="0">作为顶级分类</option>
+                {$parentid_select|raw}
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">分类名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="catname" lay-verify="required" lay-reqtext="分类名称不能为空" placeholder="" value=""
+                   class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+    <label class="layui-form-label required">模块类型</label>
+    <div class="layui-input-block">
+        <select name="modelid" lay-verify="required" lay-reqtext="请选择模块类型">
+            <option value=""></option>
+            {foreach $modelids as $key=>$vo }
+            <option value="{$key}">{$vo}</option>
+            {/foreach}
+        </select>
+    </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">分类类型</label>
+        <div class="layui-input-block">
+            <select name="type" lay-verify="required" lay-reqtext="请选择分类类型">
+                <option value=""></option>
+                {foreach $types as $key=>$vo }
+                <option value="{$key}">{$vo}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否显示</label>
+        <div class="layui-input-block">
+            <input type="checkbox" checked="" value="1" name="ismenu" lay-skin="switch" lay-filter="switchTest"
+                   lay-text="是|否">
+            <div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>是</em><i></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">分类图片</label>
+        <div class="layui-input-block">
+            <!--直接调用ueditor上传框-->
+            <script src="__CAOZHA-STATIC__/ueditor/ueditor.config.js"></script>
+            <script src="__CAOZHA-STATIC__/ueditor/ueditor.all.min.js"></script>
+            <script type="text/plain" id="upload_ue" style="display: none"></script>
+            <script src="__CAOZHA-STATIC__/ueditor/cz.upload.image.js"></script>
+
+            <input type="text" name="image" lay-verify="" lay-reqtext="" placeholder="" value="" id="pic_id" class="layui-input cz-float-left" style="width: 50%;margin-right: 10px;"> <button type="button" class="layui-btn layui-btn-normal cz-float-left" onclick="upImage('pic_id');">上传</button> <button type="button" class="layui-btn layui-btn-warm cz-float-left" onclick="img_preview('pic_id');">预览</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">分类URL</label>
+        <div class="layui-input-block">
+            <input type="text" name="url" placeholder="" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-block">
+            <input type="text" name="listorder" placeholder="" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">分类描述</label>
+        <div class="layui-input-block">
+            <textarea name="description" class="layui-textarea" placeholder=""></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item" style="display: none">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn caozha-submit" lay-submit="" lay-filter="saveBtn">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary caozha-reset">重置</button>
+        </div>
+    </div>
+
+</form>
+<script src="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+
+            $.ajax({
+                type: "post",
+                url: '{:url(\'admin/category/addSave\')}',
+                data: data.field,
+                dataType: "json",
+                async: false,
+                success: function (res) {
+                    if (res.code == 1) {
+                        layer.msg(res.msg, {icon: 1});
+                        setTimeout(function(){
+                            // 关闭弹出层
+                            //layer.close(index);
+                            var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(iframeIndex);
+                            parent.location.reload();
+                        },800);
+                    } else {
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                },
+                complete: function (res) {
+                }
+            });
+
+            return false;
+        });
+
+
+    });
+
+</script>
+</body>
+</html>
