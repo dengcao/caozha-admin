@@ -45,7 +45,7 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
  
 ### 更新说明
 
-版本1.0.0，主要更新内容：
+***版本1.0.0，主要更新内容：***
 
 1、新增：系统设置、管理员、权限组、系统日志、后台功能地图等功能。
 
@@ -54,7 +54,7 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 3、整合了各种常用基础组件，如日期时间选择器、颜色选择器、上传文件组件、省市区联动选择器等等。
 
 
-版本1.1.0，主要更新内容：
+***版本1.1.0，主要更新内容：***
 
 1、新增了：无限级别分类。
 
