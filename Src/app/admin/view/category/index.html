@@ -62,7 +62,7 @@
                     if (data.code == 1) {
                         layer.msg('修复成功', {icon: 1});
                         //执行删除后重载
-                        location.reload();
+                        setTimeout(function(){location.reload();},1000);
                     } else {
                         layer.msg('修复失败', {icon: 2});
                     }
