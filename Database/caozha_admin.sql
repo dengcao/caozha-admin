@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2020-06-01 02:00:09
+-- 生成日期： 2020-06-01 11:22:16
 -- 服务器版本： 5.7.26
 -- PHP 版本： 7.3.4
 
@@ -52,7 +52,7 @@ CREATE TABLE `cz_administrators` (
 --
 
 INSERT INTO `cz_administrators` (`admin_id`, `admin_name`, `admin_password`, `admin_password_rnd`, `role_id`, `is_enabled`, `real_name`, `tel`, `email`, `wechat`, `qq`, `last_login_ip`, `last_login_time`, `last_logout_time`, `login_times`, `admin_remarks`) VALUES
-(1, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, 1, 1, '草札', '1320000000', 'dzh188@qq.com', 'wx', 'qq', '127.0.0.1', '2020-06-01 01:32:17', '2020-05-28 18:49:56', 44, NULL),
+(1, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, 1, 1, '草札', '1320000000', 'dzh188@qq.com', 'wx', 'qq', '127.0.0.1', '2020-06-01 10:19:25', '2020-05-28 18:49:56', 45, NULL),
 (2, 'dd78', 'ee04ddc4fea36f4ce797766b6c4f66a4', NULL, 2, 1, '查订单', '', '', NULL, NULL, '223.74.103.196', '2018-10-27 19:56:03', '2018-10-27 17:59:46', 4, NULL),
 (3, 'xgd', '0b9c6913e2cc2a29571cdf8d5b590baf', NULL, 2, 1, '小谢', '', '', NULL, NULL, '113.65.207.15', '2018-10-27 18:15:00', '2017-05-26 17:11:30', 113, NULL),
 (4, 'lb', 'f49c5286a10a22228c79793732acf431', NULL, 2, 0, '邱总', '', '', '', '', '14.145.253.14', '2015-11-04 10:20:05', '2015-10-21 17:54:09', 12, ''),
@@ -100,8 +100,8 @@ CREATE TABLE `cz_category` (
 --
 
 INSERT INTO `cz_category` (`catid`, `type`, `modelid`, `parentid`, `arrparentid`, `child`, `arrchildid`, `catname`, `style`, `image`, `description`, `url`, `items`, `hits`, `setting`, `listorder`, `ismenu`, `letter`) VALUES
-(1, 1, 0, 0, '0', 1, '1,2,431,432,433,434,435,3,4,413', '网站介绍', '', '', '', '//about/', 0, 0, NULL, 1, 0, 'wangzhanjieshao'),
-(2, 1, 0, 1, '0,1', 1, '2,431,432,433,434,435', '关于我们', '', '', '', 'https://diannao.wang/aboutus/', 0, 0, NULL, 1, 1, 'guanyuwomen'),
+(1, 1, 0, 0, '0', 1, '1,2,3,4,413', '网站介绍', '', '', '', '//about/', 0, 0, NULL, 1, 0, 'wangzhanjieshao'),
+(2, 1, 0, 1, '0,1', 0, '2,431,432,433,434,435', '关于我们', '', '', '', 'https://diannao.wang/aboutus/', 0, 0, NULL, 1, 1, 'guanyuwomen'),
 (3, 1, 0, 1, '0,1', 0, '3', '联系方式', '', '', '', 'https://diannao.wang/contactus/', 0, 0, NULL, 2, 1, 'lianxifangshi'),
 (4, 1, 0, 1, '0,1', 0, '4', '版权声明', '', '', '', 'https://diannao.wang/copyright/', 0, 0, NULL, 3, 1, 'banquanshengming'),
 (6, 0, 1, 0, '0', 1, '6,19,17,18,20,21,22,427,69,70,426,24', 'Windows', '', '', '', 'https://diannao.wang/windows_all/', 0, 0, NULL, 101, 1, 'windows'),
@@ -671,7 +671,20 @@ INSERT INTO `cz_syslog` (`log_id`, `log_content`, `log_user`, `log_ip`, `log_dat
 (114, '删除分类，catid：434，分类名：测试2', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-05-31 21:31:46'),
 (115, '批量删除文章内容，分类ID：435', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-05-31 21:31:49'),
 (116, '删除分类，catid：435，分类名：测试2', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-05-31 21:31:49'),
-(117, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 01:32:17');
+(117, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 01:32:17'),
+(118, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:19:26'),
+(119, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:29:53'),
+(120, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:29:56'),
+(121, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:30:20'),
+(122, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:01'),
+(123, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:03'),
+(124, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:13'),
+(125, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:15'),
+(126, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:16'),
+(127, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:34'),
+(128, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:37'),
+(129, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:47'),
+(130, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 11:20:29');
 
 -- --------------------------------------------------------
 
@@ -753,7 +766,7 @@ ALTER TABLE `cz_roles`
 -- 使用表AUTO_INCREMENT `cz_syslog`
 --
 ALTER TABLE `cz_syslog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- 使用表AUTO_INCREMENT `cz_web_config`
