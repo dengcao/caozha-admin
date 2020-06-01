@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2020-06-01 11:22:16
+-- 生成日期： 2020-06-01 21:40:01
 -- 服务器版本： 5.7.26
 -- PHP 版本： 7.3.4
 
@@ -52,7 +52,7 @@ CREATE TABLE `cz_administrators` (
 --
 
 INSERT INTO `cz_administrators` (`admin_id`, `admin_name`, `admin_password`, `admin_password_rnd`, `role_id`, `is_enabled`, `real_name`, `tel`, `email`, `wechat`, `qq`, `last_login_ip`, `last_login_time`, `last_logout_time`, `login_times`, `admin_remarks`) VALUES
-(1, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, 1, 1, '草札', '1320000000', 'dzh188@qq.com', 'wx', 'qq', '127.0.0.1', '2020-06-01 10:19:25', '2020-05-28 18:49:56', 45, NULL),
+(1, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, 1, 1, '草札', '1320000000', 'dzh188@qq.com', 'wx', 'qq', '127.0.0.1', '2020-06-01 14:03:38', '2020-05-28 18:49:56', 46, NULL),
 (2, 'dd78', 'ee04ddc4fea36f4ce797766b6c4f66a4', NULL, 2, 1, '查订单', '', '', NULL, NULL, '223.74.103.196', '2018-10-27 19:56:03', '2018-10-27 17:59:46', 4, NULL),
 (3, 'xgd', '0b9c6913e2cc2a29571cdf8d5b590baf', NULL, 2, 1, '小谢', '', '', NULL, NULL, '113.65.207.15', '2018-10-27 18:15:00', '2017-05-26 17:11:30', 113, NULL),
 (4, 'lb', 'f49c5286a10a22228c79793732acf431', NULL, 2, 0, '邱总', '', '', '', '', '14.145.253.14', '2015-11-04 10:20:05', '2015-10-21 17:54:09', 12, ''),
@@ -71,14 +71,51 @@ INSERT INTO `cz_administrators` (`admin_id`, `admin_name`, `admin_password`, `ad
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `cz_article`
+--
+
+CREATE TABLE `cz_article` (
+  `aid` int(11) UNSIGNED NOT NULL,
+  `catid` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '标题',
+  `content` longtext COLLATE utf8mb4_unicode_ci COMMENT '内容',
+  `style` char(24) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '风格',
+  `thumb` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '缩略图',
+  `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '关键词',
+  `description` mediumtext COLLATE utf8mb4_unicode_ci COMMENT '描述',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '打开链接',
+  `listorder` int(11) UNSIGNED DEFAULT '0' COMMENT '排序',
+  `status` tinyint(1) UNSIGNED DEFAULT '1' COMMENT '状态：0无效，1正在审核，2退稿，9通过',
+  `islink` tinyint(1) UNSIGNED DEFAULT '0' COMMENT '是否外部链接，1=外部链接',
+  `inputtime` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
+  `iscomment` tinyint(1) DEFAULT '1' COMMENT '是否允许评论',
+  `copyfrom` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '文章来源',
+  `hits` int(11) DEFAULT '0' COMMENT '点击数'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 转存表中的数据 `cz_article`
+--
+
+INSERT INTO `cz_article` (`aid`, `catid`, `title`, `content`, `style`, `thumb`, `keywords`, `description`, `url`, `listorder`, `status`, `islink`, `inputtime`, `iscomment`, `copyfrom`, `hits`) VALUES
+(1, 67, '新冠肺炎权威小贴士', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, 0, 1, 0, '2020-05-23 20:57:40', 1, NULL, 89),
+(2, 67, '必读！关于新冠肺炎的20个知识点', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, 0, 1, 1, '2020-05-23 20:57:33', 1, NULL, 1),
+(3, 67, '你需要知道的新冠肺炎最新知识', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, 0, 1, 0, '2020-05-23 20:57:25', 0, NULL, 4),
+(4, 67, '新冠肺炎患者需要注意哪些心理疏导?', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, 0, 1, 0, '2020-05-23 20:55:29', 1, NULL, 7),
+(5, 67, '新冠肺炎的日常防护知识', '<p><strong>日常防护知识：</strong></p><p>1.最重要的一条：不要到处跑。</p><p>专家始终强调，预防新冠肺炎最有效的方式之一是：减少出行，这不仅关乎自己和家人，也关乎整个社会。一定要外出时不要乘坐比较拥挤的公共交通车，建议步行或开车，逗留时间尽量缩短。宅在家时，应格外注意3个细节：通风：每日打开门窗通风2-3次，每次30分钟左右；天气好时，可以晒晒被子、衣服。洗手：回家后、做菜前、吃饭前、如厕后，应在流动水下用肥皂或洗手液揉搓30秒左右。饮食安全：处理食物时生熟分开，肉类充分做熟再吃；家庭实行分餐制或使用公筷。不要吃野味。</p><p>2.不要参加集会。</p><p>少出门、少聚会，是减少交叉感染的重要方法，尤其应避免去人员密集的公共场所，如商场、公共浴池、棋牌室、医院等。</p><p>3.出门戴口罩，不一定戴N95。</p><p>钟南山院士表示，戴口罩不一定要戴N95，医用外科口罩即可阻止大部分病毒进入呼吸道。普通口罩也能起到一定的隔离作用。如果口罩不够用，普通大众的口罩不必用一次换一次，可根据清洁程度延长使用时间。戴口罩时要把口鼻都完全覆盖住，并与面部贴合严实，尽量减少漏气情况。摘口罩时，不要抓着污染面，用手抓住系带脱离，扔到垃圾桶，不要到处乱扔。</p><p>4.学会正确洗手。</p><p>新型冠状病毒可通过接触传播，如果没有注意使双手沾上病毒，揉眼睛时就可能造成感染，所以一定要勤洗手。暂没有洗手条件时可用消毒湿巾擦拭双手。</p>', '', '', '', NULL, NULL, 0, 1, 0, '2020-05-23 20:55:41', 1, NULL, 53),
+(6, 67, '我省昨日新冠肺炎疫情公告', '<p>据省卫健委官网公布，5月23日0-24时，我省新增新型冠状病毒肺炎确诊病例xx例；新增疑似病例xx例；新增治愈出院病例xx例；新增死亡病例x例。</p>', '风格', '/uploads/image/20200531/1590918832985443.jpg', '关键词', '文章描述', 'URL', 11, 9, 1, '2020-06-01 20:57:50', 1, '文章来源', 16988);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `cz_category`
 --
 
 CREATE TABLE `cz_category` (
-  `catid` smallint(5) UNSIGNED NOT NULL COMMENT '栏目ID',
+  `catid` smallint(11) UNSIGNED NOT NULL COMMENT '栏目ID',
   `type` tinyint(1) UNSIGNED DEFAULT '0' COMMENT '栏目类型ID',
   `modelid` smallint(5) UNSIGNED DEFAULT '0' COMMENT '模型ID，0=系统，1=文章，2=下载，3=图片，可自定义',
-  `parentid` smallint(5) UNSIGNED DEFAULT '0' COMMENT '上级父栏目',
+  `parentid` smallint(11) UNSIGNED DEFAULT '0' COMMENT '上级父栏目',
   `arrparentid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '所有父栏目',
   `child` tinyint(1) UNSIGNED DEFAULT '0' COMMENT '是否存在子栏目，1，存在',
   `arrchildid` mediumtext COLLATE utf8_unicode_ci COMMENT '所有子栏目',
@@ -88,9 +125,9 @@ CREATE TABLE `cz_category` (
   `description` mediumtext COLLATE utf8_unicode_ci COMMENT '栏目描述',
   `url` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '栏目链接',
   `items` mediumint(8) UNSIGNED DEFAULT '0' COMMENT '栏目内容数',
-  `hits` int(10) UNSIGNED DEFAULT '0' COMMENT '点击数',
+  `hits` int(11) UNSIGNED DEFAULT '0' COMMENT '点击数',
   `setting` mediumtext COLLATE utf8_unicode_ci COMMENT '栏目相关配置信息',
-  `listorder` smallint(5) UNSIGNED DEFAULT '0' COMMENT '排序',
+  `listorder` smallint(11) UNSIGNED DEFAULT '0' COMMENT '排序',
   `ismenu` tinyint(1) UNSIGNED DEFAULT '1' COMMENT '是否显示，1 显示',
   `letter` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '栏目拼音'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -684,7 +721,14 @@ INSERT INTO `cz_syslog` (`log_id`, `log_content`, `log_user`, `log_ip`, `log_dat
 (127, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:34'),
 (128, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:37'),
 (129, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 10:40:47'),
-(130, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 11:20:29');
+(130, '修复分类数据', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 11:20:29'),
+(131, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 14:03:38'),
+(132, '修改系统设置', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 18:15:49'),
+(133, '修改文章，ID：6', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 20:57:53'),
+(134, '新增文章，ID：7', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 21:15:10'),
+(135, '删除文章(ID)：7', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 21:16:26'),
+(136, '修改文章，ID：6', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 21:35:35'),
+(137, '修改文章，ID：6', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-01 21:39:52');
 
 -- --------------------------------------------------------
 
@@ -702,7 +746,7 @@ CREATE TABLE `cz_web_config` (
 --
 
 INSERT INTO `cz_web_config` (`id`, `web_config`) VALUES
-(1, '{\"site_name\":\"caozha-admin\",\"site_url\":\"http:\\/\\/caozha.com\",\"admin_limit\":\"15\",\"roles_limit\":\"15\",\"syslog_limit\":\"15\",\"article_limit\":\"50\",\"index_title\":\"caozha-admin\\u540e\\u53f0\\u7ba1\\u7406\\u7cfb\\u7edf\",\"index_keywords\":\"\\u8349\\u672d,caozha,caozha-admin\",\"index_description\":\"caozha-admin\\u662f\\u4e00\\u4e2a\\u901a\\u7528\\u7684\\u7f51\\u7ad9\\u540e\\u53f0\\u5f00\\u53d1\\u6846\\u67b6\\uff0c\\u57fa\\u4e8e\\u5f00\\u6e90\\u7684ThinkPHP6.0.2\\u3001layuimini v2\\u3001layui2.5.4\\u4ee5\\u53cafont-awesome-4.7.0\\u5f00\\u53d1\\uff0c\\u7279\\u70b9\\uff1a\\u6613\\u4e0a\\u624b\\uff0c\\u96f6\\u95e8\\u69db\\uff0c\\u754c\\u9762\\u6e05\\u723d\\u6781\\u7b80 \\u3002\",\"site_footer\":\"Copyright \\u00a9 2020 \\u8349\\u672d caozha.com All rights reserved.\"}');
+(1, '{\"site_name\":\"caozha-admin\",\"site_url\":\"http:\\/\\/caozha.com\",\"admin_limit\":\"15\",\"roles_limit\":\"15\",\"syslog_limit\":\"15\",\"article_limit\":\"15\",\"index_title\":\"caozha-admin\\u540e\\u53f0\\u7ba1\\u7406\\u7cfb\\u7edf\",\"index_keywords\":\"\\u8349\\u672d,caozha,caozha-admin\",\"index_description\":\"caozha-admin\\u662f\\u4e00\\u4e2a\\u901a\\u7528\\u7684\\u7f51\\u7ad9\\u540e\\u53f0\\u5f00\\u53d1\\u6846\\u67b6\\uff0c\\u57fa\\u4e8e\\u5f00\\u6e90\\u7684ThinkPHP6.0.2\\u3001layuimini v2\\u3001layui2.5.4\\u4ee5\\u53cafont-awesome-4.7.0\\u5f00\\u53d1\\uff0c\\u7279\\u70b9\\uff1a\\u6613\\u4e0a\\u624b\\uff0c\\u96f6\\u95e8\\u69db\\uff0c\\u754c\\u9762\\u6e05\\u723d\\u6781\\u7b80 \\u3002\",\"site_footer\":\"Copyright \\u00a9 2020 \\u8349\\u672d caozha.com All rights reserved.\"}');
 
 --
 -- 转储表的索引
@@ -713,6 +757,15 @@ INSERT INTO `cz_web_config` (`id`, `web_config`) VALUES
 --
 ALTER TABLE `cz_administrators`
   ADD PRIMARY KEY (`admin_id`);
+
+--
+-- 表的索引 `cz_article`
+--
+ALTER TABLE `cz_article`
+  ADD PRIMARY KEY (`aid`) USING BTREE,
+  ADD KEY `status` (`status`,`listorder`,`aid`),
+  ADD KEY `listorder` (`catid`,`status`,`listorder`,`aid`),
+  ADD KEY `catid` (`catid`,`status`,`aid`);
 
 --
 -- 表的索引 `cz_category`
@@ -751,10 +804,16 @@ ALTER TABLE `cz_administrators`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员ID', AUTO_INCREMENT=26;
 
 --
+-- 使用表AUTO_INCREMENT `cz_article`
+--
+ALTER TABLE `cz_article`
+  MODIFY `aid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- 使用表AUTO_INCREMENT `cz_category`
 --
 ALTER TABLE `cz_category`
-  MODIFY `catid` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '栏目ID', AUTO_INCREMENT=473;
+  MODIFY `catid` smallint(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '栏目ID', AUTO_INCREMENT=473;
 
 --
 -- 使用表AUTO_INCREMENT `cz_roles`
@@ -766,7 +825,7 @@ ALTER TABLE `cz_roles`
 -- 使用表AUTO_INCREMENT `cz_syslog`
 --
 ALTER TABLE `cz_syslog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- 使用表AUTO_INCREMENT `cz_web_config`

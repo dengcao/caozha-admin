@@ -39,7 +39,7 @@ class Category
         $categorys = array();
         $req_data = Request::param('', '', 'filter_sql');//过滤注入
         $parentid = isset($req_data['parentid']) ? intval($req_data['parentid']) : "";
-        $result = get_category_data("", "", "", "");//读取缓存
+        $result = get_category_data("", "", "", "",0);//读取数据库
         if (!empty($result)) {
             foreach ($result as $r) {
                 $categorys[$r['catid']] = $r;
@@ -106,7 +106,8 @@ class Category
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         $categorys = array();
-        $result = get_category_data("", "", "", "");//读取缓存
+        //$result = get_category_data("", "", "", "");//读取缓存
+        $result = get_category_data("", "", "", "",0);//读取数据库
         if (!empty($result)) {
             foreach ($result as $r) {
                 $categorys[$r['catid']] = $r;

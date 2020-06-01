@@ -397,7 +397,7 @@ if (!function_exists('echo_value')) {
         <a title="官方网站" href="http://www.thinkphp.cn">ThinkPHP</a> 
         <span>V<?php echo \think\facade\App::version(); ?></span>
         <span>&nbsp; - &nbsp;</span>
-        Powered by <a href="https://gitee.com/caozha/caozha-admin" target="_blank">caozha-admin</a> 1.0.0 &nbsp;
+        Powered by <a href="https://gitee.com/caozha/caozha-admin" target="_blank">caozha-admin</a>  &nbsp;
         <a href="http://caozha.com" target="_blank">草札官方网站</a>
     </div>
     <?php if (\think\facade\App::isDebug()) { ?>

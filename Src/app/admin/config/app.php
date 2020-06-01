@@ -40,6 +40,9 @@ return [
     // 显示错误信息
     'show_error_msg'   => true,
 
+    //文章，状态
+    'caozha_article_status' => array(0 => "无效",1 => "在审",2 => "退稿",9 => "通过"),
+
     //分类，栏目类型ID
     'caozha_category_types' => array(0 => "内部栏目",1 => "单网页",2 => "外部链接"),
 
@@ -108,6 +111,12 @@ return [
           "title": "分类管理",
           "href": "'.url("admin/category/index").'",
           "icon": "fa fa-th-list",
+          "target": "_self"
+        },
+        {
+          "title": "文章管理",
+          "href": "'.url("admin/article/index").'",
+          "icon": "fa fa-newspaper-o",
           "target": "_self"
         },
         {
