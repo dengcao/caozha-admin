@@ -48,3 +48,9 @@ a.close-own:hover{background-position: left -46px}
 .table_form{font-size:13px;color: #444;}
 .caozha-nav-tool{padding: 2px 0px 12px 0px;}
 
+.layui-form2{margin: 10px auto;}
+.layui-form2 input.layui-input{width: 250px;}
+.layui-form2 .layui-form-label{display: inline-block;}
+.layui-form2 input.layui-input,.x-so input.layui-btn{display: inline-block;}
+.layui-form2 .layui-btn{height: 37px;}
+.layui-form2 .cz-select .layui-input{width: 100px;}

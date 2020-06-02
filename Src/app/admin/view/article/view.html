@@ -40,6 +40,34 @@
     </div>
 
     <div class="layui-form-item">
+        <label class="layui-form-label">作者：</label>
+        <div class="layui-input-block">
+            {$article.author}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">文章来源：</label>
+        <div class="layui-input-block">
+            {$article.copyfrom}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">缩略图：</label>
+        <div class="layui-input-block">
+            {if $article.thumb}<img src="{$article.thumb}" style="height: 150px;">{/if}
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">内容：</label>
+        <div class="layui-input-block">
+            {$article.content|raw}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
         <label class="layui-form-label">URL：</label>
         <div class="layui-input-block">
             {$article.url}
@@ -82,23 +110,30 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">排序：</label>
+        <label class="layui-form-label">推荐：</label>
         <div class="layui-input-block">
-            {$article.listorder}
+            {$article.isreco}
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">缩略图：</label>
+        <label class="layui-form-label">热点：</label>
         <div class="layui-input-block">
-            {if $article.thumb}<img src="{$article.thumb}" style="height: 150px;">{/if}
+            {$article.ishot}
         </div>
     </div>
 
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">内容：</label>
+    <div class="layui-form-item">
+        <label class="layui-form-label">置顶：</label>
         <div class="layui-input-block">
-            {$article.content|raw}
+            {$article.istop}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序：</label>
+        <div class="layui-input-block">
+            {$article.listorder}
         </div>
     </div>
 

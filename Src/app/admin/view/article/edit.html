@@ -29,7 +29,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">所属分类</label>
         <div class="layui-input-block">
-            <select name="catid" style="width:350px;" lay-verify="required" lay-reqtext="请选择分类">
+            <select name="catid" style="width:350px;" lay-filter="catid" lay-verify="required" lay-search="" lay-reqtext="请选择分类">
                 {$parentid_select|raw}
             </select>
         </div>
@@ -138,6 +138,40 @@
     </div>
 
     <div class="layui-form-item">
+        <label class="layui-form-label">推荐</label>
+        <div class="layui-input-block">
+            <input type="checkbox" {if $article.isreco==1}checked=""{/if} value="1" name="isreco" lay-skin="switch" lay-filter="switchTest" lay-text="是|否">
+            <div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>是</em><i></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">热门</label>
+        <div class="layui-input-block">
+            <input type="checkbox" {if $article.ishot==1}checked=""{/if} value="1" name="ishot" lay-skin="switch" lay-filter="switchTest" lay-text="是|否">
+            <div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>是</em><i></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">置顶</label>
+        <div class="layui-input-block">
+            <input type="checkbox" {if $article.istop==1}checked=""{/if} value="1" name="istop" lay-skin="switch" lay-filter="switchTest" lay-text="是|否">
+            <div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>是</em><i></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">作者</label>
+        <div class="layui-input-block">
+            <input type="text" name="author" placeholder="" value="{$article.author}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
         <label class="layui-form-label">文章来源</label>
         <div class="layui-input-block">
             <input type="text" name="copyfrom" placeholder="" value="{$article.copyfrom}"
@@ -213,6 +247,13 @@
             });
 
             return false;
+        });
+
+        //解决下拉框出现&nbap乱码
+        form.on('select(catid)', function(data){
+            let selectText=data.elem[data.elem.selectedIndex].text;//得到被选中的文本值
+            selectText=selectText.trim();//去掉&nbap
+            data.elem[data.elem.selectedIndex].text=selectText;//覆盖原文本值
         });
 
     });

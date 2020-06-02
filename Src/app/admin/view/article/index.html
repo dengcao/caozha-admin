@@ -15,20 +15,84 @@
 <div class="layuimini-container">
     <div class="layuimini-main">
 
+        <div class="layui-collapse">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">搜索<i class="layui-icon layui-colla-icon"></i></h2>
+                <div class="layui-colla-content layui-show">
+                    <div class="layui-row">
+                        <form class="layui-form layui-col-md12 layui-form2" method="get">
+
+                            <input type="text" name="keyword" value="" placeholder="请输入关键词" autocomplete="off" class="layui-input">
+
+                            <div class="layui-input-inline">
+                                <select name="catid" lay-filter="catid" lay-search="" class="layui-inline">
+                                    <option value="">请选择栏目</option>
+                                    {$parentid_select|raw}
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline cz-select">
+                                <select name="status" lay-filter="status" class="layui-inline">
+                                    <option value="">文章状态</option>
+                                    {foreach $article_status as $key=>$vo }
+                                    <option value="{$key}">{$vo}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline cz-select">
+                                <select class="layui-inline" name="islink">
+                                    <option value="">外部链接</option>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline cz-select">
+                                <select class="layui-inline" name="iscomment">
+                                    <option value="">允许评论</option>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline cz-select">
+                                <select class="layui-inline" name="isreco">
+                                    <option value="">推荐</option>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline cz-select">
+                                <select class="layui-inline" name="ishot">
+                                    <option value="">热门</option>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline cz-select">
+                                <select class="layui-inline" name="istop">
+                                    <option value="">置顶</option>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </div>
+
+                            <button class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script type="text/html" id="toolbarDemo">
-            <div class="layui-btn-container cz-float-left">
+            <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
                 <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"
                         lay-event="delete"> 删除
                 </button>
-            </div>
-            <div class="cz-toolbar-search cz-float-left">
-                <form class="layui-form layui-form-pane" action="">
-                     <input name="keyword" class="cz-toolbar-search-input" placeholder="请输入关键词">
-                    <button type="submit" class="layui-icon layui-icon-search cz-toolbar-search-btn" lay-submit
-                            lay-filter="data-search-btn"></button>
-                             
-                </form>
             </div>
         </script>
 
@@ -44,10 +108,12 @@
 </div>
 <script src="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['form', 'table'], function () {
+    layui.use(['form','element', 'table'], function () {
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
+
+        var lement = layui.element;//面包导航
 
         table.render({
             elem: '#currentTableId',
@@ -61,7 +127,7 @@
                 };
             },
             toolbar: '#toolbarDemo',
-            defaultToolbar: ['filter', 'print', {
+            defaultToolbar: ['filter', 'print', 'exports',{
                 title: '提示：双击可查看详情',
                 layEvent: 'LAYTABLE_TIPS',
                 icon: 'layui-icon-tips'
@@ -76,9 +142,12 @@
                 {field: 'listorder', width: 70, title: '排序', align: "center"},
                 {field: 'status', width: 60, title: '状态', align: "center"},
                 {field: 'islink', width: 60, title: '外链', align: "center"},
-                {field: 'iscomment', width: 90, title: '允许评论', align: "center"},
+                {field: 'iscomment', width: 60, title: '评论', align: "center"},
+                {field: 'isreco', width: 60, title: '推荐', align: "center"},
+                {field: 'ishot', width: 60, title: '热门', align: "center"},
+                {field: 'istop', width: 60, title: '置顶', align: "center"},
                 {field: 'inputtime', width: 165, title: '发布时间'},
-                {field: 'hits', width: 130, align: "center", title: '浏览数'},
+                {field: 'hits', width: 90, align: "center", title: '浏览数'},
                 {title: '操作', width: 130, toolbar: '#currentTableBar', align: "center", fixed: "right"}
             ]],
             limits: [5, 10, 15, 20, 25, 50, 100, 200, 500, 1000],
@@ -189,23 +258,26 @@
         });
 
         // 监听搜索操作
-        form.on('submit(data-search-btn)', function (data) {
-
-            var result = data.field;
-
-            //执行搜索重载
+        form.on('submit(search)', function(data){
+            //data.field
             table.reload('currentTableId', {
                 page: {
                     curr: 1
                 }
-                , where: {
-                    keyword: result.keyword
-                }
-            }, 'data');
-            $(".cz-toolbar-search-input").val(result.keyword);//重新赋值搜索框
+                ,where: data.field //设定异步数据接口的额外参数
+
+            });
 
             return false;
         });
+
+        //解决下拉框出现&nbap乱码
+        form.on('select(catid)', function(data){
+            let selectText=data.elem[data.elem.selectedIndex].text;//得到被选中的文本值
+            selectText=selectText.trim();//去掉&nbap
+            data.elem[data.elem.selectedIndex].text=selectText;//覆盖原文本值
+        });
+
 
         //监听表格复选框选择
         table.on('checkbox(currentTableFilter)', function (obj) {

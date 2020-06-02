@@ -32,8 +32,29 @@ class Article
         if(!is_numeric($limit)){
             $limit=15;//默认显示15条
         }
+
+        $tree = new tree;
+        $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
+        $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
+        $categorys = array();
+        //$result = get_category_data("", "", "", "");//读取缓存
+        $result = get_category_data("", "", "", "",0);//读取数据库
+        if (!empty($result)) {
+            foreach ($result as $r) {
+                $categorys[$r['catid']] = $r;
+            }
+        }
+        $str = "<option value='\$catid' \$selected>\$spacer \$catname</option>";
+        $source_string = '';
+        $tree->init($categorys);
+        $source_string .= $tree->get_tree(0, $str);
+
+        $article_status = Config::get("app.caozha_article_status");
+
         View::assign([
-            'article_limit'  => $limit
+            'article_limit'  => $limit,
+            'article_status' => $article_status,
+            'parentid_select' => $source_string,
         ]);
         // 模板输出
         return View::fetch('article/index');
@@ -73,9 +94,14 @@ class Article
             // 如果不是AJAX
             return result_json(0,"error");
         }
-        $edit_data=Request::param('','','filter_sql');//过滤注入
+        $update_data=Request::param('','','filter_sql');//过滤注入
+        $update_data["islink"]=isset($update_data["islink"])?$update_data["islink"]:0;
+        $update_data["iscomment"]=isset($update_data["iscomment"])?$update_data["iscomment"]:0;
+        $update_data["isreco"]=isset($update_data["isreco"])?$update_data["isreco"]:0;
+        $update_data["ishot"]=isset($update_data["ishot"])?$update_data["ishot"]:0;
+        $update_data["istop"]=isset($update_data["istop"])?$update_data["istop"]:0;
 
-        $aid = Db::name('article')->insertGetId($edit_data);
+        $aid = Db::name('article')->insertGetId($update_data);
 
         if($aid>0){
             write_syslog(array("log_content"=>"新增文章，ID：".$aid));//记录系统日志
@@ -131,20 +157,27 @@ class Article
             // 如果不是AJAX
             return result_json(0,"error");
         }
-        $edit_data=Request::param('','','filter_sql');//过滤注入
-        if(!is_numeric($edit_data["aid"])){
+        $update_data=Request::param('','','filter_sql');//过滤注入
+        if(!is_numeric($update_data["aid"])){
             caozha_error("参数错误","",1);
         }
-        $update_field=['catid','title','content','style','thumb','keywords','description','url','listorder','status','islink','inputtime','iscomment','copyfrom','hits'];//允许更新的字段
-        $article=ArticleModel::where("aid","=",$edit_data["aid"])->findOrEmpty();
+
+        $update_data["islink"]=isset($update_data["islink"])?$update_data["islink"]:0;
+        $update_data["iscomment"]=isset($update_data["iscomment"])?$update_data["iscomment"]:0;
+        $update_data["isreco"]=isset($update_data["isreco"])?$update_data["isreco"]:0;
+        $update_data["ishot"]=isset($update_data["ishot"])?$update_data["ishot"]:0;
+        $update_data["istop"]=isset($update_data["istop"])?$update_data["istop"]:0;
+
+        $update_field=['catid','title','content','style','thumb','keywords','description','url','listorder','status','islink','inputtime','iscomment','author','copyfrom','hits','isreco','ishot','istop'];//允许更新的字段
+        $article=ArticleModel::where("aid","=",$update_data["aid"])->findOrEmpty();
         if ($article->isEmpty()) {//数据不存在
             $update_result=false;
         }else{
-            $update_result=$article->allowField($update_field)->save($edit_data);
+            $update_result=$article->allowField($update_field)->save($update_data);
         }
 
         if($update_result){
-            write_syslog(array("log_content"=>"修改文章，ID：".$edit_data["aid"]));//记录系统日志
+            write_syslog(array("log_content"=>"修改文章，ID：".$update_data["aid"]));//记录系统日志
             $list=array("code"=>1,"update_num"=>1,"msg"=>"保存成功");
         }else{
             $list=array("code"=>0,"update_num"=>0,"msg"=>"保存失败");
@@ -168,6 +201,15 @@ class Article
         })->withAttr('iscomment', function($value) {
             $iscomment = [0=>'否',1=>'是'];
             return $iscomment[$value];
+        })->withAttr('isreco', function($value) {
+            $islink = [0=>'否',1=>'是'];
+            return $islink[$value];
+        })->withAttr('ishot', function($value) {
+            $iscomment = [0=>'否',1=>'是'];
+            return $iscomment[$value];
+        })->withAttr('istop', function($value) {
+            $islink = [0=>'否',1=>'是'];
+            return $islink[$value];
         })->findOrEmpty();
         if ($article->isEmpty()) {
             caozha_error("[ID:".$aid."]文章不存在。","",1);
@@ -192,24 +234,49 @@ class Article
                 $limit=15;//默认显示15条
             }
         }
-        $list=ArticleModel::with('category')->withAttr('status', function($value) {
+
+        $list=Db::name('article');
+        $list=$list->alias('a')->leftJoin('category c','a.catid = c.catid');
+        $list=$list->withAttr('status', function($value) {
             $status = Config::get("app.caozha_article_status");
             return $status[$value];
         })->withAttr('islink', function($value) {
             $islink = [0=>'否',1=>'是'];
             return $islink[$value];
         })->withAttr('iscomment', function($value) {
-            $iscomment = [0=>'否',1=>'是'];
+            $iscomment = [0=>'<i class="layui-icon layui-icon-close hese"></i>',1=>'<i class="layui-icon layui-icon-ok olivedrab"></i>'];
             return $iscomment[$value];
-        })->order('aid', 'desc');
-        $keyword=Request::param("keyword",'','filter_sql');
-        if($keyword){
-            $list=$list->whereOr([ ["title","like","%".$keyword."%"],["content","like","%".$keyword."%"],["keywords","like","%".$keyword."%"],["description","like","%".$keyword."%"],["url","like","%".$keyword."%"],["copyfrom","like","%".$keyword."%"] ]);
+        })->withAttr('isreco', function($value) {
+            $islink = [0=>'<i class="layui-icon layui-icon-close hese"></i>',1=>'<i class="layui-icon layui-icon-ok olivedrab"></i>'];
+            return $islink[$value];
+        })->withAttr('ishot', function($value) {
+            $iscomment = [0=>'<i class="layui-icon layui-icon-close hese"></i>',1=>'<i class="layui-icon layui-icon-ok olivedrab"></i>'];
+            return $iscomment[$value];
+        })->withAttr('istop', function($value) {
+            $islink = [0=>'<i class="layui-icon layui-icon-close hese"></i>',1=>'<i class="layui-icon layui-icon-ok olivedrab"></i>'];
+            return $islink[$value];
+        })->order('a.aid', 'desc');
+
+        $action=Request::param('','','filter_sql');//过滤注入
+        if(isset($action["keyword"])){
+            if($action["keyword"]!=""){
+                $list=$list->where("a.title|a.content|a.keywords|a.description|a.url|a.copyfrom","like","%".$action["keyword"]."%");
+            }
         }
+        $action_arr=['catid','status','islink','iscomment','isreco','ishot','istop'];
+        foreach ($action_arr as $value){
+            if(isset($action[$value])){
+                if($action[$value]!="") {
+                    $list = $list->where("a.".$value, "=", $action[$value]);
+                }
+            }
+        }
+
         $list=$list->paginate([
             'list_rows'=> $limit,//每页数量
             'page' => $page,//当前页
         ]);
+        //print_r(Db::getLastSql());
         return json($list);
     }
 
