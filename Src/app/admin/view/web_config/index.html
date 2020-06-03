@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">权限组每页显示</label>
+                <label class="layui-form-label">管理员权限组每页显示</label>
                 <div class="layui-input-block"><!--此处设置的选项必须跟权限组页面设置的limits一致，否则出错-->
                     <select name="roles_limit">
                         <option value="5">5条</option>
@@ -88,6 +88,40 @@
                 <label class="layui-form-label">文章管理每页显示</label>
                 <div class="layui-input-block"><!--此处设置的选项必须跟文章管理页面设置的limits一致，否则出错-->
                     <select name="article_limit">
+                        <option value="5">5条</option>
+                        <option value="10">10条</option>
+                        <option value="15">15条</option>
+                        <option value="20">20条</option>
+                        <option value="25">25条</option>
+                        <option value="50">50条</option>
+                        <option value="100">100条</option>
+                        <option value="200">200条</option>
+                        <option value="500">500条</option>
+                        <option value="1000">1000条</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户管理每页显示</label>
+                <div class="layui-input-block">
+                    <select name="member_limit">
+                        <option value="5">5条</option>
+                        <option value="10">10条</option>
+                        <option value="15">15条</option>
+                        <option value="20">20条</option>
+                        <option value="25">25条</option>
+                        <option value="50">50条</option>
+                        <option value="100">100条</option>
+                        <option value="200">200条</option>
+                        <option value="500">500条</option>
+                        <option value="1000">1000条</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户组管理每页显示</label>
+                <div class="layui-input-block">
+                    <select name="member_group_limit">
                         <option value="5">5条</option>
                         <option value="10">10条</option>
                         <option value="15">15条</option>

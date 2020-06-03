@@ -29,6 +29,6 @@ return [
         '__CAOZHA-STATIC__'=>'/static/admin/caozha',
         '__CAOZHA-LAYUIMINI__'=>'/static/admin/layuimini',
         '__CAOZHA-SYS-NAME__'=>'caozha-admin',
-        '__CAOZHA-SYS-VERSION__'=>'v1.2.0',
+        '__CAOZHA-SYS-VERSION__'=>'v1.3.0',
 ]
 ];

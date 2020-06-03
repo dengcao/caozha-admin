@@ -1,4 +1,4 @@
-# caozha-admin 后台管理框架 1.2.0
+# caozha-admin 后台管理框架 1.3.0
 
 caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP6.0.2、layui2.5.4、layuimini v2以及font-awesome-4.7.0开发，特点：易上手，零门槛，界面清爽极简 。
 
@@ -18,7 +18,9 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 7、无限级别分类
 
-8、文章系统
+8、文章管理系统
+
+9、用户（会员）管理系统
 
 主要提供了以上基础功能，您可以在此基础上拓展和开发出不同的应用。
 
@@ -68,6 +70,11 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 新增了：文章管理系统
 
 
+**版本1.3.0，主要更新内容：**
+
+新增了：用户（会员）管理系统
+
+
 
 ### 赞助支持：
 
@@ -86,6 +93,11 @@ GitHub：https://github.com/cao-zha/caozha-admin
 
 ### 界面预览
 
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/004237_802810be_7397417.jpeg "15.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/004228_77a586e1_7397417.jpeg "14.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/004219_bddd7960_7397417.jpeg "13.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/004200_03967767_7397417.jpeg "12.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/004148_c23aad3b_7397417.jpeg "11.jpg")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0602/181454_9d357745_7397417.png "10.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0531/221652_31b46dd9_7397417.png "8.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0531/221706_b4fc6e99_7397417.png "9.png")

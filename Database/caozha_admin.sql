@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2020-06-02 18:15:41
+-- 生成日期： 2020-06-03 21:40:46
 -- 服务器版本： 5.7.26
 -- PHP 版本： 7.3.4
 
@@ -52,7 +52,7 @@ CREATE TABLE `cz_administrators` (
 --
 
 INSERT INTO `cz_administrators` (`admin_id`, `admin_name`, `admin_password`, `admin_password_rnd`, `role_id`, `is_enabled`, `real_name`, `tel`, `email`, `wechat`, `qq`, `last_login_ip`, `last_login_time`, `last_logout_time`, `login_times`, `admin_remarks`) VALUES
-(1, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, 1, 1, '草札', '1320000000', 'dzh188@qq.com', 'wx', 'qq', '127.0.0.1', '2020-06-02 10:16:49', '2020-05-28 18:49:56', 47, NULL),
+(1, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, 1, 1, '草札', '1320000000', 'dzh188@qq.com', 'wx', 'qq', '127.0.0.1', '2020-06-03 14:09:21', '2020-06-03 14:09:10', 50, NULL),
 (2, 'dd78', 'ee04ddc4fea36f4ce797766b6c4f66a4', NULL, 2, 1, '查订单', '', '', NULL, NULL, '223.74.103.196', '2018-10-27 19:56:03', '2018-10-27 17:59:46', 4, NULL),
 (3, 'xgd', '0b9c6913e2cc2a29571cdf8d5b590baf', NULL, 2, 1, '小谢', '', '', NULL, NULL, '113.65.207.15', '2018-10-27 18:15:00', '2017-05-26 17:11:30', 113, NULL),
 (4, 'lb', 'f49c5286a10a22228c79793732acf431', NULL, 2, 0, '邱总', '', '', '', '', '14.145.253.14', '2015-11-04 10:20:05', '2015-10-21 17:54:09', 12, ''),
@@ -560,6 +560,70 @@ INSERT INTO `cz_category` (`catid`, `type`, `modelid`, `parentid`, `arrparentid`
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `cz_member`
+--
+
+CREATE TABLE `cz_member` (
+  `userid` mediumint(11) UNSIGNED NOT NULL,
+  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `password` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
+  `encrypt` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '随机码',
+  `nickname` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '昵称',
+  `avatar` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '头像',
+  `regtime` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间',
+  `lasttime` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后登录时间',
+  `regip` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '注册ip',
+  `lastip` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '上次登录ip',
+  `loginnum` smallint(8) UNSIGNED DEFAULT '0' COMMENT '登陆次数',
+  `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '电子邮箱',
+  `groupid` int(8) UNSIGNED DEFAULT '0' COMMENT '用户组id',
+  `address` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户地址',
+  `amount` decimal(8,2) UNSIGNED DEFAULT '0.00' COMMENT '金钱总额',
+  `point` smallint(8) UNSIGNED DEFAULT '0' COMMENT '积分',
+  `islock` tinyint(1) UNSIGNED DEFAULT '0' COMMENT '是否锁定，1=锁定',
+  `qq` varchar(50) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'QQ',
+  `mobile` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '手机号码',
+  `weixin` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '微信号',
+  `remarks` text COLLATE utf8_unicode_ci COMMENT '备注',
+  `isrn` tinyint(1) DEFAULT '0' COMMENT '是否已实名，0=未实名，1=实名，2=正在审核',
+  `realname` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '真实姓名',
+  `id_card` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '身份证号'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='会员表';
+
+--
+-- 转存表中的数据 `cz_member`
+--
+
+INSERT INTO `cz_member` (`userid`, `username`, `password`, `encrypt`, `nickname`, `avatar`, `regtime`, `lasttime`, `regip`, `lastip`, `loginnum`, `email`, `groupid`, `address`, `amount`, `point`, `islock`, `qq`, `mobile`, `weixin`, `remarks`, `isrn`, `realname`, `id_card`) VALUES
+(1, 'admin', '991cb36dc61b73dd37a385dd4927ce47', '', '管理员', '/uploads/image/20200531/1590918832985443.jpg', '2020-06-03 18:24:14', '2020-06-03 18:24:14', NULL, NULL, 0, 'dzh188@qq.com', 1, '广西', '8671.00', 0, 0, '8866629', '13286805000', 'wx', '', 0, '', ''),
+(2, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, '草札', '/uploads/image/20200531/1590918832985443.jpg', '2020-06-03 20:40:50', '2020-06-03 20:40:50', NULL, NULL, 0, 'dzh188@qq.com', 2, '广西贵港市', '0.00', 0, 1, '8866629', '13286805000', 'weixin', '备注', 1, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cz_member_group`
+--
+
+CREATE TABLE `cz_member_group` (
+  `groupid` int(11) NOT NULL COMMENT '用户组ID',
+  `roles` text COLLATE utf8mb4_unicode_ci COMMENT '权限标识符，多个中间用,分隔',
+  `group_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户组名称',
+  `group_remarks` text COLLATE utf8mb4_unicode_ci COMMENT '备注',
+  `is_enabled` tinyint(1) DEFAULT '1' COMMENT '是否启用，1为启用',
+  `listorder` int(11) DEFAULT '0' COMMENT '排序'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 转存表中的数据 `cz_member_group`
+--
+
+INSERT INTO `cz_member_group` (`groupid`, `roles`, `group_name`, `group_remarks`, `is_enabled`, `listorder`) VALUES
+(1, 'mine,cmt', '普通会员', '', 1, 100),
+(2, 'mine,cmt', '高级会员', '', 1, 90);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `cz_roles`
 --
 
@@ -576,7 +640,7 @@ CREATE TABLE `cz_roles` (
 --
 
 INSERT INTO `cz_roles` (`role_id`, `roles`, `role_name`, `role_remarks`, `is_enabled`) VALUES
-(1, 'config,roles,admin,log_view,log_del,mine,category,article', '超级管理员', '可使用后台所有功能', 1),
+(1, 'config,roles,admin,log_view,log_del,mine,category,article,member,mbr_group', '超级管理员', '可使用后台所有功能', 1),
 (2, 'article', '内容管理员', '测试停用', 0),
 (3, 'article', '编辑', '只管理文章', 1);
 
@@ -738,7 +802,29 @@ INSERT INTO `cz_syslog` (`log_id`, `log_content`, `log_user`, `log_ip`, `log_dat
 (139, '修改文章，ID：6', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-02 14:21:25'),
 (140, '修改文章，ID：6', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-02 14:21:37'),
 (141, '新增文章，ID：8', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-02 18:12:41'),
-(142, '修改文章，ID：8', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-02 18:12:58');
+(142, '修改文章，ID：8', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-02 18:12:58'),
+(143, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 11:50:54'),
+(144, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 14:07:43'),
+(145, '修改权限组：超级管理员，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 14:09:06'),
+(146, '退出登陆', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 14:09:10'),
+(147, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 14:09:21'),
+(148, '修改系统设置', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 14:24:06'),
+(149, '新增用户组：普通会员，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:06:31'),
+(150, '修改会员组：普通会员，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:49:20'),
+(151, '修改会员组：普通会员，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:49:47'),
+(152, '删除用户组(ID)：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:54:58'),
+(153, '新增用户组：测试，ID：2', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:55:05'),
+(154, '新增用户组：测试22，ID：3', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:55:16'),
+(155, '删除用户组(ID)：2,3', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:55:55'),
+(156, '新增用户组：普通会员，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:58:01'),
+(157, '新增用户组：高级会员，ID：2', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:58:18'),
+(158, '修改会员组：普通会员，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:59:07'),
+(159, '修改会员组：普通会员，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 17:59:13'),
+(160, '新增用户，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 20:40:50'),
+(161, '修改用户，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 21:06:22'),
+(162, '修改用户，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 21:07:03'),
+(163, '修改用户，ID：2', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 21:07:45'),
+(164, '删除用户(ID)：3', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 21:28:11');
 
 -- --------------------------------------------------------
 
@@ -756,7 +842,7 @@ CREATE TABLE `cz_web_config` (
 --
 
 INSERT INTO `cz_web_config` (`id`, `web_config`) VALUES
-(1, '{\"site_name\":\"caozha-admin\",\"site_url\":\"http:\\/\\/caozha.com\",\"admin_limit\":\"15\",\"roles_limit\":\"15\",\"syslog_limit\":\"15\",\"article_limit\":\"15\",\"index_title\":\"caozha-admin\\u540e\\u53f0\\u7ba1\\u7406\\u7cfb\\u7edf\",\"index_keywords\":\"\\u8349\\u672d,caozha,caozha-admin\",\"index_description\":\"caozha-admin\\u662f\\u4e00\\u4e2a\\u901a\\u7528\\u7684\\u7f51\\u7ad9\\u540e\\u53f0\\u5f00\\u53d1\\u6846\\u67b6\\uff0c\\u57fa\\u4e8e\\u5f00\\u6e90\\u7684ThinkPHP6.0.2\\u3001layuimini v2\\u3001layui2.5.4\\u4ee5\\u53cafont-awesome-4.7.0\\u5f00\\u53d1\\uff0c\\u7279\\u70b9\\uff1a\\u6613\\u4e0a\\u624b\\uff0c\\u96f6\\u95e8\\u69db\\uff0c\\u754c\\u9762\\u6e05\\u723d\\u6781\\u7b80 \\u3002\",\"site_footer\":\"Copyright \\u00a9 2020 \\u8349\\u672d caozha.com All rights reserved.\"}');
+(1, '{\"site_name\":\"caozha-admin\",\"site_url\":\"http:\\/\\/caozha.com\",\"admin_limit\":\"15\",\"roles_limit\":\"15\",\"syslog_limit\":\"15\",\"article_limit\":\"15\",\"member_limit\":\"15\",\"member_group_limit\":\"15\",\"index_title\":\"caozha-admin\\u540e\\u53f0\\u7ba1\\u7406\\u7cfb\\u7edf\",\"index_keywords\":\"\\u8349\\u672d,caozha,caozha-admin\",\"index_description\":\"caozha-admin\\u662f\\u4e00\\u4e2a\\u901a\\u7528\\u7684\\u7f51\\u7ad9\\u540e\\u53f0\\u5f00\\u53d1\\u6846\\u67b6\\uff0c\\u57fa\\u4e8e\\u5f00\\u6e90\\u7684ThinkPHP6.0.2\\u3001layuimini v2\\u3001layui2.5.4\\u4ee5\\u53cafont-awesome-4.7.0\\u5f00\\u53d1\\uff0c\\u7279\\u70b9\\uff1a\\u6613\\u4e0a\\u624b\\uff0c\\u96f6\\u95e8\\u69db\\uff0c\\u754c\\u9762\\u6e05\\u723d\\u6781\\u7b80 \\u3002\",\"site_footer\":\"Copyright \\u00a9 2020 \\u8349\\u672d caozha.com All rights reserved.\"}');
 
 --
 -- 转储表的索引
@@ -784,6 +870,20 @@ ALTER TABLE `cz_category`
   ADD PRIMARY KEY (`catid`),
   ADD KEY `module` (`parentid`,`listorder`,`catid`),
   ADD KEY `siteid` (`type`);
+
+--
+-- 表的索引 `cz_member`
+--
+ALTER TABLE `cz_member`
+  ADD PRIMARY KEY (`userid`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `email` (`email`(20));
+
+--
+-- 表的索引 `cz_member_group`
+--
+ALTER TABLE `cz_member_group`
+  ADD PRIMARY KEY (`groupid`);
 
 --
 -- 表的索引 `cz_roles`
@@ -826,6 +926,18 @@ ALTER TABLE `cz_category`
   MODIFY `catid` smallint(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '栏目ID', AUTO_INCREMENT=473;
 
 --
+-- 使用表AUTO_INCREMENT `cz_member`
+--
+ALTER TABLE `cz_member`
+  MODIFY `userid` mediumint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 使用表AUTO_INCREMENT `cz_member_group`
+--
+ALTER TABLE `cz_member_group`
+  MODIFY `groupid` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户组ID', AUTO_INCREMENT=3;
+
+--
 -- 使用表AUTO_INCREMENT `cz_roles`
 --
 ALTER TABLE `cz_roles`
@@ -835,7 +947,7 @@ ALTER TABLE `cz_roles`
 -- 使用表AUTO_INCREMENT `cz_syslog`
 --
 ALTER TABLE `cz_syslog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 
 --
 -- 使用表AUTO_INCREMENT `cz_web_config`

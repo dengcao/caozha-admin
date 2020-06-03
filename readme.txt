@@ -1,4 +1,10 @@
-﻿caozha-admin 1.0.0 使用手册
+﻿caozha-admin 1.x 使用手册
+
+
+此文档可能不是最新，请查看网络版最新的开发手册：
+
+码云Wiki：https://gitee.com/caozha/caozha-admin/wikis
+GitHub Wiki：https://github.com/cao-zha/caozha-admin/wiki
 
 【快速安装】
 
@@ -128,6 +134,33 @@ write_syslog(array("log_content"=>"删除系统日志"));//记录系统日志
 
 另外，有一点值得说明的是，在控制器app\admin\controller\Category.php下，有一个方法：delete_category_content($catid, $modelid)，需要在您开发的时候加上删除文章、图片等数据的代码（如果有的话）。
 
+
+
+5、文章管理系统
+
+打开应用配置文件：Src/app/admin/config/app.php，找到：
+
+//文章，状态`
+'caozha_article_status' => array(0 => "无效",1 => "在审",2 => "退稿",9 => "通过"),`
+
+此处可以配置文章审核状态，会在全局起作用。
+
+注意： 文章管理系统已与无限分类系统关联好，开箱即用。文章管理系统的主要代码全部集中在控制器：app\admin\controller\Article.php，可根据需要做实际的修改。
+
+
+
+6、用户（会员）管理系统
+
+打开应用配置文件：Src/app/admin/config/app.php，找到：
+
+//会员，实名状态
+'caozha_member_isrn' => array(0 => "否",1 => "是",2 => "待审"),
+
+此处可以设置会员的实名状态。
+
+重要说明：
+
+为了提高兼容性，用户（会员）系统参考了PHPCMS等系统的会员数据库架构。利用此会员系统，可以很方便的架构各种各样的会员体系。自带了用户组功能，可以无限拓展用户组（等级）以及分配用户权限。
 
 
 

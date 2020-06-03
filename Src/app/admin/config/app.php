@@ -40,6 +40,9 @@ return [
     // 显示错误信息
     'show_error_msg'   => true,
 
+    //会员，实名状态
+    'caozha_member_isrn' => array(0 => "否",1 => "是",2 => "待审"),
+
     //文章，状态
     'caozha_article_status' => array(0 => "无效",1 => "在审",2 => "退稿",9 => "通过"),
 
@@ -60,6 +63,15 @@ return [
         'mine'  =>  array('name'=>'修改自己资料','remarks'=>'可以查看修改自己的资料和密码'),
         'category'  =>  array('name'=>'分类管理','remarks'=>'可以增删改分类'),
         'article'  =>  array('name'=>'文章管理','remarks'=>'可以增删改文章'),
+        'member'  =>  array('name'=>'用户管理','remarks'=>'可以增删改用户'),
+        'mbr_group'  =>  array('name'=>'用户组管理','remarks'=>'可以增删改用户组'),
+    ),
+
+    //前台用户权限，开发过程中，必须把所有权限都列出来并与程序内部设定一致，以便验证。标识符必须保持唯一性，不能相同
+    'caozha_member_role_auths'  => array(
+        //格式为：'标识符' => array('name'=>'权限名','remarks'=>'权限说明'),
+        'mine'  =>  array('name'=>'修改自己资料和密码','remarks'=>'可以修改自己资料和密码'),
+        'cmt'  =>  array('name'=>'评论文章','remarks'=>'可以对文章发布评论'),
     ),
 
     //后台初始化菜单,json数据
@@ -118,6 +130,26 @@ return [
           "href": "'.url("admin/article/index").'",
           "icon": "fa fa-newspaper-o",
           "target": "_self"
+        },
+        {
+          "title": "用户管理",
+          "href": "",
+          "icon": "fa fa-user",
+          "target": "_self",
+          "child": [
+            {
+              "title": "用户列表",
+              "href": "'.url("admin/member/index").'",
+              "icon": "fa fa-user-circle-o",
+              "target": "_self"
+            },
+            {
+              "title": "用户组",
+              "href": "'.url("admin/MemberGroup/index").'",
+              "icon": "fa fa-users",
+              "target": "_self"
+            }
+          ]
         },
         {
           "title": "系统日志",
