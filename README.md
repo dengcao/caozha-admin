@@ -93,7 +93,7 @@ GitHub：https://github.com/cao-zha/caozha-admin
 
 ### 界面预览
 
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/004148_c23aad3b_7397417.jpeg "11.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/095751_8a313232_7397417.png "11.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/004200_03967767_7397417.jpeg "12.jpg")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/004219_bddd7960_7397417.jpeg "13.jpg")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/004228_77a586e1_7397417.jpeg "14.jpg")
