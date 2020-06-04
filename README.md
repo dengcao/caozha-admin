@@ -105,6 +105,7 @@ GitHub：https://github.com/cao-zha/caozha-admin
 **1.2.0版预览：**
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0602/181454_9d357745_7397417.png "10.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/101336_1575442d_7397417.png "10-1.png")
 
  
 **1.1.0版预览：**
