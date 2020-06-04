@@ -7,6 +7,7 @@
  * Github：https://github.com/cao-zha/caozha-admin   or   Gitee：https://gitee.com/caozha/caozha-admin
  */
 
+use app\admin\model\Roles;
 use app\admin\model\WebConfig as WebConfigModel;
 use app\admin\model\Category as CategoryModel;
 use think\facade\Config;
@@ -21,18 +22,17 @@ use think\facade\Cache;
     }*/
 
 
-
 /**
  *检查当前登陆用户执行操作的权限，如无权限输出警告。
  * @param string $role 权限标识
  */
 function cz_auth($role)
 {
-    $authorize = explode(",", Session::get("admin_roles"));
-    $admin_role_name = Session::get("admin_role_name");
+    $roles_data = get_roles(Session::get("role_id"));
+    $authorize = explode(",", $roles_data["roles"]);
     $auth_config = Config::get("app.caozha_role_auths");
     if (!in_array($role, $authorize)) {
-        $alert = '抱歉，您没有执行此操作的权限！<br><span style="font-size: 12px;color: #9c9da0;">【提示】此操作需要[' . $auth_config[$role]["name"] . ']的权限，您所在的权限组[' . $admin_role_name . ']没有此权限。</span>';
+        $alert = '抱歉，您没有执行此操作的权限！<br><span style="font-size: 12px;color: #9c9da0;">【提示】此操作需要[' . $auth_config[$role]["name"] . ']的权限，您所在的权限组[' . $roles_data["role_name"] . ']没有此权限。</span>';
         caozha_error($alert, Request::header('referer'), 1);
     }
 }
@@ -44,11 +44,42 @@ function cz_auth($role)
  */
 function is_cz_auth($role)
 {
-    $authorize = explode(",", Session::get("admin_roles"));
+    $roles_data = get_roles(Session::get("role_id"));
+    $authorize = explode(",", $roles_data["roles"]);
     if (in_array($role, $authorize)) {
         return true;
     } else {
         return false;
+    }
+}
+
+/**
+ *获取某权限组的所有标识符
+ * @param string $role_id 权限组ID
+ * @return string
+ */
+function get_roles($role_id)
+{
+    if (!$role_id) {
+        return array();
+    }
+    $roles_data = Cache::get('roles_data_' . $role_id);//优先从缓存读取
+    if ($roles_data) {
+        return $roles_data;
+    } else {
+        $roles = Roles::where('role_id', '=', $role_id)->findOrEmpty();
+        if (!$roles->isEmpty()) {//获取该权限组所有标识符
+            if ($roles->is_enabled == 1) {
+                $roles_data = array("role_name" => trim($roles->role_name), "roles" => trim($roles->roles), "is_enabled" => $roles->is_enabled);
+                Cache::set('roles_data_' . $role_id, $roles_data);
+                return $roles_data;
+            } else {
+                //已停用
+                return array();
+            }
+        } else {
+            return array();
+        }
     }
 }
 
@@ -58,16 +89,16 @@ function is_cz_auth($role)
  */
 function get_web_config()
 {
-    $web_config_data=Cache::get('web_config');
-    if($web_config_data){
+    $web_config_data = Cache::get('web_config');
+    if ($web_config_data) {
         return $web_config_data;
-    }else{
-        $web_config=WebConfigModel::where("id",">=",1)->limit(1)->findOrEmpty();
+    } else {
+        $web_config = WebConfigModel::where("id", ">=", 1)->limit(1)->findOrEmpty();
         if ($web_config->isEmpty()) {
             return array();
-        }else{
-            $web_config_data=object_to_array($web_config->web_config);
-            Cache::set('web_config',$web_config_data);
+        } else {
+            $web_config_data = object_to_array($web_config->web_config);
+            Cache::set('web_config', $web_config_data);
             return $web_config_data;
         }
     }
@@ -76,55 +107,55 @@ function get_web_config()
 
 /**
  *获取分类数据
- * @param integer $parentid  父栏目ID。为空则获取所有。为数字时获取该分类ID下的所有分类数据（包括父ID数据），多个中间用,分隔
+ * @param integer $parentid 父栏目ID。为空则获取所有。为数字时获取该分类ID下的所有分类数据（包括父ID数据），多个中间用,分隔
  * @param integer $modelid 模型ID，0=系统，1=文章，2=下载，3=图片……为空则获取所有模型，多个中间用,分隔
  * @param integer $type 栏目类型ID，0 => "内部栏目",1 => "单网页",2 => "外部链接"，为空则获取所有栏目类型，多个中间用,分隔
- * @param integer $ismenu  是否显示，1 显示，0为不显示。为空则获取所有
- * @param integer $is_cache  是否从缓存中读取，1为优先从缓存中读取
+ * @param integer $ismenu 是否显示，1 显示，0为不显示。为空则获取所有
+ * @param integer $is_cache 是否从缓存中读取，1为优先从缓存中读取
  * @return array
  */
-function get_category_data($parentid="",$modelid="",$type="",$ismenu="",$is_cache=1)
+function get_category_data($parentid = "", $modelid = "", $type = "", $ismenu = "", $is_cache = 1)
 {
-    $cache_key='category_data_'.$modelid."_".$type."_".$ismenu."_".$parentid;
-    if($is_cache==1){
-        $category_data=Cache::get($cache_key);
-    }else{
-        $category_data="";
+    $cache_key = 'category_data_' . $modelid . "_" . $type . "_" . $ismenu . "_" . $parentid;
+    if ($is_cache == 1) {
+        $category_data = Cache::get($cache_key);
+    } else {
+        $category_data = "";
     }
-    if($category_data){
+    if ($category_data) {
         return $category_data;
-    }else{
-        $where_arr=array();
-        if($modelid!=""){
-            $where_arr[]=array("modelid","IN",$modelid);
+    } else {
+        $where_arr = array();
+        if ($modelid != "") {
+            $where_arr[] = array("modelid", "IN", $modelid);
         }
-        if($type!=""){
-            $where_arr[]=array("type","IN",$type);
+        if ($type != "") {
+            $where_arr[] = array("type", "IN", $type);
         }
-        if($ismenu!=""){
-            $where_arr[]=array("ismenu","=",intval($ismenu));
+        if ($ismenu != "") {
+            $where_arr[] = array("ismenu", "=", intval($ismenu));
         }
-        if($parentid!=""){
-            $parent_category=CategoryModel::where("catid","IN",$parentid)->select();
-            $arrchildid_str="";
+        if ($parentid != "") {
+            $parent_category = CategoryModel::where("catid", "IN", $parentid)->select();
+            $arrchildid_str = "";
             foreach ($parent_category as $cate_r) {
-                if($arrchildid_str){
-                    $arrchildid_str.=",".$cate_r->arrchildid;
-                }else{
-                    $arrchildid_str=$cate_r->arrchildid;
+                if ($arrchildid_str) {
+                    $arrchildid_str .= "," . $cate_r->arrchildid;
+                } else {
+                    $arrchildid_str = $cate_r->arrchildid;
                 }
             }
-            if($arrchildid_str){
-                $where_arr[]=array("catid","IN",$arrchildid_str);
+            if ($arrchildid_str) {
+                $where_arr[] = array("catid", "IN", $arrchildid_str);
             }
         }
 
-        $category=CategoryModel::limit(3000);//最多获取3000个
-        if (count($where_arr)>0) {
-            $category=$category->where($where_arr);
+        $category = CategoryModel::limit(3000);//最多获取3000个
+        if (count($where_arr) > 0) {
+            $category = $category->where($where_arr);
         }
-        $category=$category->order(['listorder'=>'ASC','catid'=>'ASC'])->select()->toArray();
-        Cache::set($cache_key,$category);
+        $category = $category->order(['listorder' => 'ASC', 'catid' => 'ASC'])->select()->toArray();
+        Cache::set($cache_key, $category);
         return $category;
     }
 }
@@ -132,17 +163,18 @@ function get_category_data($parentid="",$modelid="",$type="",$ismenu="",$is_cach
 
 /**
  * 获取父栏目ID列表
- * @param integer $catid  栏目ID
+ * @param integer $catid 栏目ID
  * @param array $categorys 所有分类数组
- * @param array $arrparentid  父目录ID
- * @param integer $n  查找的层次
+ * @param array $arrparentid 父目录ID
+ * @param integer $n 查找的层次
  */
-function get_category_arrparentid($catid,$categorys, $arrparentid = '', $n = 1) {
-    if($n > 10 || !is_array($categorys) || !isset($categorys[$catid])) return false;
+function get_category_arrparentid($catid, $categorys, $arrparentid = '', $n = 1)
+{
+    if ($n > 10 || !is_array($categorys) || !isset($categorys[$catid])) return false;
     $parentid = $categorys[$catid]['parentid'];
-    $arrparentid = $arrparentid ? $parentid.','.$arrparentid : $parentid;
-    if($parentid) {
-        $arrparentid = get_category_arrparentid($parentid,$categorys, $arrparentid, ++$n);
+    $arrparentid = $arrparentid ? $parentid . ',' . $arrparentid : $parentid;
+    if ($parentid) {
+        $arrparentid = get_category_arrparentid($parentid, $categorys, $arrparentid, ++$n);
     } else {
         $categorys[$catid]['arrparentid'] = $arrparentid;
     }
@@ -156,12 +188,13 @@ function get_category_arrparentid($catid,$categorys, $arrparentid = '', $n = 1) 
  * @param integer $catid 栏目ID
  * @param array $categorys 所有分类数组
  */
-function get_category_arrchildid($catid,$categorys) {
+function get_category_arrchildid($catid, $categorys)
+{
     $arrchildid = $catid;
-    if(is_array($categorys)) {
-        foreach($categorys as $id => $cat) {
-            if($cat['parentid'] && $id != $catid && $cat['parentid']==$catid) {
-                $arrchildid .= ','.get_category_arrchildid($id,$categorys);
+    if (is_array($categorys)) {
+        foreach ($categorys as $id => $cat) {
+            if ($cat['parentid'] && $id != $catid && $cat['parentid'] == $catid) {
+                $arrchildid .= ',' . get_category_arrchildid($id, $categorys);
             }
         }
     }
@@ -172,33 +205,34 @@ function get_category_arrchildid($catid,$categorys) {
 /**
  * 修复栏目数据，更新所有子父栏目ID
  */
-function category_repair() {
+function category_repair()
+{
     @set_time_limit(600);
-    $result = get_category_data("","","","",0);//直接读取数据库
-    if(!empty($result)) {
+    $result = get_category_data("", "", "", "", 0);//直接读取数据库
+    if (!empty($result)) {
         foreach ($result as $r) {
             $categorys[$r['catid']] = $r;
         }
     }
 
-    if(is_array($categorys)) {
+    if (is_array($categorys)) {
 
-        foreach($categorys as $catid => $cat) {
-            $arrparentid = get_category_arrparentid($catid,$categorys);
-            $arrchildid = get_category_arrchildid($catid,$categorys);
+        foreach ($categorys as $catid => $cat) {
+            $arrparentid = get_category_arrparentid($catid, $categorys);
+            $arrchildid = get_category_arrchildid($catid, $categorys);
             $child = is_numeric($arrchildid) ? 0 : 1;
             //if($categorys[$catid]['arrparentid']!=$arrparentid || $categorys[$catid]['arrchildid']!=$arrchildid || $categorys[$catid]['child']!=$child) {
-                $category=CategoryModel::where("catid","=",$catid)->findOrEmpty();
-                if (!$category->isEmpty()) {
-                    $update_result=$category->allowField(['arrparentid','child','arrchildid'])->save(array('arrparentid'=>$arrparentid,'arrchildid'=>$arrchildid,'child'=>$child));
-                }
-           // }
+            $category = CategoryModel::where("catid", "=", $catid)->findOrEmpty();
+            if (!$category->isEmpty()) {
+                $update_result = $category->allowField(['arrparentid', 'child', 'arrchildid'])->save(array('arrparentid' => $arrparentid, 'arrchildid' => $arrchildid, 'child' => $child));
+            }
+            // }
         }
 
         //删除在非正常显示的栏目
-        foreach($categorys as $catid => $cat) {
-            if($cat['parentid'] != 0 && !isset($categorys[$cat['parentid']])) {
-                $del_num=CategoryModel::where("catid","=",$catid)->delete();
+        foreach ($categorys as $catid => $cat) {
+            if ($cat['parentid'] != 0 && !isset($categorys[$cat['parentid']])) {
+                $del_num = CategoryModel::where("catid", "=", $catid)->delete();
             }
         }
 
@@ -220,6 +254,7 @@ function write_syslog($data_arr)
     $data_arr["log_user"] = isset($data_arr["log_user"]) ? $data_arr["log_user"] : Session::get("admin_name") . "（ID:" . Session::get("admin_id") . "，姓名:" . Session::get("real_name") . "）";
     $data_arr["log_ip"] = isset($data_arr["log_ip"]) ? $data_arr["log_ip"] : getip();
     $data_arr["log_datetime"] = isset($data_arr["log_datetime"]) ? $data_arr["log_datetime"] : date("Y-m-d H:i:s", time());
+    $data_arr["log_content"].="（".get_userbrowser()."，".get_userOS()."）";
     $log_id = Db::name('syslog')->insertGetId($data_arr);
     return $log_id;
 }
@@ -234,7 +269,7 @@ function write_syslog($data_arr)
 function caozha_error($alert, $url, $is_exit = 0)
 {
     View::assign([
-        'alert'  => $alert,
+        'alert' => $alert,
         'url' => $url
     ]);
     echo View::fetch('common/error');
@@ -254,7 +289,7 @@ function caozha_error($alert, $url, $is_exit = 0)
 function caozha_success($alert, $url, $is_exit = 0)
 {
     View::assign([
-        'alert'  => $alert,
+        'alert' => $alert,
         'url' => $url
     ]);
     echo View::fetch('common/success');
@@ -468,7 +503,8 @@ function tree_menus($arr, $parentId = 0)
  * @param object $obj 对象
  * @return array
  */
-function object_to_array($obj) {
+function object_to_array($obj)
+{
     $obj = (array)$obj;
     foreach ($obj as $k => $v) {
         if (gettype($v) == 'resource') {
@@ -479,4 +515,152 @@ function object_to_array($obj) {
         }
     }
     return $obj;
+}
+
+
+/**
+ * 获取浏览器以及版本号
+ * @return string
+ */
+function get_userbrowser()
+{
+    $agent = Request::header('USER_AGENT');
+    $browser = '';
+    $browser_ver = '';
+
+    if (preg_match('/OmniWeb\/(v*)([^\s|;]+)/i', $agent, $regs)) {
+        $browser = 'OmniWeb';
+        $browser_ver = $regs[2];
+    }
+
+    if (preg_match('/Netscape([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+        $browser = 'Netscape';
+        $browser_ver = $regs[2];
+    }
+
+    if (preg_match('/safari\/([^\s]+)/i', $agent, $regs)) {
+        $browser = 'Safari';
+        $browser_ver = $regs[1];
+    }
+
+    if (preg_match('/MSIE\s([^\s|;]+)/i', $agent, $regs)) {
+        $browser = 'Internet Explorer';
+        $browser_ver = $regs[1];
+    }
+
+    if (preg_match('/Opera[\s|\/]([^\s]+)/i', $agent, $regs)) {
+        $browser = 'Opera';
+        $browser_ver = $regs[1];
+    }
+
+    if (preg_match('/NetCaptor\s([^\s|;]+)/i', $agent, $regs)) {
+        $browser = '(Internet Explorer ' . $browser_ver . ') NetCaptor';
+        $browser_ver = $regs[1];
+    }
+
+    if (preg_match('/Maxthon/i', $agent, $regs)) {
+        $browser = '(Internet Explorer ' . $browser_ver . ') Maxthon';
+        $browser_ver = '';
+    }
+    if (preg_match('/360SE/i', $agent, $regs)) {
+        $browser = '(Internet Explorer ' . $browser_ver . ') 360SE';
+        $browser_ver = '';
+    }
+    if (preg_match('/SE 2.x/i', $agent, $regs)) {
+        $browser = '(Internet Explorer ' . $browser_ver . ') 搜狗';
+        $browser_ver = '';
+    }
+
+    if (preg_match('/FireFox\/([^\s]+)/i', $agent, $regs)) {
+        $browser = 'FireFox';
+        $browser_ver = $regs[1];
+    }
+
+    if (preg_match('/Lynx\/([^\s]+)/i', $agent, $regs)) {
+        $browser = 'Lynx';
+        $browser_ver = $regs[1];
+    }
+
+    if (preg_match('/Chrome\/([^\s]+)/i', $agent, $regs)) {
+        $browser = 'Chrome';
+        $browser_ver = $regs[1];
+
+    }
+
+    if ($browser != '') {
+        return $browser . ' ' . $browser_ver;
+    } else {
+        return 'unknow browser';
+    }
+}
+
+
+/**
+ * 获取客户端操作系统
+ * @return string
+ */
+function get_userOS()
+{
+    $agent = Request::header('USER_AGENT');
+    $os = false;
+    if (preg_match('/win/i', $agent) && strpos($agent, '95')) {
+        $os = 'Windows 95';
+    } else if (preg_match('/win 9x/i', $agent) && strpos($agent, '4.90')) {
+        $os = 'Windows ME';
+    } else if (preg_match('/win/i', $agent) && preg_match('/98/i', $agent)) {
+        $os = 'Windows 98';
+    } else if (preg_match('/win/i', $agent) && preg_match('/nt 6.0/i', $agent)) {
+        $os = 'Windows Vista';
+    } else if (preg_match('/win/i', $agent) && preg_match('/nt 6.1/i', $agent)) {
+        $os = 'Windows 7';
+    } else if (preg_match('/win/i', $agent) && preg_match('/nt 6.2/i', $agent)) {
+        $os = 'Windows 8';
+    } else if (preg_match('/win/i', $agent) && preg_match('/nt 10.0/i', $agent)) {
+        $os = 'Windows 10';#添加win10判断
+    } else if (preg_match('/win/i', $agent) && preg_match('/nt 5.1/i', $agent)) {
+        $os = 'Windows XP';
+    } else if (preg_match('/win/i', $agent) && preg_match('/nt 5/i', $agent)) {
+        $os = 'Windows 2000';
+    } else if (preg_match('/win/i', $agent) && preg_match('/nt/i', $agent)) {
+        $os = 'Windows NT';
+    } else if (preg_match('/win/i', $agent) && preg_match('/32/i', $agent)) {
+        $os = 'Windows 32';
+    } else if (preg_match('/linux/i', $agent)) {
+        $os = 'Linux';
+    } else if (preg_match('/unix/i', $agent)) {
+        $os = 'Unix';
+    } else if (preg_match('/sun/i', $agent) && preg_match('/os/i', $agent)) {
+        $os = 'SunOS';
+    } else if (preg_match('/ibm/i', $agent) && preg_match('/os/i', $agent)) {
+        $os = 'IBM OS/2';
+    } else if (preg_match('/Mac/i', $agent) && preg_match('/PC/i', $agent)) {
+        $os = 'Macintosh';
+    } else if (preg_match('/PowerPC/i', $agent)) {
+        $os = 'PowerPC';
+    } else if (preg_match('/AIX/i', $agent)) {
+        $os = 'AIX';
+    } else if (preg_match('/HPUX/i', $agent)) {
+        $os = 'HPUX';
+    } else if (preg_match('/NetBSD/i', $agent)) {
+        $os = 'NetBSD';
+    } else if (preg_match('/BSD/i', $agent)) {
+        $os = 'BSD';
+    } else if (preg_match('/OSF1/i', $agent)) {
+        $os = 'OSF1';
+    } else if (preg_match('/IRIX/i', $agent)) {
+        $os = 'IRIX';
+    } else if (preg_match('/FreeBSD/i', $agent)) {
+        $os = 'FreeBSD';
+    } else if (preg_match('/teleport/i', $agent)) {
+        $os = 'teleport';
+    } else if (preg_match('/flashget/i', $agent)) {
+        $os = 'flashget';
+    } else if (preg_match('/webzip/i', $agent)) {
+        $os = 'webzip';
+    } else if (preg_match('/offline/i', $agent)) {
+        $os = 'offline';
+    } else {
+        $os = 'Unknown';
+    }
+    return $os;
 }

@@ -14,6 +14,7 @@ use think\facade\Config;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\View;
+use think\facade\Cache;
 
 class Roles
 {
@@ -104,6 +105,7 @@ class Roles
         if ($update_result) {
             write_syslog(array("log_content"=>"修改权限组：".$edit_data["role_name"]."，ID：".$edit_data["role_id"]));//记录系统日志
             $list = array("code" => 1, "update_num" => 1, "msg" => "保存成功");
+            Cache::delete('roles_data_'.$edit_data["role_id"]);//删除旧缓存
         } else {
             $list = array("code" => 0, "update_num" => 0, "msg" => "保存失败");
         }

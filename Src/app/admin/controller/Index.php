@@ -96,17 +96,6 @@ class Index
             $admin->login_times    = $admin->login_times+1;
             $admin->save();//保存更新
 
-            $roles=Roles::where('role_id','=',$admin->role_id)->findOrEmpty();
-            if (!$roles->isEmpty()) {//获取该权限组所有标识符
-                if($roles->is_enabled==1){
-                    Session::set('admin_roles', trim($roles->roles));//所有标识符
-                    Session::set('admin_role_name', trim($roles->role_name));//权限组名称
-                }else{
-                    //已停用
-                    Session::set('admin_role_name', trim($roles->role_name)."(停用)");//权限组名称
-                }
-            }
-
             //session赋值给外部程序调用
             ini_set('session.gc_maxlifetime', "86400"); // 有效期，86400秒=24小时
             ini_set("session.cookie_lifetime","86400");

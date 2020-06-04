@@ -1,4 +1,4 @@
-# caozha-admin 后台管理框架 1.3.0
+# caozha-admin 后台管理框架 1.4.0
 
 caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP6.0.2、layui2.5.4、layuimini v2以及font-awesome-4.7.0开发，特点：易上手，零门槛，界面清爽极简 。
 
@@ -67,12 +67,19 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 **版本1.2.0，主要更新内容：**
 
-新增了：文章管理系统
+新增了：文章管理系统。
 
 
 **版本1.3.0，主要更新内容：**
 
-新增了：用户（会员）管理系统
+新增了：用户（会员）管理系统。
+
+
+**版本1.4.0，主要更新内容：**
+
+1、优化了系统操作日志记录。
+
+2、优化了后台授权验证机制，修改权限组设置后可以立马生效。
 
 
 
