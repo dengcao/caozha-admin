@@ -35,11 +35,13 @@ class comment
         "is_reply" => true,//评论是否可以回复
         "is_scroll_load" => 1,//是否滚动加载评论，1为滚动加载，0为不滚动加载
         "bottom_scroll_load" => 50,//底部触发距离，默认是：50
+        "bad_word" => "操|你妈|吃屎|你全家|fuck|艹|垃圾|傻逼",//要屏蔽的违规关键词，包含此词将不允许提交。多个词中间用|分隔
     ];
 
-    protected $cmt_faces=array();
+    protected $cmt_faces = array();
 
-    function __construct() {
+    function __construct()
+    {
         $this->cmt_faces = comment_face();
     }
 
@@ -70,9 +72,9 @@ class comment
 
         $action = Request::post('', '', 'filter_sql');//过滤注入
 
-        if ($this->cmt_config['cache_time']>0) {//开启缓存
-            $cache_name = md5(implode("-",$action));
-            $list_cache=Cache::get($cache_name);//优先从缓存读取
+        if ($this->cmt_config['cache_time'] > 0) {//开启缓存
+            $cache_name = md5(implode("-", $action));
+            $list_cache = Cache::get($cache_name);//优先从缓存读取
             if ($list_cache) {
                 return json($list_cache);
             }
@@ -113,7 +115,7 @@ class comment
             foreach ($list_data as $r) {
 
                 $saytext = trim($r['cmtcontent']);
-                if($this->cmt_config['is_br']){
+                if ($this->cmt_config['is_br']) {
                     $saytext = nl2br($saytext);
                 }
                 $arrparentid = trim($r['arrparentid']);
@@ -195,8 +197,8 @@ class comment
             "info" => "读取信息评论成功！",
         );
 
-        if ($this->cmt_config['cache_time']>0) {//开启缓存
-            Cache::tag('comment_list')->set($cache_name, $list_arr,$this->cmt_config['cache_time']);//缓存评论列表
+        if ($this->cmt_config['cache_time'] > 0) {//开启缓存
+            Cache::tag('comment_list')->set($cache_name, $list_arr, $this->cmt_config['cache_time']);//缓存评论列表
         }
 
         return json($list_arr);
@@ -335,11 +337,15 @@ class comment
         if (empty($action_data["catid"]) && $action_data["catid"] != 0) {
             return json(array("err_msg" => "fail", "result" => $result, "info" => "标识符catid不能为空"));
         }
-        if (mb_strlen($action_data["username"])>12) {
+        if (mb_strlen($action_data["username"]) > 12) {
             return json(array("err_msg" => "fail", "result" => $result, "info" => "昵称不能超过12个字"));
         }
         if (!$action_data["saytext"]) {
             return json(array("err_msg" => "fail", "result" => $result, "info" => "评论内容不能为空"));
+        }else{
+            if($this->check_bad_word($action_data["saytext"])){
+                return json(array("err_msg" => "fail", "result" => $result, "info" => "评论内容含有违规词，请修改后再提交"));
+            }
         }
 
         // 检测输入的验证码是否正确
@@ -410,6 +416,17 @@ class comment
             $list = array("err_msg" => "fail", "result" => $result, "info" => $info);
         }
         return json($list);
+    }
+
+    public function check_bad_word($str)//检测是否包含违规词
+    {
+        $bad_word_arr=explode("|",$this->cmt_config["bad_word"]);
+        foreach ($bad_word_arr as $value){
+            if(strpos($str,$value) !== false){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
