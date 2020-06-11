@@ -13,7 +13,7 @@ class Article extends Model
 {
    // protected $connection="mysql";
     public function category() {
-        return $this->hasOne(category::class,"catid","catid")->bind([
+        return $this->hasOne(Category::class,"catid","catid")->bind([
             'type'	=> 'type',
             'modelid'	=> 'modelid',
             'parentid'	=> 'parentid',
