@@ -164,4 +164,27 @@ write_syslog(array("log_content"=>"删除系统日志"));//记录系统日志
 
 
 
+7、评论系统
+
+插入评论：
+
+<script>
+        cz_cmt_template="/index/comment/template.html";//模板页接口
+        cz_cmt_list="/index/comment/list.html";//读取评论列表接口
+        cz_cmt_doaction="/index/comment/doaction.html";//发布评论接口
+        cz_cmt_dolike="/index/comment/dolike.html";//点赞或踩接口
+        cz_cmt_userinfo="/index/comment/userinfo.html";//获取会员信息
+    </script>
+    <div class="pinglun">
+        <div class="pl-520am" data-cmtid="act_1" data-catid="0" data-pagesize="5" data-scrollload="1" data-scrollbottom="50" data-showhot="3" data-hotpagesize="3"></div>
+        <script type="text/javascript" src="/static/index/cz_cmt/api.js"></script>
+    </div>
+
+上面的data-cmtid是评论标识符ID，data-catid是评论标识符分类ID，这两个参数是用来区分文章等评论的，一般情况下使用data-cmtid就足够了。
+
+评论参数设置：
+
+打开控制器 app\index\controller\comment.php，找到$cmt_config，可以设置评论每页的数量、验证码、缓存、是否需要审核、是否允许发图片、滚动自动加载、屏蔽词等等。
+
+
 更多使用方法，请参考源码内的示例。
