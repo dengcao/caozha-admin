@@ -22,7 +22,7 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 9、用户（会员）管理系统
 
-10、评论系统（支持盖楼评论，支持设置屏蔽词、验证码、是否需审核等，可整合到任何场景）
+10、评论系统（支持盖楼评论，可整合到任何场景）
 
 主要提供了以上基础功能，您可以在此基础上拓展和开发出不同的应用。
 
@@ -47,20 +47,6 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 码云Wiki：[https://gitee.com/caozha/caozha-admin/wikis](https://gitee.com/caozha/caozha-admin/wikis)
 
 GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/cao-zha/caozha-admin/wiki)
-
-
-### 演示地址
-
-**后台演示**
-
-[http://caozha.com/git/demo/caozha-admin/admin/index/login](http://caozha.com/git/demo/caozha-admin/admin/index/login)
-
-管理员账号：caozha   密码：123456 (请勿修改，如密码错误请联系我)
-
-
-**评论演示**
-
-[http://caozha.com/git/demo/caozha-admin/index/comment/index](http://caozha.com/git/demo/caozha-admin/index/comment/index)
 
  
 ### 更新说明
@@ -132,7 +118,7 @@ GitHub：https://github.com/cao-zha/caozha-admin
 
 前端：
 
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0611/124753_b7763c7a_7397417.png "16.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0611/145140_3e613b5d_7397417.png "16.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0611/135914_73eb0310_7397417.png "19.png")
 
 后端：
