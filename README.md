@@ -22,7 +22,7 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 9、用户（会员）管理系统
 
-10、评论系统（支持盖楼评论，可整合到任何场景）
+10、评论系统（支持盖楼评论，支持设置屏蔽词、验证码、是否需审核等，可整合到任何场景）
 
 主要提供了以上基础功能，您可以在此基础上拓展和开发出不同的应用。
 
@@ -47,6 +47,20 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 码云Wiki：[https://gitee.com/caozha/caozha-admin/wikis](https://gitee.com/caozha/caozha-admin/wikis)
 
 GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/cao-zha/caozha-admin/wiki)
+
+
+### 演示地址
+
+**后台演示**
+
+[http://caozha.com/git/demo/caozha-admin/admin/index/login](http://caozha.com/git/demo/caozha-admin/admin/index/login)
+
+管理员账号：caozha   密码：123456 (请勿修改，如密码错误请联系我)
+
+
+**评论演示**
+
+[http://caozha.com/git/demo/caozha-admin/index/comment/index](http://caozha.com/git/demo/caozha-admin/index/comment/index)
 
  
 ### 更新说明
@@ -86,7 +100,7 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 **版本1.5.0，主要更新内容：**
 
-新增了：评论系统（支持盖楼评论，可整合到任何场景）。
+新增了：评论系统（支持盖楼评论，支持设置屏蔽词、验证码、是否需审核等，可整合到任何场景）。
 
 
 ### 特别鸣谢
