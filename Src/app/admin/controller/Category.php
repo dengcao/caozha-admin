@@ -33,7 +33,7 @@ class Category
 
     public function add()
     {
-        $tree = new tree;
+        $tree = new Tree;
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         $categorys = array();
@@ -102,7 +102,7 @@ class Category
             caozha_error("[ID:" . $catid . "]分类不存在。", "", 1);
         }
 
-        $tree = new tree;
+        $tree = new Tree;
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         $categorys = array();
@@ -234,27 +234,27 @@ class Category
     private function delete_category_content($catid, $modelid)
     {
         switch ($modelid){
-          case 0://删除内置模块，单页
+            case 0://删除内置模块，单页
 
                 write_syslog(array("log_content"=>"批量删除单页内容，分类ID：".$catid));//记录系统日志
                 break;
-          case 1://删除文章操作
+            case 1://删除文章操作
 
                 write_syslog(array("log_content"=>"批量删除文章内容，分类ID：".$catid));//记录系统日志
                 break;
-          case 2:
+            case 2:
 
                 write_syslog(array("log_content"=>"批量删除下载内容，分类ID：".$catid));//记录系统日志
                 break;
-          case 3:
+            case 3:
 
                 write_syslog(array("log_content"=>"批量删除图片内容，分类ID：".$catid));//记录系统日志
                 break;
-          case 4:
+            case 4:
 
                 write_syslog(array("log_content"=>"批量删除视频内容，分类ID：".$catid));//记录系统日志
                 break;
-          default:
+            default:
         }
 
         return true;
@@ -276,7 +276,7 @@ class Category
 
     public function index()
     {
-        $tree = new tree;
+        $tree = new Tree;
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         $categorys = array();
