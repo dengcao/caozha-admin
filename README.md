@@ -53,14 +53,14 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 **后台演示**
 
-[http://caozha.com/git/demo/caozha-admin/admin/index/login](http://caozha.com/git/demo/caozha-admin/admin/index/login)
+[http://caozha.com/git/demo/caozha-admin/public/admin/index/login](http://caozha.com/git/demo/caozha-admin/public/admin/index/login)
 
 管理员账号：caozha   密码：123456 (请勿修改，如密码错误请联系我)
 
 
 **评论演示**
 
-[http://caozha.com/git/demo/caozha-admin/index/comment/index](http://caozha.com/git/demo/caozha-admin/index/comment/index)
+[http://caozha.com/git/demo/caozha-admin/public/index/comment/index](http://caozha.com/git/demo/caozha-admin/public/index/comment/index)
 
  
 ### 更新说明
