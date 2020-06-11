@@ -130,12 +130,12 @@ GitHub：https://github.com/cao-zha/caozha-admin
 
 **1.5.0版预览：**
 
-新增评论，前端：
+主要是新增了评论系统，评论前端：
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0611/145140_3e613b5d_7397417.png "16.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0611/135914_73eb0310_7397417.png "19.png")
 
-新增评论，后端：
+评论后端：
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0611/124804_b09945aa_7397417.png "17.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0611/135927_03fa9d83_7397417.png "20.png")
