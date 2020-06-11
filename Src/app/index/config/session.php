@@ -13,7 +13,7 @@ return [
     // 存储连接标识 当type使用cache的时候有效
     'store'          => null,
     // 过期时间
-    'expire'         => 1440,
+    'expire'         => 7200,//7200秒=2小时
     // 前缀
-    'prefix'         => '',
+    'prefix'         => 'caozha_',
 ];

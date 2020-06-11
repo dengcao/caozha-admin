@@ -26,9 +26,9 @@ return [
     'default_filter' => 'htmlentities',
     // 替换标签
     'tpl_replace_string'  =>  [
+        '__CAOZHA-SYS-NAME__'=>get_cz_name(),
+        '__CAOZHA-SYS-VERSION__'=>get_cz_version(),
         '__CAOZHA-STATIC__'=>'/static/admin/caozha',
         '__CAOZHA-LAYUIMINI__'=>'/static/admin/layuimini',
-        '__CAOZHA-SYS-NAME__'=>'caozha-admin',
-        '__CAOZHA-SYS-VERSION__'=>'v1.4.0',
-]
+        ]
 ];

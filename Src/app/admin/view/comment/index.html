@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>评论 - Powered by __CAOZHA-SYS-NAME__ __CAOZHA-SYS-VERSION__</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/css/public.css" media="all">
+    <script src="__CAOZHA-STATIC__/js/all.js"></script>
+    <link rel="stylesheet" href="__CAOZHA-STATIC__/css/style.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <div class="layui-collapse">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">搜索<i class="layui-icon layui-colla-icon"></i></h2>
+                <div class="layui-colla-content layui-show">
+                    <div class="layui-row">
+                        <form class="layui-form layui-col-md12 layui-form2" method="get">
+
+                            <input type="text" name="keyword" value="" placeholder="请输入关键词" autocomplete="off"
+                                   class="layui-input">
+
+                            <div class="layui-input-inline cz-select">
+                                <select class="layui-inline" name="ischeck">
+                                    <option value="">审核状态</option>
+                                    <option value="1">已审</option>
+                                    <option value="0">未审</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline cz-select">
+                                <select class="layui-inline" name="usertype">
+                                    <option value="">评论者</option>
+                                    <option value="1">会员</option>
+                                    <option value="0">游客</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline cz-select">
+                                <select class="layui-inline" name="ishot">
+                                    <option value="">是否热门</option>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </div>
+
+                            <button class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="check"> 批量审核</button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="uncheck"> 取消审核</button>
+                <button class="layui-btn  layui-btn-sm data-add-btn" lay-event="hot"> 设为热门</button>
+                <button class="layui-btn  layui-btn-sm data-add-btn" lay-event="unhot"> 取消热门</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="del"> 批量删除</button>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-xs layui-btn-primary data-count-view" lay-event="view">详情</a>
+        </script>
+
+
+    </div>
+</div>
+<script src="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'element', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+
+        var lement = layui.element;//面包导航
+
+        table.render({
+            elem: '#currentTableId',
+            url: '{:url(\'admin/comment/get\')}',
+            parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": "0", //解析接口状态 res.status
+                    "msg": "", //解析提示文本 res.message
+                    "count": res.total, //解析数据长度
+                    "data": res.data //解析数据列表
+                };
+            },
+            toolbar: '#toolbarDemo',
+            defaultToolbar: ['filter', {
+                title: '提示：双击可查看详情',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
+            even: false,//隔行背景
+            size: "",//sm （小尺寸）       lg （大尺寸）
+            cols: [[
+                {type: "checkbox", width: 40, align: "center"},
+                {field: 'id', width: 75, title: 'ID', sort: true},
+                {field: 'cmtcontent', minWidth: 200, title: '评论内容'},
+                {field: 'cmtname', width: 140, title: '昵称'},
+                {field: 'userid', width: 90, title: '用户ID'},
+                {field: 'cmtip', width: 150, title: '评论者IP',},
+                {field: 'addtime', width: 165, align: "center", title: '评论时间',},
+                {field: 'cmtid', width: 90, title: 'cmtid',},
+                {field: 'catid', width: 90, title: 'catid',},
+                {field: 'like_num', width: 60, align: "center", title: '点赞'},
+                {field: 'bad_num', width: 60, align: "center", title: '踩'},
+                {field: 'ishot', width: 60, align: "center", title: '热门'},
+                {field: 'ischeck', width: 60, align: "center", title: '审核'},
+                {title: '操作', width: 80, toolbar: '#currentTableBar', align: "center", fixed: "right"}
+            ]],
+            limits: [5, 10, 15, 20, 25, 50, 100, 200, 500, 1000],
+            limit: {$comment_limit},
+            page: true,
+            skin: 'line'
+        });
+
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+            if (obj.event === 'del') {
+                var todo_name ="删除";
+            } else if (obj.event === 'check') {
+                var todo_name ="批量审核";
+            }else if (obj.event === 'uncheck') {
+                var todo_name ="取消审核";
+            }else if (obj.event === 'hot') {
+                var todo_name ="设为热门";
+            }else if (obj.event === 'unhot') {
+                var todo_name ="取消热门";
+            }else{
+                return false;
+            }
+
+            var checkStatus = table.checkStatus('currentTableId')
+                , data = checkStatus.data;
+            var id_arr = $.map(data, function (d) {
+                return d.id;
+            });
+            var id_str = id_arr.join(",");//转为字符串
+
+            if (id_str == "") {
+                layer.msg('请先选择要'+todo_name+'的评论。', {icon: 2});
+                return false;
+            }
+
+            caozha_alert = layer.confirm('确定要'+todo_name+'ID为[ ' + id_str + ' ]的评论吗？', {
+                btn: ['确认', '取消'],
+                btnAlign: 'c',
+                title: "操作提示"
+            }, function () {
+
+                $.ajax({
+                    type: "post",
+                    url: '{:url(\'admin/comment/todo\')}',
+                    data: {id: id_str,act:obj.event},
+                    dataType: "json",
+                    async: false,
+                    success: function (todo_data) {
+                        if (todo_data.code == 1) {
+                            layer.msg(todo_data.msg, {icon: 1});
+                            //执行操作后重载
+                            table.reload('currentTableId', {
+                                // page: {
+                                //     curr: 1
+                                // }
+                            }, 'data');
+                        } else {
+                            layer.msg(todo_data.msg, {icon: 2});
+                        }
+                    }
+                });
+                layer.close(caozha_alert);//关闭
+
+            });
+
+
+        });
+
+        // 监听搜索操作
+        form.on('submit(search)', function (data) {
+            //data.field
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: data.field //设定异步数据接口的额外参数
+
+            });
+
+            return false;
+        });
+
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+
+        //监听行双击事件
+        table.on('rowDouble(currentTableFilter)', function (obj) {
+            //console.log(obj.tr) //得到当前行元素对象
+            //console.log(obj.data) //得到当前行数据
+            //obj.del(); //删除当前行
+            //obj.update(fields) //修改当前行数据
+
+            var comment_data = obj.data;
+
+            var index = layer.open({
+                title: '查看评论',
+                type: 2,
+                shade: 0.2,
+                maxmin: true,
+                shadeClose: true,
+                area: ['60%', '95%'],
+                content: '{:url(\'admin/comment/view\')}?id=' + comment_data.id,
+            });
+
+            return false;
+
+
+        });
+
+        //查看
+        table.on('tool(currentTableFilter)', function (obj) {
+            var comment_data = obj.data;
+            if (obj.event === 'view') {
+
+                var index = layer.open({
+                    title: '查看评论',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['60%', '95%'],
+                    content: '{:url(\'admin/comment/view\')}?id=' + comment_data.id,
+                });
+                return false;
+
+            }
+        });
+
+
+    });
+
+</script>
+
+</body>
+</html>

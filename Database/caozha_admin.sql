@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2020-06-03 21:40:46
+-- 生成日期： 2020-06-11 12:07:25
 -- 服务器版本： 5.7.26
 -- PHP 版本： 7.3.4
 
@@ -52,7 +52,7 @@ CREATE TABLE `cz_administrators` (
 --
 
 INSERT INTO `cz_administrators` (`admin_id`, `admin_name`, `admin_password`, `admin_password_rnd`, `role_id`, `is_enabled`, `real_name`, `tel`, `email`, `wechat`, `qq`, `last_login_ip`, `last_login_time`, `last_logout_time`, `login_times`, `admin_remarks`) VALUES
-(1, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, 1, 1, '草札', '1320000000', 'dzh188@qq.com', 'wx', 'qq', '127.0.0.1', '2020-06-03 14:09:21', '2020-06-03 14:09:10', 50, NULL),
+(1, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, 1, 1, '草札', '1320000000', 'dzh188@qq.com', 'wx', 'qq', '127.0.0.1', '2020-06-11 11:29:25', '2020-06-11 11:20:15', 62, NULL),
 (2, 'dd78', 'ee04ddc4fea36f4ce797766b6c4f66a4', NULL, 2, 1, '查订单', '', '', NULL, NULL, '223.74.103.196', '2018-10-27 19:56:03', '2018-10-27 17:59:46', 4, NULL),
 (3, 'xgd', '0b9c6913e2cc2a29571cdf8d5b590baf', NULL, 2, 1, '小谢', '', '', NULL, NULL, '113.65.207.15', '2018-10-27 18:15:00', '2017-05-26 17:11:30', 113, NULL),
 (4, 'lb', 'f49c5286a10a22228c79793732acf431', NULL, 2, 0, '邱总', '', '', '', '', '14.145.253.14', '2015-11-04 10:20:05', '2015-10-21 17:54:09', 12, ''),
@@ -83,6 +83,7 @@ CREATE TABLE `cz_article` (
   `thumb` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '缩略图',
   `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '关键词',
   `description` mediumtext COLLATE utf8mb4_unicode_ci COMMENT '描述',
+  `tags` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Tag标签，多个中间用,分隔',
   `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '打开链接',
   `listorder` int(11) UNSIGNED DEFAULT '0' COMMENT '排序',
   `status` tinyint(1) UNSIGNED DEFAULT '1' COMMENT '状态：0无效，1正在审核，2退稿，9通过',
@@ -101,14 +102,14 @@ CREATE TABLE `cz_article` (
 -- 转存表中的数据 `cz_article`
 --
 
-INSERT INTO `cz_article` (`aid`, `catid`, `title`, `content`, `style`, `thumb`, `keywords`, `description`, `url`, `listorder`, `status`, `islink`, `inputtime`, `iscomment`, `author`, `copyfrom`, `hits`, `isreco`, `ishot`, `istop`) VALUES
-(1, 67, '新冠肺炎权威小贴士', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, 0, 1, 0, '2020-05-23 20:57:40', 1, NULL, NULL, 89, 0, 0, 0),
-(2, 67, '必读！关于新冠肺炎的20个知识点', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, 0, 1, 1, '2020-05-23 20:57:33', 1, NULL, NULL, 1, 0, 0, 0),
-(3, 67, '你需要知道的新冠肺炎最新知识', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, 0, 1, 0, '2020-05-23 20:57:25', 0, NULL, NULL, 4, 0, 0, 0),
-(4, 67, '新冠肺炎患者需要注意哪些心理疏导?', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, 0, 1, 0, '2020-05-23 20:55:29', 1, NULL, NULL, 7, 0, 0, 0),
-(5, 67, '新冠肺炎的日常防护知识', '<p><strong>日常防护知识：</strong></p><p>1.最重要的一条：不要到处跑。</p><p>专家始终强调，预防新冠肺炎最有效的方式之一是：减少出行，这不仅关乎自己和家人，也关乎整个社会。一定要外出时不要乘坐比较拥挤的公共交通车，建议步行或开车，逗留时间尽量缩短。宅在家时，应格外注意3个细节：通风：每日打开门窗通风2-3次，每次30分钟左右；天气好时，可以晒晒被子、衣服。洗手：回家后、做菜前、吃饭前、如厕后，应在流动水下用肥皂或洗手液揉搓30秒左右。饮食安全：处理食物时生熟分开，肉类充分做熟再吃；家庭实行分餐制或使用公筷。不要吃野味。</p><p>2.不要参加集会。</p><p>少出门、少聚会，是减少交叉感染的重要方法，尤其应避免去人员密集的公共场所，如商场、公共浴池、棋牌室、医院等。</p><p>3.出门戴口罩，不一定戴N95。</p><p>钟南山院士表示，戴口罩不一定要戴N95，医用外科口罩即可阻止大部分病毒进入呼吸道。普通口罩也能起到一定的隔离作用。如果口罩不够用，普通大众的口罩不必用一次换一次，可根据清洁程度延长使用时间。戴口罩时要把口鼻都完全覆盖住，并与面部贴合严实，尽量减少漏气情况。摘口罩时，不要抓着污染面，用手抓住系带脱离，扔到垃圾桶，不要到处乱扔。</p><p>4.学会正确洗手。</p><p>新型冠状病毒可通过接触传播，如果没有注意使双手沾上病毒，揉眼睛时就可能造成感染，所以一定要勤洗手。暂没有洗手条件时可用消毒湿巾擦拭双手。</p>', '', '', '', NULL, NULL, 0, 1, 0, '2020-05-23 20:55:41', 1, NULL, NULL, 53, 0, 0, 0),
-(6, 67, '我省昨日新冠肺炎疫情公告', '<p>据省卫健委官网公布，5月23日0-24时，我省新增新型冠状病毒肺炎确诊病例xx例；新增疑似病例xx例；新增治愈出院病例xx例；新增死亡病例x例。</p>', '风格', '/uploads/image/20200531/1590918832985443.jpg', '关键词', '文章描述', 'URL', 11, 9, 1, '2020-06-01 20:57:50', 1, '作者', '文章来源', 16988, 1, 1, 1),
-(8, 67, '开源系统caozha-admin正式上线，欢迎使用', '<p>开源系统caozha-admin正式上线，欢迎使用！</p>', '', '', '', '', '', 0, 9, 0, '2020-06-02 18:11:40', 1, '', '', 0, 1, 1, 1);
+INSERT INTO `cz_article` (`aid`, `catid`, `title`, `content`, `style`, `thumb`, `keywords`, `description`, `tags`, `url`, `listorder`, `status`, `islink`, `inputtime`, `iscomment`, `author`, `copyfrom`, `hits`, `isreco`, `ishot`, `istop`) VALUES
+(1, 67, '新冠肺炎权威小贴士', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, NULL, 0, 1, 0, '2020-05-23 20:57:40', 1, NULL, NULL, 89, 0, 0, 0),
+(2, 67, '必读！关于新冠肺炎的20个知识点', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, NULL, 0, 1, 1, '2020-05-23 20:57:33', 1, NULL, NULL, 1, 0, 0, 0),
+(3, 67, '你需要知道的新冠肺炎最新知识', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, NULL, 0, 1, 0, '2020-05-23 20:57:25', 0, NULL, NULL, 4, 0, 0, 0),
+(4, 67, '新冠肺炎患者需要注意哪些心理疏导?', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, NULL, 0, 1, 0, '2020-05-23 20:55:29', 1, NULL, NULL, 7, 0, 0, 0),
+(5, 67, '新冠肺炎的日常防护知识', '<p><strong>日常防护知识：</strong></p><p>1.最重要的一条：不要到处跑。</p><p>专家始终强调，预防新冠肺炎最有效的方式之一是：减少出行，这不仅关乎自己和家人，也关乎整个社会。一定要外出时不要乘坐比较拥挤的公共交通车，建议步行或开车，逗留时间尽量缩短。宅在家时，应格外注意3个细节：通风：每日打开门窗通风2-3次，每次30分钟左右；天气好时，可以晒晒被子、衣服。洗手：回家后、做菜前、吃饭前、如厕后，应在流动水下用肥皂或洗手液揉搓30秒左右。饮食安全：处理食物时生熟分开，肉类充分做熟再吃；家庭实行分餐制或使用公筷。不要吃野味。</p><p>2.不要参加集会。</p><p>少出门、少聚会，是减少交叉感染的重要方法，尤其应避免去人员密集的公共场所，如商场、公共浴池、棋牌室、医院等。</p><p>3.出门戴口罩，不一定戴N95。</p><p>钟南山院士表示，戴口罩不一定要戴N95，医用外科口罩即可阻止大部分病毒进入呼吸道。普通口罩也能起到一定的隔离作用。如果口罩不够用，普通大众的口罩不必用一次换一次，可根据清洁程度延长使用时间。戴口罩时要把口鼻都完全覆盖住，并与面部贴合严实，尽量减少漏气情况。摘口罩时，不要抓着污染面，用手抓住系带脱离，扔到垃圾桶，不要到处乱扔。</p><p>4.学会正确洗手。</p><p>新型冠状病毒可通过接触传播，如果没有注意使双手沾上病毒，揉眼睛时就可能造成感染，所以一定要勤洗手。暂没有洗手条件时可用消毒湿巾擦拭双手。</p>', '', '', '', NULL, NULL, NULL, 0, 1, 0, '2020-05-23 20:55:41', 1, NULL, NULL, 53, 0, 0, 0),
+(6, 67, '我省昨日新冠肺炎疫情公告', '<p>据省卫健委官网公布，5月23日0-24时，我省新增新型冠状病毒肺炎确诊病例xx例；新增疑似病例xx例；新增治愈出院病例xx例；新增死亡病例x例。</p>', '风格', '/uploads/image/20200531/1590918832985443.jpg', '关键词', '文章描述', NULL, '', 11, 9, 0, '2020-06-01 20:57:50', 1, '作者', '文章来源', 16988, 1, 1, 1),
+(8, 67, '开源系统caozha-admin正式上线，欢迎使用', '<p>开源系统caozha-admin正式上线，欢迎使用！</p>', '', '', '', '', 'tag', '', 0, 9, 0, '2020-06-02 18:11:40', 1, '', '', 0, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -560,6 +561,51 @@ INSERT INTO `cz_category` (`catid`, `type`, `modelid`, `parentid`, `arrparentid`
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `cz_comment`
+--
+
+CREATE TABLE `cz_comment` (
+  `id` int(11) NOT NULL,
+  `cmtname` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '评论者昵称',
+  `userid` int(11) DEFAULT '0' COMMENT '用户ID,0为游客',
+  `userpic` int(4) DEFAULT NULL COMMENT '游客用户的头像',
+  `cmtip` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '评论IP',
+  `addtime` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '评论时间',
+  `cmtid` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '评论ID，标识符，用于关联',
+  `catid` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '评论分类ID，标识符，用于关联',
+  `parentid` int(11) DEFAULT '0' COMMENT '父ID',
+  `arrparentid` text COLLATE utf8mb4_unicode_ci COMMENT '所有父ID，多个中间按顺序用逗号,分隔',
+  `cmtcontent` text COLLATE utf8mb4_unicode_ci COMMENT '评论内容',
+  `like_num` int(11) DEFAULT '0' COMMENT '点赞次数',
+  `bad_num` int(11) DEFAULT '0' COMMENT '被踩次数',
+  `ischeck` tinyint(1) DEFAULT '0' COMMENT '是否审核通过，1=通过',
+  `ishot` tinyint(1) DEFAULT '0' COMMENT '是否热门评论，1=热门'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 转存表中的数据 `cz_comment`
+--
+
+INSERT INTO `cz_comment` (`id`, `cmtname`, `userid`, `userpic`, `cmtip`, `addtime`, `cmtid`, `catid`, `parentid`, `arrparentid`, `cmtcontent`, `like_num`, `bad_num`, `ischeck`, `ishot`) VALUES
+(1, '草札', 2, NULL, '127.0.0.1', '2020-06-05 19:01:20', 'act_1', '0', 0, NULL, '这篇文章不错啊，很精彩！', 36, 7, 1, 1),
+(2, '张峰', 0, 15, '127.0.0.1', '2020-06-05 19:01:20', 'act_1', '0', 0, NULL, '使用有什么诀窍吗？', 1, 0, 1, 1),
+(3, '小林', 0, 16, '127.0.0.1', '2020-06-05 19:17:26', 'act_1', '0', 1, '1', '对啊，我也觉得还是不错的！[/呲牙]', 0, 1, 1, 0),
+(4, '李露', 0, 22, '127.0.0.1', '2020-06-05 19:17:26', 'act_1', '0', 3, '1,3', '你懂个什么啊！[/憨笑]', 1, 0, 1, 0),
+(5, '大黄', 0, 33, '127.0.0.1', '2020-06-09 02:29:54', 'act_1', '0', 0, '', '[/哈欠]有点困了', 1, 0, 1, 0),
+(6, '测试', 0, 31, '127.0.0.1', '2020-06-09 02:31:13', 'act_1', '0', 5, '5', '[/斜眼笑]那可以去睡了', 0, 1, 1, 0),
+(7, '阿达', 0, 17, '127.0.0.1', '2020-06-09 02:49:56', 'act_1', '0', 0, '', '[/酷]大家好', 2, 1, 1, 0),
+(8, '', 0, 25, '127.0.0.1', '2020-06-09 11:33:57', 'act_1', '0', 6, '5,6', '睡得比狗晚，起得比鸡早[/偷笑]', 0, 1, 1, 0),
+(9, '', 0, 10, '127.0.0.1', '2020-06-09 16:53:33', 'act_1', '0', 0, '', '[/斜眼笑]', 0, 1, 1, 0),
+(10, '', 0, 3, '127.0.0.1', '2020-06-09 17:10:58', 'act_1', '0', 0, '', '你好啊[/酷]', 1, 0, 1, 0),
+(11, '', 0, 41, '127.0.0.1', '2020-06-09 17:14:22', 'act_1', '0', 0, '', '[img]https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1332800745,3820435792&fm=11&gp=0.jpg[/img]测试提交图片', 0, 1, 1, 0),
+(12, '', 0, 28, '127.0.0.1', '2020-06-09 18:25:13', 'act_1', '0', 0, '', '[/呲牙]测试提交脚本。百度网链接\ndocument.write(\\\'\\\');\n', 1, 0, 1, 0),
+(13, '大宝', 0, 39, '127.0.0.1', '2020-06-10 17:11:09', 'act_1', '0', 0, '', '[/哈欠]下午好！', 1, 0, 1, 0),
+(14, '', 0, 14, '127.0.0.1', '2020-06-10 23:42:20', 'act_1', '0', 0, '', '测试换行。\r\n大家晚上好啊！\r\n[/调皮]', 1, 0, 1, 0),
+(16, '菲尔丁', 0, 37, '127.0.0.1', '2020-06-11 12:01:07', 'act_1', '0', 0, '', '如果你把金钱当成上帝，它便会像魔鬼一样折磨你。', 0, 0, 1, 0);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `cz_member`
 --
 
@@ -596,7 +642,7 @@ CREATE TABLE `cz_member` (
 
 INSERT INTO `cz_member` (`userid`, `username`, `password`, `encrypt`, `nickname`, `avatar`, `regtime`, `lasttime`, `regip`, `lastip`, `loginnum`, `email`, `groupid`, `address`, `amount`, `point`, `islock`, `qq`, `mobile`, `weixin`, `remarks`, `isrn`, `realname`, `id_card`) VALUES
 (1, 'admin', '991cb36dc61b73dd37a385dd4927ce47', '', '管理员', '/uploads/image/20200531/1590918832985443.jpg', '2020-06-03 18:24:14', '2020-06-03 18:24:14', NULL, NULL, 0, 'dzh188@qq.com', 1, '广西', '8671.00', 0, 0, '8866629', '13286805000', 'wx', '', 0, '', ''),
-(2, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, '草札', '/uploads/image/20200531/1590918832985443.jpg', '2020-06-03 20:40:50', '2020-06-03 20:40:50', NULL, NULL, 0, 'dzh188@qq.com', 2, '广西贵港市', '0.00', 0, 1, '8866629', '13286805000', 'weixin', '备注', 1, '', '');
+(2, 'caozha', '5fd9cd58f4e516bae46557b355c5208a', NULL, '草札', '/uploads/image/20200531/1590918832985443.jpg', '2020-06-03 20:40:50', '2020-06-03 20:40:50', NULL, NULL, 0, 'dzh188@qq.com', 2, '广西贵港市', '0.00', 0, 1, '8866629', '13286805000', 'weixin', '备注', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -640,7 +686,7 @@ CREATE TABLE `cz_roles` (
 --
 
 INSERT INTO `cz_roles` (`role_id`, `roles`, `role_name`, `role_remarks`, `is_enabled`) VALUES
-(1, 'config,roles,admin,log_view,log_del,mine,category,article,member,mbr_group', '超级管理员', '可使用后台所有功能', 1),
+(1, 'config,roles,admin,log_view,log_del,mine,category,article,member,mbr_group,comment', '超级管理员', '可使用后台所有功能', 1),
 (2, 'article', '内容管理员', '测试停用', 0),
 (3, 'article', '编辑', '只管理文章', 1);
 
@@ -824,7 +870,45 @@ INSERT INTO `cz_syslog` (`log_id`, `log_content`, `log_user`, `log_ip`, `log_dat
 (161, '修改用户，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 21:06:22'),
 (162, '修改用户，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 21:07:03'),
 (163, '修改用户，ID：2', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 21:07:45'),
-(164, '删除用户(ID)：3', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 21:28:11');
+(164, '删除用户(ID)：3', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 21:28:11'),
+(165, '修改用户，ID：2', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-03 21:48:26'),
+(166, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-04 09:37:43'),
+(167, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-04 09:56:19'),
+(168, '修改文章，ID：6', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-04 11:00:24'),
+(169, '退出登陆', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-04 12:35:18'),
+(170, '登陆成功', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-04 12:35:47'),
+(171, '修改权限组：超级管理员，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-04 14:04:59'),
+(172, '修改权限组：超级管理员，ID：1', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-04 14:05:30'),
+(173, '修改权限组：超级管理员，ID：1(Chrome 78.0.3904.108，Windows 10)', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-04 15:05:12'),
+(174, '修改权限组：内容管理员，ID：2（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-04 15:06:01'),
+(175, '修改文章，ID：8（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-04 16:32:25'),
+(176, '登陆成功（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-05 16:58:36'),
+(177, '登陆成功（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-08 11:14:03'),
+(178, '登陆成功（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-08 16:30:49'),
+(179, '登陆成功（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-08 23:44:43'),
+(180, '登陆成功（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-09 13:14:38'),
+(181, '登陆成功（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-10 15:06:48'),
+(182, '修改权限组：超级管理员，ID：1（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-10 16:30:46'),
+(183, '修改系统设置（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-10 16:35:51'),
+(184, '登陆成功（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-10 22:55:16'),
+(185, '审核评论(ID)：14,13,12（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 01:00:38'),
+(186, '取消评论审核(ID)：14,13（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 01:11:39'),
+(187, '通过评论审核(ID)：14,13（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 01:11:55'),
+(188, '设为热门评论(ID)：14（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 01:12:02'),
+(189, '取消热门评论(ID)：14（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 01:12:10'),
+(190, '设为热门评论(ID)：14（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 01:12:23'),
+(191, '取消热门评论(ID)：14（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 01:12:33'),
+(192, '删除评论(ID)：15（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 01:15:57'),
+(193, '取消评论审核(ID)：14（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 01:21:34'),
+(194, '通过评论审核(ID)：14（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 01:21:38'),
+(195, '登陆成功（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 10:50:10'),
+(196, '取消热门评论(ID)：1（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 10:59:06'),
+(197, '设为热门评论(ID)：1（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 10:59:39'),
+(198, '取消热门评论(ID)：1（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 11:00:53'),
+(199, '设为热门评论(ID)：1（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 11:01:08'),
+(200, '退出登陆（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 11:20:15'),
+(201, '登陆成功（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 11:29:25'),
+(202, '取消热门评论(ID)：5（Chrome 78.0.3904.108，Windows 10）', 'caozha（ID:1，姓名:草札）', '127.0.0.1', '2020-06-11 11:32:00');
 
 -- --------------------------------------------------------
 
@@ -842,7 +926,7 @@ CREATE TABLE `cz_web_config` (
 --
 
 INSERT INTO `cz_web_config` (`id`, `web_config`) VALUES
-(1, '{\"site_name\":\"caozha-admin\",\"site_url\":\"http:\\/\\/caozha.com\",\"admin_limit\":\"15\",\"roles_limit\":\"15\",\"syslog_limit\":\"15\",\"article_limit\":\"15\",\"member_limit\":\"15\",\"member_group_limit\":\"15\",\"index_title\":\"caozha-admin\\u540e\\u53f0\\u7ba1\\u7406\\u7cfb\\u7edf\",\"index_keywords\":\"\\u8349\\u672d,caozha,caozha-admin\",\"index_description\":\"caozha-admin\\u662f\\u4e00\\u4e2a\\u901a\\u7528\\u7684\\u7f51\\u7ad9\\u540e\\u53f0\\u5f00\\u53d1\\u6846\\u67b6\\uff0c\\u57fa\\u4e8e\\u5f00\\u6e90\\u7684ThinkPHP6.0.2\\u3001layuimini v2\\u3001layui2.5.4\\u4ee5\\u53cafont-awesome-4.7.0\\u5f00\\u53d1\\uff0c\\u7279\\u70b9\\uff1a\\u6613\\u4e0a\\u624b\\uff0c\\u96f6\\u95e8\\u69db\\uff0c\\u754c\\u9762\\u6e05\\u723d\\u6781\\u7b80 \\u3002\",\"site_footer\":\"Copyright \\u00a9 2020 \\u8349\\u672d caozha.com All rights reserved.\"}');
+(1, '{\"site_name\":\"caozha-admin\",\"site_url\":\"http:\\/\\/caozha.com\",\"admin_limit\":\"15\",\"roles_limit\":\"15\",\"syslog_limit\":\"15\",\"article_limit\":\"15\",\"member_limit\":\"10\",\"member_group_limit\":\"10\",\"comment_limit\":\"10\",\"index_title\":\"caozha-admin\\u540e\\u53f0\\u7ba1\\u7406\\u7cfb\\u7edf\",\"index_keywords\":\"\\u8349\\u672d,caozha,caozha-admin\",\"index_description\":\"caozha-admin\\u662f\\u4e00\\u4e2a\\u901a\\u7528\\u7684\\u7f51\\u7ad9\\u540e\\u53f0\\u5f00\\u53d1\\u6846\\u67b6\\uff0c\\u57fa\\u4e8e\\u5f00\\u6e90\\u7684ThinkPHP6.0.2\\u3001layuimini v2\\u3001layui2.5.4\\u4ee5\\u53cafont-awesome-4.7.0\\u5f00\\u53d1\\uff0c\\u7279\\u70b9\\uff1a\\u6613\\u4e0a\\u624b\\uff0c\\u96f6\\u95e8\\u69db\\uff0c\\u754c\\u9762\\u6e05\\u723d\\u6781\\u7b80 \\u3002\",\"site_footer\":\"Copyright \\u00a9 2020 \\u8349\\u672d caozha.com All rights reserved.\"}');
 
 --
 -- 转储表的索引
@@ -870,6 +954,12 @@ ALTER TABLE `cz_category`
   ADD PRIMARY KEY (`catid`),
   ADD KEY `module` (`parentid`,`listorder`,`catid`),
   ADD KEY `siteid` (`type`);
+
+--
+-- 表的索引 `cz_comment`
+--
+ALTER TABLE `cz_comment`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 表的索引 `cz_member`
@@ -926,6 +1016,12 @@ ALTER TABLE `cz_category`
   MODIFY `catid` smallint(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '栏目ID', AUTO_INCREMENT=473;
 
 --
+-- 使用表AUTO_INCREMENT `cz_comment`
+--
+ALTER TABLE `cz_comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- 使用表AUTO_INCREMENT `cz_member`
 --
 ALTER TABLE `cz_member`
@@ -947,7 +1043,7 @@ ALTER TABLE `cz_roles`
 -- 使用表AUTO_INCREMENT `cz_syslog`
 --
 ALTER TABLE `cz_syslog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
 
 --
 -- 使用表AUTO_INCREMENT `cz_web_config`

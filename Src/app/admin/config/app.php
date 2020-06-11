@@ -65,6 +65,7 @@ return [
         'article'  =>  array('name'=>'文章管理','remarks'=>'可以增删改文章'),
         'member'  =>  array('name'=>'用户管理','remarks'=>'可以增删改用户'),
         'mbr_group'  =>  array('name'=>'用户组管理','remarks'=>'可以增删改用户组'),
+        'comment'  =>  array('name'=>'评论管理','remarks'=>'可以管理用户发布的评论'),
     ),
 
     //前台用户权限，开发过程中，必须把所有权限都列出来并与程序内部设定一致，以便验证。标识符必须保持唯一性，不能相同
@@ -148,6 +149,26 @@ return [
               "href": "'.url("admin/MemberGroup/index").'",
               "icon": "fa fa-users",
               "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "评论管理",
+          "href": "",
+          "icon": "fa fa-comment",
+          "target": "_self",
+          "child": [
+            {
+              "title": "评论管理",
+              "href": "'.url("admin/comment/index").'",
+              "icon": "fa fa-comment-o",
+              "target": "_self"
+            },
+            {
+              "title": "查看评论",
+              "href": "'.url("index/comment/index").'",
+              "icon": "fa fa-comments-o",
+              "target": "_blank"
             }
           ]
         },

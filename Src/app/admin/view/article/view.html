@@ -54,6 +54,27 @@
     </div>
 
     <div class="layui-form-item">
+        <label class="layui-form-label">关键词：</label>
+        <div class="layui-input-block">
+            {$article.keywords}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述：</label>
+        <div class="layui-input-block">
+            {$article.description}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">Tag标签：</label>
+        <div class="layui-input-block">
+            {$article.tags}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
         <label class="layui-form-label">缩略图：</label>
         <div class="layui-input-block">
             {if $article.thumb}<img src="{$article.thumb}" style="height: 150px;">{/if}

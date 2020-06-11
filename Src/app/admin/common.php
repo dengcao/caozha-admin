@@ -28,7 +28,9 @@ use think\facade\Cache;
  */
 function cz_auth($role)
 {
-    $roles_data = get_roles(Session::get("role_id"));
+    $role_id=Session::get("role_id");
+    if(!$role_id){caozha_error("抱歉，登陆状态已失效，请重新登陆。", Request::header('referer'), 1);}
+    $roles_data = get_roles($role_id);
     $authorize = explode(",", $roles_data["roles"]);
     $auth_config = Config::get("app.caozha_role_auths");
     if (!in_array($role, $authorize)) {
@@ -44,7 +46,9 @@ function cz_auth($role)
  */
 function is_cz_auth($role)
 {
-    $roles_data = get_roles(Session::get("role_id"));
+    $role_id=Session::get("role_id");
+    if(!$role_id){return false;}
+    $roles_data = get_roles($role_id);
     $authorize = explode(",", $roles_data["roles"]);
     if (in_array($role, $authorize)) {
         return true;
@@ -347,7 +351,7 @@ function filter_sql($str)
 {
     $farr = array(
         //"/select|insert|update|delete|\'|\/\*|\*|\.\.\/|\.\/|union|into|load_file|outfile|dump/is"
-        "/select|insert|update|delete/is"
+        "/insert into|drop table|truncate|delete from/is"
     );
     $str = preg_replace($farr, '', $str);
     return trim(addslashes($str));
@@ -524,7 +528,7 @@ function object_to_array($obj)
  */
 function get_userbrowser()
 {
-    $agent = Request::header('USER_AGENT');
+    $agent = Request::header('USER-AGENT');
     $browser = '';
     $browser_ver = '';
 
@@ -601,7 +605,7 @@ function get_userbrowser()
  */
 function get_userOS()
 {
-    $agent = Request::header('USER_AGENT');
+    $agent = Request::header('USER-AGENT');
     $os = false;
     if (preg_match('/win/i', $agent) && strpos($agent, '95')) {
         $os = 'Windows 95';

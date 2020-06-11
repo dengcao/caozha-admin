@@ -1,6 +1,6 @@
-# caozha-admin 后台管理框架 1.4.0
+# caozha-admin 后台管理框架 1.5.0
 
-caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP6.0.2、layui2.5.4、layuimini v2以及font-awesome-4.7.0开发，特点：易上手，零门槛，界面清爽极简 。
+caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP开发，特点：易上手，零门槛，界面清爽极简，极便于二次开发。
 
 ### 基础功能
 
@@ -21,6 +21,8 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 8、文章管理系统
 
 9、用户（会员）管理系统
+
+10、评论系统
 
 主要提供了以上基础功能，您可以在此基础上拓展和开发出不同的应用。
 
@@ -82,6 +84,18 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 2、优化了后台授权验证机制，修改权限组设置后可以立马生效。
 
 
+**版本1.5.0，主要更新内容：**
+
+新增了：评论系统。
+
+
+### 特别鸣谢
+
+caozha-admin使用了以下开源代码：
+
+ThinkPHP6.0.2、layui2.5.4、layuimini v2、font-awesome-4.7.0、lgyPl
+
+特别致谢！
 
 ### 赞助支持：
 
@@ -99,6 +113,12 @@ GitHub：https://github.com/cao-zha/caozha-admin
 
 
 ### 界面预览
+
+**1.5.0版预览：**
+
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0611/124753_b7763c7a_7397417.png "16.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0611/124804_b09945aa_7397417.png "17.png")
+
 
 **1.3.0版预览：**
 

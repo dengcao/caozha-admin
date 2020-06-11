@@ -135,6 +135,23 @@
                     </select>
                 </div>
             </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">评论管理每页显示</label>
+                <div class="layui-input-block">
+                    <select name="comment_limit">
+                        <option value="5">5条</option>
+                        <option value="10">10条</option>
+                        <option value="15">15条</option>
+                        <option value="20">20条</option>
+                        <option value="25">25条</option>
+                        <option value="50">50条</option>
+                        <option value="100">100条</option>
+                        <option value="200">200条</option>
+                        <option value="500">500条</option>
+                        <option value="1000">1000条</option>
+                    </select>
+                </div>
+            </div>
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">首页标题</label>
                 <div class="layui-input-block">
@@ -180,6 +197,9 @@
         $('select[name="roles_limit"]').val('{$web_config.roles_limit}');
         $('select[name="syslog_limit"]').val('{$web_config.syslog_limit}');
         $('select[name="article_limit"]').val('{$web_config.article_limit}');
+        $('select[name="member_limit"]').val('{$web_config.member_limit}');
+        $('select[name="member_group_limit"]').val('{$web_config.member_group_limit}');
+        $('select[name="comment_limit"]').val('{$web_config.comment_limit}');
         form.render('select'); //刷新select选择框渲染
 
         //监听提交

@@ -22,4 +22,13 @@ return [
     'taglib_begin'  => '{',
     // 标签库标签结束标记
     'taglib_end'    => '}',
+    //设置默认的过滤方法，默认：htmlentities，可替换：htmlspecialchars等。为防止XSS安全问题，建议用默认。
+    'default_filter' => 'htmlentities',
+    // 替换标签
+    'tpl_replace_string'  =>  [
+        '__CAOZHA-SYS-NAME__'=>get_cz_name(),
+        '__CAOZHA-SYS-VERSION__'=>get_cz_version(),
+        '__CAOZHA-STATIC__'=>'/static/index',
+        '__CAOZHA-LAYUIMINI__'=>'/static/admin/layuimini',
+    ]
 ];

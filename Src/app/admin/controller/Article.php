@@ -168,7 +168,7 @@ class Article
         $update_data["ishot"]=isset($update_data["ishot"])?$update_data["ishot"]:0;
         $update_data["istop"]=isset($update_data["istop"])?$update_data["istop"]:0;
 
-        $update_field=['catid','title','content','style','thumb','keywords','description','url','listorder','status','islink','inputtime','iscomment','author','copyfrom','hits','isreco','ishot','istop'];//允许更新的字段
+        $update_field=['catid','title','content','style','thumb','keywords','description','tags','url','listorder','status','islink','inputtime','iscomment','author','copyfrom','hits','isreco','ishot','istop'];//允许更新的字段
         $article=ArticleModel::where("aid","=",$update_data["aid"])->findOrEmpty();
         if ($article->isEmpty()) {//数据不存在
             $update_result=false;
