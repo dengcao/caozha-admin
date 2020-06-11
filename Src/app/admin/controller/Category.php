@@ -33,7 +33,7 @@ class Category
 
     public function add()
     {
-        $tree = new tree;
+        $tree = new Tree;
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         $categorys = array();
@@ -102,7 +102,7 @@ class Category
             caozha_error("[ID:" . $catid . "]分类不存在。", "", 1);
         }
 
-        $tree = new tree;
+        $tree = new Tree;
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         $categorys = array();
@@ -276,7 +276,7 @@ class Category
 
     public function index()
     {
-        $tree = new tree;
+        $tree = new Tree;
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         $categorys = array();

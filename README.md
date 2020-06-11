@@ -55,7 +55,7 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 [http://caozha.com/git/demo/caozha-admin/public/admin/index/login](http://caozha.com/git/demo/caozha-admin/public/admin/index/login)
 
-管理员账号：caozha   密码：123456 (请勿修改，如密码错误请联系我)
+管理员账号：caozha   密码：123456 (请勿修改密码，如密码错误请联系我。演示后台已屏蔽上传功能。)
 
 
 **评论演示**
@@ -101,6 +101,7 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 **版本1.5.0，主要更新内容：**
 
 新增了：评论系统（支持盖楼评论，支持设置屏蔽词、验证码、是否需审核等，可整合到任何场景）。
+修复了：linux下树形分类相关页面找不到控制器的BUG。
 
 
 ### 特别鸣谢

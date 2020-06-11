@@ -33,7 +33,7 @@ class Article
             $limit=15;//默认显示15条
         }
 
-        $tree = new tree;
+        $tree = new Tree;
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         $categorys = array();
@@ -62,7 +62,7 @@ class Article
 
     public function add()
     {
-        $tree = new tree;
+        $tree = new Tree;
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         $categorys = array();
@@ -123,7 +123,7 @@ class Article
             caozha_error("[ID:".$aid."]文章不存在。","",1);
         }
 
-        $tree = new tree;
+        $tree = new Tree;
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         $categorys = array();
