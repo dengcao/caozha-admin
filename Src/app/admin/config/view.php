@@ -28,7 +28,7 @@ return [
     'tpl_replace_string'  =>  [
         '__CAOZHA-SYS-NAME__'=>get_cz_name(),
         '__CAOZHA-SYS-VERSION__'=>get_cz_version(),
-        '__CAOZHA-STATIC__'=>'/static/admin/caozha',
-        '__CAOZHA-LAYUIMINI__'=>'/static/admin/layuimini',
+        '__CAOZHA-STATIC__'=>get_cz_path().'static/admin/caozha',
+        '__CAOZHA-LAYUIMINI__'=>get_cz_path().'static/admin/layuimini',
         ]
 ];

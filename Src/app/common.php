@@ -98,6 +98,14 @@ $GLOBALS["caozha_common_config"] = [
 ];
 
 /**
+ * 获取应用入口之前的目录，格式如：/public/或/
+ * @return string
+ */
+function get_cz_path(){
+    return substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'], '/')+1);
+}
+
+/**
  * 获取草札后台框架的名字
  * @return string
  */

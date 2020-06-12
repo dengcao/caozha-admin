@@ -21,7 +21,6 @@ use think\facade\Cache;
 class comment
 {
     protected $cmt_config = [
-        "cmt_url" => "/static/index/cz_cmt/",//评论插件根URL
         "cache_time" => 0,//评论列表缓存时间，0为不启用缓存，缓存单位：秒，比如缓存1小时可设置：3600
         "cmt_pagesize" => 5,//每页显示评论数量
         "cmt_hot" => 3,//显示热门评论数量，为0时不显示热门评论
@@ -39,9 +38,11 @@ class comment
     ];
 
     protected $cmt_faces = array();
+    protected $cmt_url;//评论插件根URL
 
     function __construct()
     {
+        $this->cmt_url=get_cz_path()."static/index/cz_cmt/";
         $this->cmt_faces = comment_face();
     }
 
@@ -155,7 +156,7 @@ class comment
                 }
 
                 if ($is_member != 1) {
-                    $userpic = $this->cmt_config['cmt_url'] . 'assets/userpic/' . $r['userpic'] . '.gif';
+                    $userpic = $this->cmt_url . 'assets/userpic/' . $r['userpic'] . '.gif';
                 }
 
                 $plusername = $r['cmtname'];
@@ -212,7 +213,7 @@ class comment
                 $view_face = $this->view_face($faces);
                 if (count($view_face) > 0) {
                     $face_tag = "[/" . $view_face[0] . "]";
-                    $saytext = str_ireplace($face_tag, "<img src=\"" . $this->cmt_config['cmt_url'] . "face/" . $view_face[1] . "\" border=\"0\">", $saytext);
+                    $saytext = str_ireplace($face_tag, "<img src=\"" . $this->cmt_url . "face/" . $view_face[1] . "\" border=\"0\">", $saytext);
                 }
             }
         }

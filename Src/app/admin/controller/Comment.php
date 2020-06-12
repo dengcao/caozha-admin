@@ -18,11 +18,11 @@ use think\facade\View;
 class Comment
 {
     protected $cmt_config = [
-        "cmt_url" => "/static/index/cz_cmt/",//评论插件根URL
         "is_br" => true,//评论内容是否转换换行符
     ];
 
     protected $cmt_faces=array();
+    protected $cmt_url;//评论插件根URL
 
     protected $middleware = [
         'caozha_auth' => ['except' => ''],//验证是否管理员
@@ -31,6 +31,7 @@ class Comment
     public function __construct()
     {
         cz_auth("comment");//检测是否有权限
+        $this->cmt_url=get_cz_path()."static/index/cz_cmt/";
         $this->cmt_faces = comment_face();
     }
 
@@ -103,7 +104,7 @@ class Comment
                 }
             }
             $saytext = $this->face_replace($parent_context . $saytext);//解析表情
-            $comment->cmtcontent = '<link rel="stylesheet" href="'.$this->cmt_config['cmt_url'].'assets/style.css">'.$this->img_replace($saytext);//解析图片
+            $comment->cmtcontent = '<link rel="stylesheet" href="'.$this->cmt_url.'assets/style.css">'.$this->img_replace($saytext);//解析图片
 
             View::assign([
                 'comment' => $comment
@@ -252,7 +253,7 @@ class Comment
                 $view_face = $this->view_face($faces);
                 if (count($view_face) > 0) {
                     $face_tag = "[/" . $view_face[0] . "]";
-                    $saytext = str_ireplace($face_tag, "<img src=\"" . $this->cmt_config['cmt_url'] . "face/" . $view_face[1] . "\" border=\"0\">", $saytext);
+                    $saytext = str_ireplace($face_tag, "<img src=\"" . $this->cmt_url . "face/" . $view_face[1] . "\" border=\"0\">", $saytext);
                 }
             }
         }

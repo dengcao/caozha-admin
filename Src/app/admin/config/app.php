@@ -84,7 +84,7 @@ return [
   },
   "logoInfo": {
     "title": "后台管理系统",
-    "image": "/static/admin/caozha/logo/logo.png",
+    "image": "'.get_cz_path().'static/admin/caozha/logo/logo.png",
     "href": ""
   },
   "menuInfo": [
@@ -329,7 +329,7 @@ return [
           "child": [
             {
               "title": "用UEditor上传",
-              "href": "/static/admin/caozha/ueditor/demo_upload.html",
+              "href": "'.get_cz_path().'static/admin/caozha/ueditor/demo_upload.html",
               "icon": "fa fa-snowflake-o",
               "target": "_self"
             },
