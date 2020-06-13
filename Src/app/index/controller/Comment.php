@@ -35,6 +35,7 @@ class comment
         "is_scroll_load" => 1,//是否滚动加载评论，1为滚动加载，0为不滚动加载
         "bottom_scroll_load" => 50,//底部触发距离，默认是：50
         "bad_word" => "操|你妈|吃屎|你全家|fuck|艹|垃圾|傻逼",//要屏蔽的违规关键词，包含此词将不允许提交。多个词中间用|分隔
+        "default_cmtname"=>"匿名游客",//设置默认用户名，当评论者为游客时启用
     ];
 
     protected $cmt_faces = array();
@@ -161,7 +162,7 @@ class comment
 
                 $plusername = $r['cmtname'];
                 if (!$plusername) {
-                    $plusername = "匿名网友";
+                    $plusername = $this->cmt_config['default_cmtname'];
                 }
 
                 $comments[] = array(
