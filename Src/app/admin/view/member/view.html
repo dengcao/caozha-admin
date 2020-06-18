@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>查看 - Powered by __CAOZHA-SYS-NAME__ __CAOZHA-SYS-VERSION__</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+    <script src="__CAOZHA-STATIC__/js/jquery-3.4.1.min.js"></script>
+    <script src="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script src="__CAOZHA-STATIC__/js/all.js"></script>
+    <link rel="stylesheet" href="__CAOZHA-STATIC__/css/style.css" media="all">
+</head>
+<body>
+<form class="layui-form layuimini-form caozha-view-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户ID：</label>
+        <div class="layui-input-block">
+            {$member.userid}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名：</label>
+        <div class="layui-input-block">
+           {$member.username}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户组：</label>
+        <div class="layui-input-block">
+            {$member.group_name}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">昵称：</label>
+        <div class="layui-input-block">
+            {$member.nickname}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">金钱总额：</label>
+        <div class="layui-input-block">
+            {$member.amount}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">积分：</label>
+        <div class="layui-input-block">
+            {$member.point}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">头像：</label>
+        <div class="layui-input-block">
+            {if $member.avatar}<img src="{$member.avatar}" style="height: 150px;">{/if}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱：</label>
+        <div class="layui-input-block">
+            {$member.email}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">住址：</label>
+        <div class="layui-input-block">
+            {$member.address}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">QQ：</label>
+        <div class="layui-input-block">
+            {$member.qq}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机：</label>
+        <div class="layui-input-block">
+            {$member.mobile}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">微信号：</label>
+        <div class="layui-input-block">
+            {$member.weixin}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注：</label>
+        <div class="layui-input-block">
+            {$member.remarks}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">锁定：</label>
+        <div class="layui-input-block">
+            {$member.islock}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">实名状态：</label>
+        <div class="layui-input-block">
+            {$member.isrn}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">真实姓名：</label>
+        <div class="layui-input-block">
+            {$member.realname}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证号：</label>
+        <div class="layui-input-block">
+            {$member.id_card}
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">注册IP：</label>
+        <div class="layui-input-block">
+            {$member.regip}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">注册时间：</label>
+        <div class="layui-input-block">
+            {$member.regtime}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">登陆次数：</label>
+        <div class="layui-input-block">
+            {$member.loginnum}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">上次登录IP：</label>
+        <div class="layui-input-block">
+            {$member.lastip}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">最后登录时间：</label>
+        <div class="layui-input-block">
+            {$member.lasttime}
+        </div>
+    </div>
+
+</form>
+</body>
+</html>

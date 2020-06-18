@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>查看 - Powered by __CAOZHA-SYS-NAME__ __CAOZHA-SYS-VERSION__</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+    <script src="__CAOZHA-STATIC__/js/jquery-3.4.1.min.js"></script>
+    <script src="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script src="__CAOZHA-STATIC__/js/all.js"></script>
+    <link rel="stylesheet" href="__CAOZHA-STATIC__/css/style.css" media="all">
+</head>
+<body>
+<form class="layui-form layuimini-form caozha-view-form">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户ID：</label>
+        <div class="layui-input-block">
+           {$comment.userid}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">评论者IP：</label>
+        <div class="layui-input-block">
+            {$comment.cmtip}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">评论时间：</label>
+        <div class="layui-input-block">
+            {$comment.addtime}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">评论者昵称：</label>
+        <div class="layui-input-block">
+            {if $comment.cmtname==""}匿名{else}{$comment.cmtname}{/if}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">评论内容：</label>
+        <div class="layui-input-block">
+            {$comment.cmtcontent|raw}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">点赞次数：</label>
+        <div class="layui-input-block">
+            {$comment.like_num}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">被踩次数：</label>
+        <div class="layui-input-block">
+            {$comment.bad_num}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">审核状态：</label>
+        <div class="layui-input-block">
+            {$comment.ischeck|raw}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否热门：</label>
+        <div class="layui-input-block">
+            {$comment.ishot|raw}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">cmtid：</label>
+        <div class="layui-input-block">
+            {$comment.cmtid} <font color="#aaaaaa">（评论ID，标识符，用于关联）</font>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">catid：</label>
+        <div class="layui-input-block">
+            {$comment.catid} <font color="#aaaaaa">（评论分类ID，标识符，用于关联）</font>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">parentid：</label>
+        <div class="layui-input-block">
+            {$comment.parentid} <font color="#aaaaaa">（父评论ID，为0表示非回复评论）</font>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">arrparentid：</label>
+        <div class="layui-input-block">
+            {$comment.arrparentid} <font color="#aaaaaa">（所有父ID，多个中间按顺序用逗号,分隔）</font>
+        </div>
+    </div>
+
+</form>
+</body>
+</html>

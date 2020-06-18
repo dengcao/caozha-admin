@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>分类管理 - Powered by __CAOZHA-SYS-NAME__ __CAOZHA-SYS-VERSION__</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/css/public.css" media="all">
+    <script src="__CAOZHA-STATIC__/js/jquery-3.4.1.min.js"></script>
+    <script src="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script src="__CAOZHA-STATIC__/js/all.js"></script>
+    <link rel="stylesheet" href="__CAOZHA-STATIC__/css/style.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <div class="caozha-nav-tool">
+            <button type="button" class="layui-btn" id="add">添加顶级分类</button>
+            <button type="button" class="layui-btn layui-btn-normal" id="category_repair">修复分类数据</button>
+        </div>
+        <form name="myform" class="table_form" action="{:url('admin/category/listorder')}" method="post">
+        <div class="table-list">
+            <table width="100%" cellspacing="0" >
+                <thead>
+                <tr>
+                    <th width="38">排序</th>
+                    <th width="70">catid</th>
+                    <th >分类名称</th>
+                    <th align='left' width='105'>分类类型</th>
+                    <th align='left' width="105">所属模型</th>
+                    <th align='center' width="60">显示</th>
+                    <th align='center' width="60">访问</th>
+                    <th width="200">管理操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {$categorys|raw}
+                </tbody>
+            </table>
+
+            <div class="btn">
+                <input type="submit" class="button" name="dosubmit" value="排序" /></div>  </div>
+        </form>
+
+    </div>
+</div>
+<script>
+    var layer;
+    layui.use('layer', function(){
+        layer = layui.layer;
+
+        layer_skin(layer);
+
+        $("#category_repair").click(function(){
+            $.ajax({
+                type: "post",
+                url: '{:url(\'admin/category/repair\')}',
+                data: "",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data.code == 1) {
+                        layer.msg('修复成功', {icon: 1});
+                        //执行删除后重载
+                        setTimeout(function(){location.reload();},1000);
+                    } else {
+                        layer.msg('修复失败', {icon: 2});
+                    }
+                }
+            });
+        });
+
+        $("#add").click(function(){
+            todo("add",0,"添加顶级分类");
+        });
+
+
+    });
+
+
+
+    function todo(type,catid,title){
+        if(type=="add"){
+            todo_url='{:url(\'admin/category/add\')}?parentid='+catid;
+        }else if(type=="edit"){
+            todo_url='{:url(\'admin/category/edit\')}?catid='+catid;
+        }
+        var index = layer.open({
+            title: title,
+            type: 2,
+            shade: 0.2,
+            maxmin: true,
+            //shadeClose: true,
+            btn: ['立即提交', '重置'],
+            btnAlign: 'c',
+            resize:true,//允许拉伸
+            area: ['900px', '90%'],
+            content: todo_url,
+            yes: function(index, layero){
+                //按钮【按钮一】的回调
+
+                var body = layer.getChildFrame('body', index);
+                //console.log(body.html()) //得到iframe页的body内容
+                //body.find('input').val('Hi，我是从父页来的')
+                body.find(".caozha-submit").click();
+
+                //var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+
+
+            }
+            ,btn2: function(index, layero){
+                //按钮【按钮二】的回调
+                var body = layer.getChildFrame('body', index);
+                body.find(".caozha-reset").click();
+
+                return false;// 开启该代码可禁止点击该按钮关闭
+            }
+            ,cancel: function(){
+                //右上角关闭回调
+
+                //return false 开启该代码可禁止点击该按钮关闭
+            }
+        });
+    }
+
+
+    function del(catid) {
+        caozha_alert = layer.confirm('确定要删除catid为[ ' + catid + ' ]的分类吗？<br>如按确认，将删除其所有子分类及文章等数据。<br>删除后无法撤销，请谨慎操作。', {
+            btn: ['确认删除', '取消删除'],
+            btnAlign: 'c',
+            title: "操作提示"
+        }, function () {
+
+            $.ajax({
+                type: "post",
+                url: '{:url(\'admin/category/delete\')}',
+                data: {catid: catid},
+                dataType: "json",
+                async: false,
+                success: function (del_data) {
+                    if (del_data.code == 1) {
+                        layer.msg('删除成功！', {icon: 1});
+                        //执行删除后重载
+                        window.location.reload();
+                    } else {
+                        layer.msg('删除失败！', {icon: 2});
+                    }
+                }
+            });
+            layer.close(caozha_alert);//关闭
+        });
+    }
+
+</script>
+
+</body>
+</html>
