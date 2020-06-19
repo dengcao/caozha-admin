@@ -10,9 +10,9 @@
 .cz-toolbar-search .cz-toolbar-search-btn{position: absolute;left: 128px;cursor: pointer;background:none;border:0px;padding:0px 5px;height: 32px;}
 
 /*修改layui 确认框 第二个按钮颜色*/
-body .layui-layer-molv .layui-layer-btn .layui-layer-btn0 {height: 36px;line-height: 36px;}
-body .layui-layer-molv .layui-layer-btn .layui-layer-btn1 {background: #FFFFFF;height: 36px;line-height: 36px;}
-body .layui-layer-molv .layui-layer-btn a {border-color: rgb(201, 201, 201);}
+body .layui-layer .layui-layer-btn .layui-layer-btn0 {height: 36px;line-height: 36px;}
+body .layui-layer .layui-layer-btn .layui-layer-btn1 {background: #FFFFFF;height: 36px;line-height: 36px;}
+body .layui-layer .layui-layer-btn a {border-color: rgb(201, 201, 201);}
 
 /*查看layui表单为纯展示*/
 body .caozha-view-form .layui-form-item{margin-bottom: 0px;}
