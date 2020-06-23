@@ -497,6 +497,7 @@ function object_to_array($obj)
 }
 
 
+
 /**
  * 获取浏览器以及版本号
  * @return string
@@ -507,60 +508,46 @@ function get_userbrowser()
     $browser = '';
     $browser_ver = '';
 
-    if (preg_match('/OmniWeb\/(v*)([^\s|;]+)/i', $agent, $regs)) {
+    if (preg_match('/UBrowser/i', $agent, $regs) || preg_match('/UC/i', $agent, $regs)) {
+        $browser = 'UC浏览器';
+        $browser_ver = '';
+    }elseif (preg_match('/QQBrowser/i', $agent, $regs)) {
+        $browser = 'QQ浏览器';
+        $browser_ver = '';
+    }elseif(preg_match('/OmniWeb\/(v*)([^\s|;]+)/i', $agent, $regs)) {
         $browser = 'OmniWeb';
         $browser_ver = $regs[2];
-    }
-
-    if (preg_match('/Netscape([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+    }elseif(preg_match('/Netscape([\d]*)\/([^\s]+)/i', $agent, $regs)) {
         $browser = 'Netscape';
         $browser_ver = $regs[2];
-    }
-
-    if (preg_match('/safari\/([^\s]+)/i', $agent, $regs)) {
+    }elseif(preg_match('/safari\/([^\s]+)/i', $agent, $regs)) {
         $browser = 'Safari';
         $browser_ver = $regs[1];
-    }
-
-    if (preg_match('/MSIE\s([^\s|;]+)/i', $agent, $regs)) {
-        $browser = 'Internet Explorer';
+    }elseif(preg_match('/MSIE\s([^\s|;]+)/i', $agent, $regs)) {
+        $browser = 'IE';
         $browser_ver = $regs[1];
-    }
-
-    if (preg_match('/Opera[\s|\/]([^\s]+)/i', $agent, $regs)) {
+    }elseif(preg_match('/Opera[\s|\/]([^\s]+)/i', $agent, $regs)) {
         $browser = 'Opera';
         $browser_ver = $regs[1];
-    }
-
-    if (preg_match('/NetCaptor\s([^\s|;]+)/i', $agent, $regs)) {
-        $browser = '(Internet Explorer ' . $browser_ver . ') NetCaptor';
+    }elseif(preg_match('/NetCaptor\s([^\s|;]+)/i', $agent, $regs)) {
+        $browser = '(IE ' . $browser_ver . ') NetCaptor';
         $browser_ver = $regs[1];
-    }
-
-    if (preg_match('/Maxthon/i', $agent, $regs)) {
-        $browser = '(Internet Explorer ' . $browser_ver . ') Maxthon';
+    }elseif(preg_match('/Maxthon/i', $agent, $regs)) {
+        $browser = '(IE ' . $browser_ver . ') Maxthon';
         $browser_ver = '';
-    }
-    if (preg_match('/360SE/i', $agent, $regs)) {
-        $browser = '(Internet Explorer ' . $browser_ver . ') 360SE';
+    }elseif(preg_match('/360SE/i', $agent, $regs)) {
+        $browser = '(IE ' . $browser_ver . ') 360SE';
         $browser_ver = '';
-    }
-    if (preg_match('/SE 2.x/i', $agent, $regs)) {
-        $browser = '(Internet Explorer ' . $browser_ver . ') 搜狗';
+    }elseif(preg_match('/SE 2.x/i', $agent, $regs)) {
+        $browser = '(IE ' . $browser_ver . ') 搜狗';
         $browser_ver = '';
-    }
-
-    if (preg_match('/FireFox\/([^\s]+)/i', $agent, $regs)) {
+    }elseif(preg_match('/FireFox\/([^\s]+)/i', $agent, $regs)) {
         $browser = 'FireFox';
         $browser_ver = $regs[1];
-    }
-
-    if (preg_match('/Lynx\/([^\s]+)/i', $agent, $regs)) {
+    }elseif(preg_match('/Lynx\/([^\s]+)/i', $agent, $regs)) {
         $browser = 'Lynx';
         $browser_ver = $regs[1];
-    }
-
-    if (preg_match('/Chrome\/([^\s]+)/i', $agent, $regs)) {
+    }elseif(preg_match('/Chrome\/([^\s]+)/i', $agent, $regs)) {
         $browser = 'Chrome';
         $browser_ver = $regs[1];
 
@@ -582,7 +569,16 @@ function get_userOS()
 {
     $agent = Request::header('USER-AGENT');
     $os = false;
-    if (preg_match('/win/i', $agent) && strpos($agent, '95')) {
+    if (strpos($agent, 'Android') !== false) {//strpos()定位出第一次出现字符串的位置，这里定位为0
+        preg_match("/(?<=Android )[\d\.]{1,}/", $agent, $version);
+        $os = 'Android '.$version[0];
+    } elseif (strpos($agent, 'iPhone') !== false) {
+        preg_match("/(?<=CPU iPhone OS )[\d\_]{1,}/", $agent, $version);
+        $os = 'iPhone '.str_replace('_', '.', $version[0]);
+    } elseif (strpos($agent, 'iPad') !== false) {
+        preg_match("/(?<=CPU OS )[\d\_]{1,}/", $agent, $version);
+        $os = 'iPad '.str_replace('_', '.', $version[0]);
+    } else if (preg_match('/win/i', $agent) && strpos($agent, '95')) {
         $os = 'Windows 95';
     } else if (preg_match('/win 9x/i', $agent) && strpos($agent, '4.90')) {
         $os = 'Windows ME';
