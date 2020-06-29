@@ -237,6 +237,7 @@ class Article
 
         $list=Db::name('article');
         $list=$list->alias('a')->leftJoin('category c','a.catid = c.catid');
+        $list=$list->alias('a')->field('a.*,c.catname');
         $list=$list->withAttr('status', function($value) {
             $status = Config::get("app.caozha_article_status");
             return $status[$value];

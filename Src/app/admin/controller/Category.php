@@ -73,6 +73,8 @@ class Category
         $update_data["ismenu"] = isset($update_data["ismenu"]) ? intval($update_data["ismenu"]) : 0;
         $update_data["listorder"] = isset($update_data["listorder"]) ? intval($update_data["listorder"]) : 0;
 
+        $update_data=array_diff_key($update_data,["editorValue"=>""]);//按键值删除多余的数组
+
         $catid = Db::name('category')->insertGetId($update_data);
 
         category_repair();//修正分类数据

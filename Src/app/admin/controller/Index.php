@@ -9,6 +9,7 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\Article as ArticleModel;
 use app\admin\model\Roles;
 use think\facade\Cache;
 use think\facade\Session;
@@ -37,8 +38,95 @@ class Index
 
     public function welcome()
     {
+        $member_total=\app\admin\model\Member::paginate(['list_rows'=> 10])->total();
+        $article_total=\app\admin\model\Article::paginate(['list_rows'=> 10])->total();
+        $comment_total=\app\admin\model\Comment::paginate(['list_rows'=> 10])->total();
+        $administrators_total=\app\admin\model\Administrators::paginate(['list_rows'=> 10])->total();
+
+
+        //统计：以天为单位
+//        $total_date_arr=get_dates(10,'', 'm-d');
+//        $total_date_arr2=get_dates(10,'', 'Y-m-d');
+//        $total_article_arr=array();
+//        $total_comment_arr=array();
+//        $total_member_arr=array();
+//        foreach ($total_date_arr2 as $key=>$value){
+//            $total_article_arr[]=\app\admin\model\Article::whereTime('inputtime', 'between', [$value." 00:00:00",$value." 23:59:59"])->paginate(['list_rows'=> 10])->total();
+//            $total_comment_arr[]=\app\admin\model\Comment::whereTime('addtime', 'between', [$value." 00:00:00",$value." 23:59:59"])->paginate(['list_rows'=> 10])->total();
+//            $total_member_arr[]=\app\admin\model\Member::whereTime('regtime', 'between', [$value." 00:00:00",$value." 23:59:59"])->paginate(['list_rows'=> 10])->total();
+//        }
+
+
+        //统计：以月为单位
+        $total_month_arr=get_month(6);
+        $total_date_arr=array();
+        $total_article_arr=array();
+        $total_comment_arr=array();
+        $total_member_arr=array();
+        foreach ($total_month_arr as $key=>$value){
+            $total_date_arr[]=$value["month"];
+            $total_article_arr[]=\app\admin\model\Article::whereTime('inputtime', 'between', [$value["start_time"],$value["end_time"]])->paginate(['list_rows'=> 10])->total();
+            $total_comment_arr[]=\app\admin\model\Comment::whereTime('addtime', 'between', [$value["start_time"],$value["end_time"]])->paginate(['list_rows'=> 10])->total();
+            $total_member_arr[]=\app\admin\model\Member::whereTime('regtime', 'between', [$value["start_time"],$value["end_time"]])->paginate(['list_rows'=> 10])->total();
+        }
+
+
+        //读取系统公告（分类为：1）的6条已通过审核的最新文章
+        $article_list=\app\admin\model\Article::where([['catid','=',1],['status','=',9]])->order(['istop'=>'desc','listorder'=>'desc','inputtime'=>'desc'])->limit(6)->select()->toArray();
+
+        // 赋值
+        View::assign([
+            'member_total'  => $member_total,
+            'article_total'  => $article_total,
+            'comment_total'  => $comment_total,
+            'administrators_total'  => $administrators_total,
+            'total_date_arr2str'  => "'".implode("','",$total_date_arr)."'",
+            'total_article_arr2str'  => implode(",",$total_article_arr),
+            'total_comment_arr2str'  => implode(",",$total_comment_arr),
+            'total_member_arr2str'  => implode(",",$total_member_arr),
+            'article_list'  => $article_list,
+        ]);
         // 模板输出
         return View::fetch('index/welcome');
+    }
+
+    public function notice_view()
+    {
+        $aid=Request::param("aid",'','filter_sql');
+        if(!is_numeric($aid)){
+            caozha_error("参数错误","",1);
+        }
+        $article=ArticleModel::where("aid","=",$aid)->with('category')->withAttr('status', function($value) {
+            //$status = [0=>'无效',1=>'在审',2=>'<font color="red">退稿</font>,9=>\'<font color="green">通过</font>\''];
+            $status = Config::get("app.caozha_article_status");
+            return $status[$value];
+        })->withAttr('islink', function($value) {
+            $islink = [0=>'否',1=>'是'];
+            return $islink[$value];
+        })->withAttr('iscomment', function($value) {
+            $iscomment = [0=>'否',1=>'是'];
+            return $iscomment[$value];
+        })->withAttr('isreco', function($value) {
+            $islink = [0=>'否',1=>'是'];
+            return $islink[$value];
+        })->withAttr('ishot', function($value) {
+            $iscomment = [0=>'否',1=>'是'];
+            return $iscomment[$value];
+        })->withAttr('istop', function($value) {
+            $islink = [0=>'否',1=>'是'];
+            return $islink[$value];
+        })->findOrEmpty();
+        if ($article->isEmpty()) {
+            caozha_error("[ID:".$aid."]文章不存在。","",1);
+        }else{
+            $article->hits += 1;
+            $article->save();
+            View::assign([
+                'article'  => $article
+            ]);
+        }
+        // 模板输出
+        return View::fetch('index/notice_view');
     }
 
     public function login()

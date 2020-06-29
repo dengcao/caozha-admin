@@ -639,3 +639,48 @@ function get_userOS()
     }
     return $os;
 }
+
+/**
+ * 获取本周所有日期
+ */
+function get_week($time = '', $format='Y-m-d'){
+    $time = $time != '' ? $time : time();
+    //获取当前周几
+    $week = date('w', $time);
+    $date = [];
+    for ($i=1; $i<=7; $i++){
+        $date[$i] = date($format ,strtotime( '+' . $i-$week .' days', $time));
+    }
+    return $date;
+}
+
+/**
+ * 获取最近$n天所有日期
+ */
+function get_dates($n=7,$time = '', $format='Y-m-d'){
+    $time = $time != '' ? $time : time();
+    //组合数据
+    $date = [];
+    for ($i=1; $i<=$n; $i++){
+        $date[$i] = date($format ,strtotime( '+' . $i-$n .' days', $time));
+    }
+    return $date;
+}
+
+/**
+ * 获取最近N个月起至时间
+ */
+function get_month($n=6){
+    for($i=0;$i<$n;$i++){
+        if($i==0){
+            $date[$i]['month'] = date('Y-m',mktime(0,0,0,date('m'),1,date('Y')));
+            $date[$i]['start_time'] = date('Y-m-d H:i:s',mktime(0,0,0,date('m'),1,date('Y')));
+            $date[$i]['end_time'] = date('Y-m-d H:i:s',time());
+        }else{
+            $date[$i]['month'] = date('Y-m',mktime(0,0,0,date('m')-$i,1,date('Y')));
+            $date[$i]['start_time'] = date('Y-m-d H:i:s',mktime(0,0,0,date('m')-$i,1,date('Y')));
+            $date[$i]['end_time'] = date('Y-m-d H:i:s',mktime(23,59,59,date('m')-$i,date('t',mktime(0,0,0,date('m')-$i,1,date('Y'))),date('Y')));
+        }
+    }
+    return array_reverse($date);
+}
