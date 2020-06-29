@@ -91,11 +91,18 @@ function comment_face(){
     return $cmt_faces;
 }
 
-//系统基础配置
+//应用的名称及版本
 $GLOBALS["caozha_common_config"] = [
     "name" => "caozha-admin",
     "version" => "1.6.0",
 ];
+
+//caozha-admin 程序名称及版本，用于标识和升级，勿删改
+$GLOBALS["caozha_admin_sys"] = array(
+    "name" => "caozha-admin",
+    "version" => "1.6.0",
+    "url" => "https://gitee.com/caozha/caozha-admin",
+);
 
 /**
  * 获取应用入口之前的目录，格式如：/public/或/
@@ -106,7 +113,7 @@ function get_cz_path(){
 }
 
 /**
- * 获取草札后台框架的名字
+ * 获取系统应用的名字
  * @return string
  */
 function get_cz_name(){
@@ -115,7 +122,7 @@ function get_cz_name(){
 }
 
 /**
- * 获取草札后台框架的版本号
+ * 获取系统应用的版本号
  * @return string
  */
 function get_cz_version(){
