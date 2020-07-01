@@ -303,6 +303,27 @@ function caozha_success($alert, $url, $is_exit = 0)
     }
 }
 
+
+/**
+ *操作确认
+ * @param string $alert 提示信息
+ * @param string $js_code 点确定后执行的JS代码
+ * @param integer $is_exit 1立刻终止程序的执行
+ * @return string
+ */
+function caozha_confirm($alert, $js_code, $is_exit = 0)
+{
+    View::assign([
+        'alert' => $alert,
+        'js_code' => $js_code
+    ]);
+    echo View::fetch('common/confirm');
+    if ($is_exit == 1) {
+        exit;
+    }
+}
+
+
 /**
  *判断是否登陆管理员
  * @return boolean
