@@ -23,7 +23,7 @@
 <script>
     layui.use(['layer','miniTab'], function(){
         var layer = layui.layer,
-            miniTab = layui.miniTab;
+        miniTab = layui.miniTab;
 
         layer_skin(layer);
 
@@ -48,9 +48,9 @@
         }, function () {
 
             layer.close(caozha_alert);
-            miniTab.deleteCurrentByIframe();
             var iframeIndex = parent.layer.getFrameIndex(window.name);
             parent.layer.close(iframeIndex);
+            miniTab.deleteCurrentByIframe();
 
         });
 
