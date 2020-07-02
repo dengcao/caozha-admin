@@ -55,7 +55,7 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 2、如果您使用的是Apache，伪静态设置为（.htaccess）：
 
-`<IfModule mod_rewrite.c>
+<IfModule mod_rewrite.c>
 
   Options +FollowSymlinks -Multiviews
   
@@ -67,11 +67,12 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
   
   RewriteRule ^(.*)$ index.php?s=$1 [QSA,PT,L]
   
-</IfModule>`
+</IfModule>
+
 
 3、如果您使用的是Nginx，伪静态设置为：
 
-`location / {
+location / {
 
     index index.php;
     
@@ -83,7 +84,8 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
        
     }
     
-}`
+}
+
 
 4、在网站根目录下，有两个文件：.htaccess和nginx.htaccess，分别是Apache和Nginx的伪静态文件，您可以直接拿来使用。
 
@@ -158,6 +160,8 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 1、重写了后台欢迎页，调用统计、报表、公告等数据。
 
 2、修复了若干BUG，如后台文章列表的排序号显示不正确等等。
+
+3、新增了Nginx的伪静态文件。
 
 
 ### 特别鸣谢
