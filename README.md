@@ -42,12 +42,6 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 5、后台访问地址：http://您的域名/admin/index/login   (账号：caozha   密码：123456)
 
 
-**开发手册**
-
-码云Wiki：[https://gitee.com/caozha/caozha-admin/wikis](https://gitee.com/caozha/caozha-admin/wikis)
-
-GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/cao-zha/caozha-admin/wiki)
-
 
 **伪静态设置**
 
@@ -88,6 +82,15 @@ location / {
 
 
 4、在网站根目录下，有两个文件：.htaccess和nginx.htaccess，分别是Apache和Nginx的伪静态文件，您可以直接拿来使用。
+
+
+
+**开发手册**
+
+码云Wiki：[https://gitee.com/caozha/caozha-admin/wikis](https://gitee.com/caozha/caozha-admin/wikis)
+
+GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/cao-zha/caozha-admin/wiki)
+
 
 
 ### 演示地址
