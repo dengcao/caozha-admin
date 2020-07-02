@@ -214,7 +214,18 @@
                 async: false,
                 success: function (res) {
                     if (res.code == 1) {
-                        layer.msg(res.msg, {icon: 1});
+
+                        //layer.msg(res.msg, {icon: 1});
+                        caozha_success=layer.alert(res.msg, {
+                            title:'成功提示',
+                            btn: ['确定'],
+                            closeBtn: 0,
+                            btnAlign: 'c',
+                            icon: 6,
+                        }, function(){
+                            window.location.reload();
+                        });
+
                     } else {
                         layer.msg(res.msg, {icon: 2});
                     }
