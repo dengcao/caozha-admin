@@ -1,4 +1,0 @@
-<?php
-//000000000000
- exit();?>
-a:13:{s:9:"site_name";s:12:"caozha-admin";s:8:"site_url";s:17:"http://caozha.com";s:11:"admin_limit";s:2:"15";s:11:"roles_limit";s:2:"15";s:12:"syslog_limit";s:2:"15";s:13:"article_limit";s:2:"15";s:12:"member_limit";s:2:"10";s:18:"member_group_limit";s:2:"10";s:13:"comment_limit";s:2:"10";s:11:"index_title";s:30:"caozha-admin后台管理系统";s:14:"index_keywords";s:26:"草札,caozha,caozha-admin";s:17:"index_description";s:201:"caozha-admin是一个通用的网站后台开发框架，基于开源的ThinkPHP6.0.2、layuimini v2、layui2.5.4以及font-awesome-4.7.0开发，特点：易上手，零门槛，界面清爽极简 。";s:11:"site_footer";s:56:"Copyright © 2020 草札 caozha.com All rights reserved.";}
