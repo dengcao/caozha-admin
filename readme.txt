@@ -9,9 +9,9 @@ GitHub Wiki：https://github.com/cao-zha/caozha-admin/wiki
 【快速安装】
 
 1、PHP版本必须7.1及以上。
-2、上传目录/Src/内所有源码到服务器，并设置网站的根目录指向目录/Src/public/。（TP6.0要求）
+2、上传目录/Src/内所有源码到服务器，并设置网站的根目录指向目录/public/。（此为ThinkPHP6.0要求）
 3、将/Database/目录里的.sql文件导入到MYSQL数据库。
-4、修改文件/Src/config/database.php，配置您的数据库信息（如果是本地测试，还需要修改文件/Src/.env，本地测试会优先使用此配置文件）。
+4、修改文件/config/database.php，配置您的数据库信息（如果测试时启用了/.env，还需要修改文件/.env，系统会优先使用此配置文件）。
 5、后台访问地址：http://您的域名/admin/index/login  （账号：caozha   密码：123456）
 
 
@@ -39,7 +39,7 @@ location / {
     }
 }
 
-4、在网站根目录下，有两个文件：.htaccess和nginx.htaccess，分别是Apache和Nginx的伪静态文件，您可以直接拿来使用。
+4、在网站根目录（/public/）下，有两个文件：.htaccess和nginx.htaccess，分别是Apache和Nginx的伪静态文件，您可以直接拿来使用。
 
 
 【开发】
@@ -51,11 +51,11 @@ LayUI 2.x 开发手册：https://www.layui.com/doc/
 
 正式
 一、数据库配置
-打开Src/config/database.php，设置数据库各项。
-注意：此为全局配置，是对所有应用起效的，如需要只对应用admin单独起效，则将此文件移动到Src/app/admin/config/即可。
+打开/config/database.php，设置数据库各项。
+注意：此为全局配置，是对所有应用起效的，如需要只对应用admin单独起效，则将此文件移动到/app/admin/config/即可。
 
 二、应用配置
-配置文件：Src/app/admin/config/目录下所有文件均为配置文件。其中app.php是应用的基础配置文件。
+配置文件：/app/admin/config/目录下所有文件均为配置文件。其中app.php是应用的基础配置文件。
 
 三、开发
 
@@ -151,7 +151,7 @@ write_syslog(array("log_content"=>"删除系统日志"));//记录系统日志
 
 4、无限级别的分类系统
 
-打开应用配置文件：Src/app/admin/config/app.php，找到：
+打开应用配置文件：app/admin/config/app.php，找到：
 
 //分类，栏目类型ID
 'caozha_category_types' => array(0 => "内部栏目",1 => "单网页",2 => "外部链接"),
@@ -166,7 +166,7 @@ write_syslog(array("log_content"=>"删除系统日志"));//记录系统日志
 
 5、文章管理系统
 
-打开应用配置文件：Src/app/admin/config/app.php，找到：
+打开应用配置文件：app/admin/config/app.php，找到：
 
 //文章，状态`
 'caozha_article_status' => array(0 => "无效",1 => "在审",2 => "退稿",9 => "通过"),`
@@ -179,7 +179,7 @@ write_syslog(array("log_content"=>"删除系统日志"));//记录系统日志
 
 6、用户（会员）管理系统
 
-打开应用配置文件：Src/app/admin/config/app.php，找到：
+打开应用配置文件：app/admin/config/app.php，找到：
 
 //会员，实名状态
 'caozha_member_isrn' => array(0 => "否",1 => "是",2 => "待审"),
