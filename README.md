@@ -33,7 +33,7 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 1、PHP版本必须7.1及以上。
 
-2、上传目录/Src/内所有源码到服务器，并设置网站的根目录指向目录/public/。（此为ThinkPHP6.0的要求）
+2、上传目录/Src/内所有源码到服务器，并设置网站的根目录指向运行目录/public/。（此为ThinkPHP6.0的要求）
 
 3、将/Database/目录里的.sql文件导入到MYSQL数据库。
 
