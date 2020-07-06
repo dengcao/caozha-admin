@@ -29,7 +29,7 @@
         layer.msg("{$alert|raw}", {icon: 1,time:{$time} });
 
         {if $url!=""}
-        window.location.href='{$url}';
+        window.location.href='{$url|raw}';
         {/if}
 
     });
