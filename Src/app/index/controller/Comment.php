@@ -407,6 +407,7 @@ class comment
             "arrparentid" => $arrparentid,
             "cmtcontent" => $action_data["saytext"],
             "ischeck" => $ischeck,
+            "addtime"=>date("Y-m-d H:i:s",time()),
         );
 
         $comment_id = Db::name('comment')->insertGetId($insert_data);

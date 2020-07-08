@@ -1,4 +1,4 @@
-# caozha-admin 后台管理框架 1.7.0
+# caozha-admin 后台管理框架 1.7.1
 
 caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP开发，特点：易上手，零门槛，界面清爽极简，极便于二次开发。
 
@@ -32,7 +32,7 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 **开发环境**
 
-本人开发此系统使用的本地环境是：phpstudy8.1集成工具，phpMyAdmin 4.8.5，Apache2.4.39（或Nginx1.15.11），PHP7.3.4，MYSQL8.0.12。
+本人开发此系统使用的本地环境是：phpstudy8.1集成工具，phpMyAdmin 4.8.5，Apache2.4.39（或Nginx1.15.11），PHP7.3.4，MySQL5.7.26。
 
 事实上，您不需要使用跟以上完全一致的环境也可以正常运行本系统，理论上只要PHP>=7.1即可。如有不兼容，建议模拟本环境测试，并欢迎您提建议和反馈BUG。
 
@@ -116,6 +116,26 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 [http://caozha.com/git/demo/caozha-admin/public/index/comment/index](http://caozha.com/git/demo/caozha-admin/public/index/comment/index)
 
+
+### 更新方法
+
+
+**1.7.0升级到1.7.1的方法：**
+
+
+1、执行下面MYSQL命令：
+
+ALTER TABLE `cz_comment` CHANGE `addtime` `addtime` DATETIME NULL DEFAULT NULL COMMENT '评论时间';
+
+ALTER TABLE `cz_article` CHANGE `inputtime` `inputtime` DATETIME NULL DEFAULT NULL COMMENT '发布时间';
+
+ALTER TABLE `cz_member` CHANGE `regtime` `regtime` DATETIME NULL DEFAULT NULL COMMENT '注册时间';
+
+ALTER TABLE `cz_member` CHANGE `lasttime` `lasttime` DATETIME NULL DEFAULT NULL COMMENT '最后登录时间';
+
+
+2、将1.7.1版/SRC/目录的源文件覆盖旧版本，注意修改数据库配置，还有清空缓存。
+
  
 ### 更新说明
 
@@ -173,6 +193,11 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 2、修复了若干BUG，如后台文章列表的排序号显示不正确等等。
 
 3、新增了Nginx的伪静态文件。
+
+
+**版本1.7.1，主要更新：**
+
+兼容了MySQL5.6及以下数据库，在MySQL5.5/5.6上测试，可以正常导入和使用。但为了获取更高的性能，依然建议您使用更高版本的MySQL数据库。
 
 
 ### 特别鸣谢

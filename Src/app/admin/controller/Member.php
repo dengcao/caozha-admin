@@ -68,7 +68,9 @@ class member
         $update_data["islock"]=isset($update_data["islock"])?$update_data["islock"]:0;
         if($update_data["password"]){$update_data["password"]=md5_plus($update_data["password"]);}
 
-        $update_field=['groupid','username','password','nickname','avatar','email','qq','mobile','weixin','address','remarks','islock','isrn','realname','id_card'];//允许字段
+        $update_data["regtime"]=date("Y-m-d H:i:s",time());
+
+        $update_field=['groupid','username','password','nickname','avatar','email','qq','mobile','weixin','address','remarks','islock','isrn','realname','id_card','regtime'];//允许字段
         $member = new MemberModel;
         $userid = $member->allowField($update_field)->save($update_data);
         //$userid = Db::name('member')->insertGetId($update_data);
