@@ -197,6 +197,11 @@ ALTER TABLE `cz_member` CHANGE `lasttime` `lasttime` DATETIME NULL DEFAULT NULL 
 兼容了MySQL5.6及以下数据库，在MySQL5.5/5.6上测试，可以正常导入和使用。但为了获取更高的性能，依然建议您使用更高版本的MySQL数据库。
 
 
+**版本1.7.2，主要更新：**
+
+优化了登陆失效时的弹窗提示。
+
+
 ### 特别鸣谢
 
 caozha-admin使用了以下开源代码：
