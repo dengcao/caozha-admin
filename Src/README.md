@@ -1,4 +1,4 @@
-# caozha-admin 后台管理框架 1.8.0
+# caozha-admin 后台管理框架 1.8.1
 
 caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP开发，特点：易上手，零门槛，界面清爽极简，极便于二次开发。
 
@@ -39,7 +39,7 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 **快速安装**
 
-1、PHP版本：必须PHP8.0.x（如使用PHP8.1，则因TP6.0.12官方有部分BUG，如验证码错误，模板输出NULL时错误等）。
+1、PHP版本：必须PHP8.0.x（如使用PHP8.1.x，则因TP6.0.12官方有部分BUG，如验证码错误，模板输出NULL时错误等，暂不建议使用）。
 
 2、上传目录/Src/内所有源码到服务器，并设置网站的根目录指向运行目录/public/。（此为ThinkPHP6.0的要求）
 
@@ -116,11 +116,11 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 ### 更新方法
 
-**1.7.2升级到1.8.0的方法：**
+**1.7.2升级到1.8.1的方法：**
 
-1、下载1.8.0后，删除Src/app/整个目录下的内容，然后将1.7.2版中Src/app/整个目录下的内容复制进去。
+1、下载1.8.1后，删除Src/app/整个目录下的内容，然后将1.7.2版中Src/app/整个目录下的内容复制进去。
 
-2、参照1.8.0中Src\app\admin\controller目录下的Roles.php和MemberGroup.php修改对应1.7.2版中的文件内容（主要是调换withAttr语句的顺序，如不修改，设置权限页面会报错）。
+2、参照1.8.1中Src\app\admin\controller目录下的Roles.php和MemberGroup.php修改对应1.7.2版中的文件内容（主要是调换withAttr语句的顺序，如不修改，设置权限页面会报错）。
 
 
 **1.7.0升级到1.7.1的方法：**
@@ -213,6 +213,11 @@ ALTER TABLE `cz_member` CHANGE `lasttime` `lasttime` DATETIME NULL DEFAULT NULL 
 将ThinkPHP框架版本从6.0.2升级6.0.12LTS，支持PHP8.0。
 
 
+**版本1.8.1，主要更新：**
+
+修复了一个小BUG，如您的系统运行正常，可暂不更新。
+
+
 ### 特别鸣谢
 
 caozha-admin使用了以下开源代码：
@@ -238,9 +243,9 @@ GitHub：https://github.com/cao-zha/caozha-admin
 
 ### 界面预览
 
-**1.8.0版预览：**
+**1.8.1版预览：**
 
-1.8.0版界面跟以前版本相同，可以通过修改public/static/admin/caozha/js/all.js文件中的layuimini_bgColorDefault值（0至11之间）来设置后台的默认主题界面。
+1.8.1版界面跟以前版本相同，可以通过修改public/static/admin/caozha/js/all.js文件中的layuimini_bgColorDefault值（0至11之间）来设置后台的默认主题界面。
 
 
 **1.7.0版预览：**
