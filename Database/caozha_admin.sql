@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2020-07-08 11:55:43
+-- 生成日期： 2022-03-18 17:32:23
 -- 服务器版本： 5.7.26
 -- PHP 版本： 7.3.4
 
@@ -90,11 +90,11 @@ CREATE TABLE `cz_article` (
 
 INSERT INTO `cz_article` (`aid`, `catid`, `title`, `content`, `style`, `thumb`, `keywords`, `description`, `tags`, `url`, `listorder`, `status`, `islink`, `inputtime`, `iscomment`, `author`, `copyfrom`, `hits`, `isreco`, `ishot`, `istop`) VALUES
 (1, 1, '新冠肺炎权威小贴士', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, NULL, 0, 9, 0, '2020-05-23 20:57:40', 1, NULL, NULL, 89, 0, 0, 0),
-(2, 1, '必读！关于新冠肺炎的20个知识点', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, NULL, 0, 9, 1, '2020-05-23 20:57:33', 1, NULL, NULL, 1, 0, 0, 0),
+(2, 1, '必读！关于新冠肺炎的20个知识点', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, NULL, 0, 9, 1, '2020-05-23 20:57:33', 1, NULL, NULL, 2, 0, 0, 0),
 (3, 1, '你需要知道的新冠肺炎最新知识', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, NULL, 0, 9, 0, '2020-05-23 20:57:25', 0, NULL, NULL, 4, 0, 0, 0),
 (4, 1, '新冠肺炎患者需要注意哪些心理疏导?', '<p>内容可随意通过数据库添加（此处省略）</p>', '', '', '', NULL, NULL, NULL, 0, 9, 0, '2020-05-23 20:55:29', 1, NULL, NULL, 7, 0, 0, 0),
 (5, 1, '新冠肺炎的日常防护知识', '<p><strong>日常防护知识：</strong></p><p>1.最重要的一条：不要到处跑。</p><p>专家始终强调，预防新冠肺炎最有效的方式之一是：减少出行，这不仅关乎自己和家人，也关乎整个社会。一定要外出时不要乘坐比较拥挤的公共交通车，建议步行或开车，逗留时间尽量缩短。宅在家时，应格外注意3个细节：通风：每日打开门窗通风2-3次，每次30分钟左右；天气好时，可以晒晒被子、衣服。洗手：回家后、做菜前、吃饭前、如厕后，应在流动水下用肥皂或洗手液揉搓30秒左右。饮食安全：处理食物时生熟分开，肉类充分做熟再吃；家庭实行分餐制或使用公筷。不要吃野味。</p><p>2.不要参加集会。</p><p>少出门、少聚会，是减少交叉感染的重要方法，尤其应避免去人员密集的公共场所，如商场、公共浴池、棋牌室、医院等。</p><p>3.出门戴口罩，不一定戴N95。</p><p>钟南山院士表示，戴口罩不一定要戴N95，医用外科口罩即可阻止大部分病毒进入呼吸道。普通口罩也能起到一定的隔离作用。如果口罩不够用，普通大众的口罩不必用一次换一次，可根据清洁程度延长使用时间。戴口罩时要把口鼻都完全覆盖住，并与面部贴合严实，尽量减少漏气情况。摘口罩时，不要抓着污染面，用手抓住系带脱离，扔到垃圾桶，不要到处乱扔。</p><p>4.学会正确洗手。</p><p>新型冠状病毒可通过接触传播，如果没有注意使双手沾上病毒，揉眼睛时就可能造成感染，所以一定要勤洗手。暂没有洗手条件时可用消毒湿巾擦拭双手。</p>', '', '', '', NULL, NULL, NULL, 0, 9, 0, '2020-05-23 20:55:41', 1, NULL, NULL, 55, 0, 0, 0),
-(6, 1, '我省昨日新冠肺炎疫情公告', '<p>据省卫健委官网公布，5月23日0-24时，我省新增新型冠状病毒肺炎确诊病例<span style=\\\"color: rgb(255, 0, 0);\\\">xx</span>例；新增疑似病例xx例；新增治愈出院病例xx例；新增死亡病例x例。</p>', '风格', '/uploads/image/20200531/1590918832985443.jpg', '关键词', '文章描述', '', '', 11, 9, 0, '2020-06-01 20:57:50', 1, '作者', '文章来源', 16993, 1, 1, 1),
+(6, 1, '我省昨日新冠肺炎疫情公告', '<p>据省卫健委官网公布，5月23日0-24时，我省新增新型冠状病毒肺炎确诊病例<span style=\\\"color: rgb(255, 0, 0);\\\">xx</span>例；新增疑似病例xx例；新增治愈出院病例xx例；新增死亡病例x例。</p>', '风格', '/uploads/image/20200531/1590918832985443.jpg', '关键词', '文章描述', '', '', 11, 9, 0, '2020-06-01 20:57:50', 1, '作者', '文章来源', 16994, 1, 1, 1),
 (8, 1, '开源系统caozha-admin正式上线，欢迎使用', '<p style=\\\"text-indent: 2em;\\\">开源系统caozha-admin正式上线，欢迎使用！</p><p style=\\\"text-indent: 2em;\\\"><span style=\\\"\\\\&quot;color:\\\">caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP开发，特点：易上手，零门槛，界面清爽极简，极便于二次开发。</span></p>', '', '', '', '', 'tag', '', 0, 9, 0, '2020-06-02 18:11:40', 1, '', '', 4, 1, 1, 1);
 
 -- --------------------------------------------------------
@@ -295,7 +295,7 @@ CREATE TABLE `cz_web_config` (
 --
 
 INSERT INTO `cz_web_config` (`id`, `web_config`) VALUES
-(1, '{\"site_name\":\"caozha-admin\",\"site_url\":\"http:\\/\\/caozha.com\",\"admin_limit\":\"15\",\"roles_limit\":\"15\",\"syslog_limit\":\"15\",\"article_limit\":\"15\",\"member_limit\":\"10\",\"member_group_limit\":\"10\",\"comment_limit\":\"10\",\"index_title\":\"caozha-admin\\u540e\\u53f0\\u7ba1\\u7406\\u7cfb\\u7edf\",\"index_keywords\":\"\\u8349\\u672d,caozha,caozha-admin\",\"index_description\":\"caozha-admin\\u662f\\u4e00\\u4e2a\\u901a\\u7528\\u7684\\u7f51\\u7ad9\\u540e\\u53f0\\u5f00\\u53d1\\u6846\\u67b6\\uff0c\\u57fa\\u4e8e\\u5f00\\u6e90\\u7684ThinkPHP6.0.2\\u3001layuimini v2\\u3001layui2.5.4\\u4ee5\\u53cafont-awesome-4.7.0\\u5f00\\u53d1\\uff0c\\u7279\\u70b9\\uff1a\\u6613\\u4e0a\\u624b\\uff0c\\u96f6\\u95e8\\u69db\\uff0c\\u754c\\u9762\\u6e05\\u723d\\u6781\\u7b80 \\u3002\",\"site_footer\":\"Copyright \\u00a9 2020 \\u8349\\u672d caozha.com All rights reserved.\"}');
+(1, '{\"site_name\":\"caozha-admin\",\"site_url\":\"http:\\/\\/caozha.com\",\"admin_limit\":\"15\",\"roles_limit\":\"15\",\"syslog_limit\":\"15\",\"article_limit\":\"15\",\"member_limit\":\"10\",\"member_group_limit\":\"10\",\"comment_limit\":\"10\",\"index_title\":\"caozha-admin\\u540e\\u53f0\\u7ba1\\u7406\\u7cfb\\u7edf\",\"index_keywords\":\"\\u9093\\u8349\\uff0c\\u8349\\u672d,caozha,caozha-admin\",\"index_description\":\"caozha-admin\\u662f\\u4e00\\u4e2a\\u901a\\u7528\\u7684\\u7f51\\u7ad9\\u540e\\u53f0\\u5f00\\u53d1\\u6846\\u67b6\\uff0c\\u57fa\\u4e8e\\u5f00\\u6e90\\u7684ThinkPHP\\u3001layuimini\\u3001layui\\u3001font-awesome\\u3001phpoffice\\u7b49\\u5f00\\u53d1\\uff0c\\u7279\\u70b9\\uff1a\\u6613\\u4e0a\\u624b\\uff0c\\u96f6\\u95e8\\u69db\\uff0c\\u754c\\u9762\\u6e05\\u723d\\u6781\\u7b80 \\u3002\",\"site_footer\":\"Copyright \\u00a9 \\u9093\\u8349 caozha.com All rights reserved.\"}');
 
 --
 -- 转储表的索引

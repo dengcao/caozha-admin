@@ -13,7 +13,7 @@ var layer_skin_color=new Array(
     "#e82121",
     "#963885");
 
-var layuimini_bgColorDefault=3; // 主题默认配置
+var layuimini_bgColorDefault=8; // 主题默认配置
 
 function layer_skin(layer) {
     var bgcolorId = sessionStorage.getItem('layuiminiBgcolorId');
