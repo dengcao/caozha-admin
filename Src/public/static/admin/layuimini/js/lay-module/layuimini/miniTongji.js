@@ -29,7 +29,7 @@ layui.define(["jquery"], function (exports) {
             var _hmt = _hmt || [];
             (function () {
                 var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?df7d5e04ca75835700e4e85a6d5a0bf6";
+                hm.src = "https://hm.baidu.com/hm.js?2d6dfcfba26550bbcd6dad28ebdbd6db";
                 var s = document.getElementsByTagName("script")[0];
                 s.parentNode.insertBefore(hm, s);
             })();

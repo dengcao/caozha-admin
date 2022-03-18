@@ -275,7 +275,6 @@ layui.define(["jquery", "layer"], function (exports) {
             var bgcolorId = sessionStorage.getItem('layuiminiBgcolorId');
             if (bgcolorId === null || bgcolorId === undefined || bgcolorId === '') {
                 bgcolorId = options.bgColorDefault;
-                sessionStorage.setItem('layuiminiBgcolorId', bgcolorId);
             }
             miniTheme.buildThemeCss(bgcolorId);
             if (options.listen) miniTheme.listen(options);
@@ -432,7 +431,7 @@ layui.define(["jquery", "layer"], function (exports) {
                     '</div>\n' +
                     '<div class="more-menu-list">\n' +
                     '<a class="more-menu-item" href="https://gitee.com/'+caozha_sys_gitee+'" target="_blank"><i class="layui-icon layui-icon-read" style="font-size: 19px;"></i> '+caozha_sys_name+'  '+caozha_sys_version+'</a>\n' +
-                    '<a class="more-menu-item" href="http://caozha.com" target="_blank"><i class="layui-icon layui-icon-tabs" style="font-size: 16px;"></i> 草札官网</a>\n' +
+                    '<a class="more-menu-item" href="http://caozha.com" target="_blank"><i class="layui-icon layui-icon-tabs" style="font-size: 16px;"></i> 邓草官网</a>\n' +
                     '<a class="more-menu-item" href="http://diannao.wang/tool/" target="_blank"><i class="layui-icon layui-icon-theme"></i> 工具大全</a>\n' +
                     '</div>' +
                     '</div>';

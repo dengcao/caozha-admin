@@ -26,12 +26,11 @@ body {
 }
 
 .layuimini-form > .layui-form-item > .layui-form-label {
-    width: 80px !important;
+    width: 120px !important;
 }
 
 .layuimini-form > .layui-form-item > .layui-input-block {
-    margin-left: 110px !important;
-    padding-right: 32px;
+    margin-left: 150px !important;
 }
 
 .layuimini-form > .layui-form-item > .layui-input-block > tip {

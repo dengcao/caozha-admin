@@ -13,7 +13,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="icon" href="__CAOZHA-STATIC__/logo/favicon.ico">
-    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/lib/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/css/layuimini.css?v=2.0.4" media="all">
     <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/css/themes/default.css" media="all">
     <link rel="stylesheet" href="__CAOZHA-LAYUIMINI__/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
@@ -25,7 +25,6 @@
     <style id="layuimini-bg-color">
     </style>
     <script src="__CAOZHA-STATIC__/js/jquery-3.4.1.min.js"></script>
-    <script src="__CAOZHA-LAYUIMINI__/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
     <script src="__CAOZHA-STATIC__/js/all.js"></script>
     <link rel="stylesheet" href="__CAOZHA-STATIC__/css/style.css" media="all">
 </head>
@@ -132,11 +131,14 @@
 
     </div>
 </div>
+<script src="__CAOZHA-LAYUIMINI__/lib/layui/layui.js" charset="utf-8"></script>
 <script src="__CAOZHA-LAYUIMINI__/js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 <script>
     layui.use(['jquery', 'layer', 'miniAdmin'], function () {
         var layer = layui.layer,
             miniAdmin = layui.miniAdmin;
+
+            layer_skin(layer);
 
         var options = {
             iniUrl: "{:url(\'admin/index/czInit\')}",    // 初始化接口
@@ -180,8 +182,24 @@
     });
 </script>
 <span style="display: none">
-<!-- 仅用于统计源码使用人数，您的支持我才有动力做下去。官网：caozha.com   __CAOZHA-ADMIN-SYS-URL__ -->
-<script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=186269&web_id=186269"></script>
+<!-- 建议勿删除，仅用于统计源码使用人数，您的支持我才有动力做下去。官网：caozha.com   __CAOZHA-ADMIN-SYS-URL__ -->
+<script>
+    //百度统计
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2d6dfcfba26550bbcd6dad28ebdbd6db";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    //cnzz统计
+    $(function () {
+        //延迟统计, 以免影响页面载入
+        var cnzz = document.createElement("script");
+        cnzz.src = "//v1.cnzz.com/z_stat.php?id=186269&web_id=186269";
+        document.getElementsByTagName('body')[0].appendChild(cnzz);
+    });
+</script>
 </span>
 </body>
 </html>

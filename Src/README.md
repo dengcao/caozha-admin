@@ -1,4 +1,4 @@
-# caozha-admin 后台管理框架 1.8.1
+# caozha-admin 后台管理框架 1.8.2
 
 caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP开发，特点：易上手，零门槛，界面清爽极简，极便于二次开发。
 
@@ -116,6 +116,11 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 ### 更新方法
 
+**1.8.1升级到1.8.2的方法：**
+
+将您项目文件里的layui路径，由“layui-v2.5.5”批量修改为“layui”，否则页面会错误。（从1.8.2版本开始已将layui更新至v2.6.8）
+
+
 **1.7.2升级到1.8.1的方法：**
 
 1、下载1.8.1后，删除Src/app/整个目录下的内容，然后将1.7.2版中Src/app/整个目录下的内容复制进去。
@@ -215,14 +220,23 @@ ALTER TABLE `cz_member` CHANGE `lasttime` `lasttime` DATETIME NULL DEFAULT NULL 
 
 **版本1.8.1，主要更新：**
 
-修复了一个小BUG，如您的系统运行正常，可暂不更新。
+修复了1.8.0的一个BUG（因上传时.gitignore设置失误,导致Src/vendor/内全部文件未上传）。
+
+
+**版本1.8.2，主要更新：**
+
+1、修复了若干BUG，建议更新。
+
+2、更新layui版本至2.6.8。
+
+3、将layui的文件夹由“layui-v2.5.5”修改为“layui”，升级此版本后，请注意修改您项目文件里的路径，否则页面会错误。
 
 
 ### 特别鸣谢
 
 caozha-admin使用了以下开源代码：
 
-ThinkPHP6.0.12LTS、layui2.5.4、layuimini v2、font-awesome-4.7.0、lgyPl
+ThinkPHP、layui、layuimini、font-awesome、lgyPl、phpoffice等
 
 特别致谢！
 

@@ -94,7 +94,7 @@ function comment_face(){
 //应用的名称及版本
 $GLOBALS["caozha_common_config"] = [
     "name" => "caozha-admin",
-    "version" => "1.8.1",
+    "version" => "1.8.2",
     "gitee" => "caozha/caozha-admin",
     "github" => "cao-zha/caozha-admin",
 ];
@@ -102,7 +102,7 @@ $GLOBALS["caozha_common_config"] = [
 //caozha-admin 程序名称及版本，用于标识和升级，勿删改
 $GLOBALS["caozha_admin_sys"] = array(
     "name" => "caozha-admin",
-    "version" => "1.8.1",
+    "version" => "1.8.2",
     "url" => "https://gitee.com/caozha/caozha-admin",
 );
 
@@ -111,7 +111,7 @@ $GLOBALS["caozha_admin_sys"] = array(
  * @return string
  */
 function get_cz_path(){
-    //return substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'], '/')+1);
+    //$cz_path=substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'], '/')+1);
     $cz_path=substr($_SERVER['PHP_SELF'],0,8);
     if($cz_path=="/public/"){return $cz_path;}else{return "/";}
 }
