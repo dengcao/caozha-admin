@@ -236,7 +236,7 @@ ALTER TABLE `cz_member` CHANGE `lasttime` `lasttime` DATETIME NULL DEFAULT NULL 
 
 caozha-admin使用了以下开源代码：
 
-ThinkPHP、layui、layuimini、font-awesome、lgyPl、phpoffice等
+ThinkPHP、layui、layuimini、font-awesome、lgyPl、phpoffice、phpMailer等
 
 特别致谢！
 
