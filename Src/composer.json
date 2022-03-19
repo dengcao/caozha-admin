@@ -26,7 +26,9 @@
         "topthink/think-view": "^1.0",
         "topthink/think-helper": "^3.1",
         "topthink/think-captcha": "^3.0",
-        "topthink/think-multi-app": "^1.0"
+        "topthink/think-multi-app": "^1.0",
+        "phpoffice/phpword": "^0.18.3",
+        "phpoffice/phpspreadsheet": "^1.22"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",
