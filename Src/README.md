@@ -1,4 +1,4 @@
-# caozha-admin 后台管理框架 1.8.2
+# caozha-admin 后台管理框架 1.8.3
 
 caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP开发，特点：易上手，零门槛，界面清爽极简，极便于二次开发。
 
@@ -34,12 +34,12 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 本人开发此系统使用的本地环境是：[phpstudy8.1集成工具（已集成php8.0.14nts/php8.1.1nts，有需要点击下载）](https://gitee.com/caozha/php8.0-8.1-for-phpstudy)，phpMyAdmin 4.8.5，Apache2.4.39（或Nginx1.15.11），PHP8.0.14，MySQL5.7.26。
 
-事实上，您不需要使用跟以上完全一致的环境也可以正常运行本系统，理论上只要PHP=8.0.x即可。如有不兼容，建议模拟本环境测试，并欢迎您提建议和反馈BUG。
+事实上，您不需要使用跟以上完全一致的环境也可以正常运行本系统，理论上只要PHP>=8.0即可。如有不兼容，建议模拟本环境测试，并欢迎您提建议和反馈BUG。
 
 
 **快速安装**
 
-1、PHP版本：必须PHP8.0.x（如使用PHP8.1.x，则因TP6.0.12官方有部分BUG，如验证码错误，模板输出NULL时错误等，暂不建议使用）。
+1、PHP版本：必须PHP8.0以上。
 
 2、上传目录/Src/内所有源码到服务器，并设置网站的根目录指向运行目录/public/。（此为ThinkPHP6.0的要求）
 
@@ -242,6 +242,13 @@ ALTER TABLE `cz_member` CHANGE `lasttime` `lasttime` DATETIME NULL DEFAULT NULL 
 2、更新layui版本至2.6.8。
 
 3、将layui的文件夹由“layui-v2.5.5”修改为“layui”，升级此版本后，请注意修改您项目文件里的路径，否则页面会错误。
+
+
+**版本1.8.3，主要更新：**
+
+1、支持php8.1，修复了php8.1时验证码错误等BUG。
+
+2、更新了ThinkPHP框架到最新版。
 
 
 ### 特别鸣谢

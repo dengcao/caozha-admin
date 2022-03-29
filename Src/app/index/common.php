@@ -7,6 +7,8 @@
  * Github：https://github.com/cao-zha/caozha-admin   or   Gitee：https://gitee.com/caozha/caozha-admin
  */
 
+error_reporting(0);//解决php8.1时错误
+
 // 应用公共文件
 
 use think\facade\Request;
