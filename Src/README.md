@@ -57,6 +57,8 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 2、如果您使用的是Apache，伪静态设置为（.htaccess）：
 
+
+```
 <IfModule mod_rewrite.c>
 
   Options +FollowSymlinks -Multiviews
@@ -70,10 +72,14 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
   RewriteRule ^(.*)$ index.php?s=$1 [QSA,PT,L]
   
 </IfModule>
+```
+
 
 
 3、如果您使用的是Nginx，以wdCP和宝塔Linux面板为例，伪静态设置为：
 
+
+```
     index index.php;
     
     if (!-e $request_filename) {
@@ -83,7 +89,9 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
        break;
        
     }
-    
+```
+
+
 
 
 4、在网站运行目录（/public/）下，有两个文件：.htaccess和nginx.htaccess，分别是Apache和Nginx的伪静态文件，您可以直接拿来使用。
@@ -133,6 +141,8 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 1、执行下面MYSQL命令：
 
+
+```
 ALTER TABLE `cz_comment` CHANGE `addtime` `addtime` DATETIME NULL DEFAULT NULL COMMENT '评论时间';
 
 ALTER TABLE `cz_article` CHANGE `inputtime` `inputtime` DATETIME NULL DEFAULT NULL COMMENT '发布时间';
@@ -140,11 +150,13 @@ ALTER TABLE `cz_article` CHANGE `inputtime` `inputtime` DATETIME NULL DEFAULT NU
 ALTER TABLE `cz_member` CHANGE `regtime` `regtime` DATETIME NULL DEFAULT NULL COMMENT '注册时间';
 
 ALTER TABLE `cz_member` CHANGE `lasttime` `lasttime` DATETIME NULL DEFAULT NULL COMMENT '最后登录时间';
+```
+
 
 
 2、将1.7.1版/SRC/目录的源文件覆盖旧版本，注意修改数据库配置，还有清空缓存。
 
- 
+
 ### 更新说明
 
 **版本1.0.0，主要更新内容：**
@@ -281,10 +293,10 @@ GitHub：https://github.com/cao-zha/caozha-admin
 
 评论（手机端）：
 
- ![输入图片说明](https://images.gitee.com/uploads/images/2020/0612/152711_77208177_7397417.jpeg "5.jpg")
-   
- ![输入图片说明](https://images.gitee.com/uploads/images/2020/0612/152720_633821db_7397417.jpeg "6.jpg")
- 
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0612/152711_77208177_7397417.jpeg "5.jpg")
+
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0612/152720_633821db_7397417.jpeg "6.jpg")
+
 
 评论后台：
 
@@ -309,7 +321,7 @@ GitHub：https://github.com/cao-zha/caozha-admin
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/004237_802810be_7397417.jpeg "15.jpg")
 
- 
+
 **1.2.0版预览：**
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0602/181454_9d357745_7397417.png "10.png")
@@ -318,14 +330,14 @@ GitHub：https://github.com/cao-zha/caozha-admin
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0604/110154_cb9f5759_7397417.png "10-2.png")
 
- 
+
 **1.1.0版预览：**
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0531/221652_31b46dd9_7397417.png "8.png")
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0531/221706_b4fc6e99_7397417.png "9.png")
 
- 
+
 **1.0.0版预览：**
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0522/111034_0fcc6524_7397417.png "1.png")
