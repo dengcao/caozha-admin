@@ -7,9 +7,9 @@
  * Github：https://github.com/cao-zha/caozha-admin   or   Gitee：https://gitee.com/caozha/caozha-admin
  */
 
-error_reporting(0);//解决php8.1时错误
-
 // 应用公共文件
+
+if (version_compare(PHP_VERSION,"8.1.0",">=")) {error_reporting(0);} //解决php8.1时的错误问题
 
 use think\facade\Request;
 
