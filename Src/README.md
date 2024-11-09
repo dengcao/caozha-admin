@@ -32,7 +32,7 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 **开发环境**
 
-本人开发此系统使用的本地环境是：[phpstudy8.1集成工具（已集成php8.0.14nts/php8.1.1nts，有需要点击下载）](https://gitee.com/caozha/php8.0-8.1-for-phpstudy)，phpMyAdmin 4.8.5，Apache2.4.39（或Nginx1.15.11），PHP8.0.14，MySQL5.7.26。
+本人开发此系统使用的本地环境是：[phpstudy8.1集成工具（已集成php8.0.14nts/php8.1.1nts，有需要点击下载）](https://gitee.com/dengzhenhua/php8.0-8.1-for-phpstudy)，phpMyAdmin 4.8.5，Apache2.4.39（或Nginx1.15.11），PHP8.0.14，MySQL5.7.26。
 
 事实上，您不需要使用跟以上完全一致的环境也可以正常运行本系统，理论上只要PHP>=8.0即可。如有不兼容，建议模拟本环境测试，并欢迎您提建议和反馈BUG。
 
@@ -47,7 +47,7 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 4、修改文件/config/database.php，配置您的数据库信息（如果测试时启用了/.env，还需要修改文件/.env，系统会优先使用此配置文件）。
 
-5、后台访问地址：http://您的域名/admin/index/login   (账号：caozha   密码：123456)
+5、后台访问地址：http://您的域名/admin/index/login   (账号：dengcao   密码：123456)
 
 
 
@@ -100,9 +100,9 @@ caozha-admin是一个通用的PHP网站后台管理框架，基于开源的Think
 
 **开发手册**
 
-码云Wiki：[https://gitee.com/caozha/caozha-admin/wikis](https://gitee.com/caozha/caozha-admin/wikis)
+码云Wiki：[https://gitee.com/dengzhenhua/caozha-admin/wikis](https://gitee.com/dengzhenhua/caozha-admin/wikis)
 
-GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/cao-zha/caozha-admin/wiki)
+GitHub Wiki：[https://github.com/dengcao/caozha-admin/wiki](https://github.com/dengcao/caozha-admin/wiki)
 
 
 
@@ -110,7 +110,7 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 **后台演示**
 
-[http://caozha.com/git/demo/caozha-admin/public/admin/index/login](http://caozha.com/git/demo/caozha-admin/public/admin/index/login)
+[http://5300.cn/git/demo/caozha-admin/public/admin/index/login](http://5300.cn/git/demo/caozha-admin/public/admin/index/login)
 
 管理员账号：caozha   密码：123456 (请勿修改密码，如密码错误请联系我。演示后台已屏蔽上传功能。)
 
@@ -119,7 +119,7 @@ GitHub Wiki：[https://github.com/cao-zha/caozha-admin/wiki](https://github.com/
 
 （可以自动适配电脑、平板和手机等不同客户端。）
 
-[http://caozha.com/git/demo/caozha-admin/public/index/comment/index](http://caozha.com/git/demo/caozha-admin/public/index/comment/index)
+[http://5300.cn/git/demo/caozha-admin/public/index/comment/index](http://5300.cn/git/demo/caozha-admin/public/index/comment/index)
 
 
 ### 更新方法
@@ -251,6 +251,13 @@ ALTER TABLE `cz_member` CHANGE `lasttime` `lasttime` DATETIME NULL DEFAULT NULL 
 2、更新了ThinkPHP框架到最新版。
 
 
+**版本1.9.0，主要更新：**
+
+1、为了安全，更新框架到ThinkPHP6.0.15。
+
+2、修改了后台若干错误链接。
+
+
 ### 特别鸣谢
 
 caozha-admin使用了以下开源代码：
@@ -263,15 +270,15 @@ ThinkPHP、layui、layuimini、font-awesome、lgyPl、phpoffice、phpMailer等
 
 支持本程序，请到Gitee和GitHub给我们点Star！
 
-Gitee：https://gitee.com/caozha/caozha-admin
+Gitee：https://gitee.com/dengzhenhua/caozha-admin
 
-GitHub：https://github.com/cao-zha/caozha-admin
+GitHub：https://github.com/dengcao/caozha-admin
 
-### 关于开发者
+### 关于
 
-开发：草札 www.caozha.com
+开发：[邓草博客 blog.5300.cn](http://blog.5300.cn)
 
-鸣谢：品络 www.pinluo.com  &ensp;  穷店 www.qiongdian.com
+赞助：[品络互联 www.pinluo.com](http://www.pinluo.com)  &ensp;  [AI工具箱 5300.cn](http://5300.cn)  &ensp;  [汉语言文学网 hyywx.com](http://hyywx.com)  &ensp;  [雄马 xiongma.cn](http://xiongma.cn) &ensp;  [优惠券 tm.gs](http://tm.gs)
 
 
 ### 界面预览

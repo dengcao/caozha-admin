@@ -1,10 +1,10 @@
 <?php
 /**
  * 源码名：caozha-admin
- * Copyright © 邓草 （官网：http://caozha.com）
+ * Copyright © 邓草 （官网：http://blog.5300.cn）
  * 基于木兰宽松许可证 2.0（Mulan PSL v2）免费开源，您可以自由复制、修改、分发或用于商业用途，但需保留作者版权等声明。详见开源协议：http://license.coscl.org.cn/MulanPSL2
  * caozha-admin (Software Name) is licensed under Mulan PSL v2. Please refer to: http://license.coscl.org.cn/MulanPSL2
- * Github：https://github.com/cao-zha/caozha-admin   or   Gitee：https://gitee.com/caozha/caozha-admin
+ * Github：https://github.com/dengcao/caozha-admin   or   Gitee：https://gitee.com/dengzhenhua/caozha-admin
  */
 
 // 应用公共文件
@@ -94,16 +94,16 @@ function comment_face(){
 //应用的名称及版本
 $GLOBALS["caozha_common_config"] = [
     "name" => "caozha-admin",
-    "version" => "1.8.3",
-    "gitee" => "caozha/caozha-admin",
-    "github" => "cao-zha/caozha-admin",
+    "version" => "1.9.0",
+    "gitee" => "dengzhenhua/caozha-admin",
+    "github" => "dengcao/caozha-admin",
 ];
 
 //caozha-admin 程序名称及版本，用于标识和升级，勿删改
 $GLOBALS["caozha_admin_sys"] = array(
     "name" => "caozha-admin",
-    "version" => "1.8.3",
-    "url" => "https://gitee.com/caozha/caozha-admin",
+    "version" => "1.9.0",
+    "url" => "https://gitee.com/dengzhenhua/caozha-admin",
 );
 
 /**

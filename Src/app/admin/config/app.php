@@ -1,10 +1,10 @@
 <?php
 /**
  * 源码名：caozha-admin
- * Copyright © 邓草 （官网：http://caozha.com）
+ * Copyright © 邓草 （官网：http://blog.5300.cn）
  * 基于木兰宽松许可证 2.0（Mulan PSL v2）免费开源，您可以自由复制、修改、分发或用于商业用途，但需保留作者版权等声明。详见开源协议：http://license.coscl.org.cn/MulanPSL2
  * caozha-admin (Software Name) is licensed under Mulan PSL v2. Please refer to: http://license.coscl.org.cn/MulanPSL2
- * Github：https://github.com/cao-zha/caozha-admin   or   Gitee：https://gitee.com/caozha/caozha-admin
+ * Github：https://github.com/dengcao/caozha-admin   or   Gitee：https://gitee.com/dengzhenhua/caozha-admin
  */
 
 // +----------------------------------------------------------------------
@@ -426,55 +426,55 @@ return [
           "child": [
             {
               "title": "域名Whois查询",
-              "href": "https://diannao.wang/tool/whois/",
+              "href": "https://5300.cn/tool/whois/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "二维码生成器",
-              "href": "https://diannao.wang/tool/qrcode/",
+              "href": "https://5300.cn/tool/qrcode/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "二维码解码器",
-              "href": "https://diannao.wang/tool/ewmjm/",
+              "href": "https://5300.cn/tool/ewmjm/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "IP地址查询",
-              "href": "https://diannao.wang/tool/ip/",
+              "href": "https://5300.cn/tool/ip/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "端口扫描器",
-              "href": "https://diannao.wang/tool/port_scanner/",
+              "href": "https://5300.cn/tool/port_scanner/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "生成htaccess",
-              "href": "https://diannao.wang/tool/htaccess/",
+              "href": "https://5300.cn/tool/htaccess/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "htaccess转Nginx",
-              "href": "https://diannao.wang/tool/apache2nginx/",
+              "href": "https://5300.cn/tool/apache2nginx/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "IPv4与IPv6互换",
-              "href": "https://diannao.wang/tool/ipv4-ipv6/",
+              "href": "https://5300.cn/tool/ipv4-ipv6/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "DNS检测",
-              "href": "https://diannao.wang/tool/dns/",
+              "href": "https://5300.cn/tool/dns/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             }
@@ -487,31 +487,31 @@ return [
           "child": [
             {
               "title": "美图秀秀网页版",
-              "href": "https://diannao.wang/tool/ps/meitu/",
+              "href": "https://5300.cn/tool/ps/meitu/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "PS网页版",
-              "href": "https://diannao.wang/tool/ps/photoshop/",
+              "href": "https://5300.cn/tool/ps/photoshop/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "ico图标制作",
-              "href": "https://diannao.wang/tool/ico/",
+              "href": "https://5300.cn/tool/ico/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "中国传统色彩",
-              "href": "https://diannao.wang/tool/zgcolor/",
+              "href": "https://5300.cn/tool/zgcolor/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "日本传统色彩",
-              "href": "https://diannao.wang/tool/rbcolor/",
+              "href": "https://5300.cn/tool/rbcolor/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             }
@@ -524,91 +524,91 @@ return [
           "child": [
             {
               "title": "JS混淆加密",
-              "href": "https://diannao.wang/tool/hdsojso/",
+              "href": "https://5300.cn/tool/hdsojso/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "正则测试",
-              "href": "https://diannao.wang/tool/regex-test/",
+              "href": "https://5300.cn/tool/regex-test/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "CSS压缩/美化",
-              "href": "https://diannao.wang/tool/cssmeihua/",
+              "href": "https://5300.cn/tool/cssmeihua/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "JS压缩/美化",
-              "href": "https://diannao.wang/tool/jsmeihua/",
+              "href": "https://5300.cn/tool/jsmeihua/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "HTML/JS格式化",
-              "href": "https://diannao.wang/tool/js_html/",
+              "href": "https://5300.cn/tool/js_html/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "JSON格式化",
-              "href": "https://diannao.wang/tool/jsonformat/",
+              "href": "https://5300.cn/tool/jsonformat/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "HTML/UBB互转",
-              "href": "https://diannao.wang/tool/html_ubb/",
+              "href": "https://5300.cn/tool/html_ubb/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "图片转Base64",
-              "href": "https://diannao.wang/tool/img2base64/",
+              "href": "https://5300.cn/tool/img2base64/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "时间戳转换",
-              "href": "https://diannao.wang/tool/timestamp/",
+              "href": "https://5300.cn/tool/timestamp/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "URL编码解码",
-              "href": "https://diannao.wang/tool/encodeuri/",
+              "href": "https://5300.cn/tool/encodeuri/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "Base64编码/解码",
-              "href": "https://diannao.wang/tool/base64/",
+              "href": "https://5300.cn/tool/base64/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "MD5加密",
-              "href": "https://diannao.wang/tool/md5/",
+              "href": "https://5300.cn/tool/md5/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "Unicode互转",
-              "href": "https://diannao.wang/tool/chinese2unicode/",
+              "href": "https://5300.cn/tool/chinese2unicode/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "科学计算器",
-              "href": "https://diannao.wang/tool/jisuanqi/",
+              "href": "https://5300.cn/tool/jisuanqi/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             },
             {
               "title": "Emoji表情",
-              "href": "https://diannao.wang/tool/emoji/",
+              "href": "https://5300.cn/tool/emoji/",
               "icon": "fa fa-angle-right",
               "target": "_blank"              
             }

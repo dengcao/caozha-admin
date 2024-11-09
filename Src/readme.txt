@@ -3,8 +3,8 @@
 
 此文档可能不是最新，请查看网络版最新的开发手册：
 
-码云Wiki：https://gitee.com/caozha/caozha-admin/wikis
-GitHub Wiki：https://github.com/cao-zha/caozha-admin/wiki
+码云Wiki：https://gitee.com/dengzhenhua/caozha-admin/wikis
+GitHub Wiki：https://github.com/dengcao/caozha-admin/wiki
 
 【快速安装】
 
