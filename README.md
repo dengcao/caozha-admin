@@ -1,4 +1,4 @@
-# caozha-admin 后台管理框架 1.8.3
+# caozha-admin 后台管理框架 1.9.0
 
 caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP开发，特点：易上手，零门槛，界面清爽极简，极便于二次开发。
 
@@ -106,7 +106,7 @@ GitHub Wiki：[https://github.com/dengcao/caozha-admin/wiki](https://github.com/
 
 
 
-### 演示地址
+### 演示地址（因部分人恶意修改密码等，演示网址已取消访问）
 
 **后台演示**
 
@@ -253,7 +253,7 @@ ALTER TABLE `cz_member` CHANGE `lasttime` `lasttime` DATETIME NULL DEFAULT NULL 
 
 **版本1.9.0，主要更新：**
 
-1、为了安全，更新框架到ThinkPHP6.0.15。
+1、为了系统安全，更新TP框架到6.0系列的最新版本：ThinkPHP6.0.15。
 
 2、修改了后台若干错误链接。
 
