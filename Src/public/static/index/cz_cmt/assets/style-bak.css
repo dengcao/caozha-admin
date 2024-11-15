@@ -113,7 +113,7 @@ textarea.pl-post-word:-ms-textarea-placeholder {
 	.pl-show-title span { display: block; margin: 4px 0 }
 	.ecomment { padding: 12px }
 	.pl-tools ul li { padding: 0 0 0 10px }
-	.pl-tools ul li:nth-child(2) { /*display: none*/ }
+	.pl-tools ul li:nth-child(2) { display: none }
 	.pl-tools ul li.username { width: 116px; padding: 8px 16px }
 	.pl-tools ul li.username input { width: 70% }
 	.icon-face { color: #999 }
