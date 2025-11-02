@@ -3,7 +3,7 @@
 namespace PhpOffice\PhpSpreadsheet\Calculation\Engineering;
 
 use PhpOffice\PhpSpreadsheet\Calculation\Exception;
-use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 
 class ConvertBinary extends ConvertBase
 {
@@ -40,7 +40,7 @@ class ConvertBinary extends ConvertBase
             return $e->getMessage();
         }
 
-        if (strlen($value) == 10) {
+        if (strlen($value) == 10 && $value[0] === '1') {
             //    Two's Complement
             $value = substr($value, -9);
 
@@ -91,7 +91,7 @@ class ConvertBinary extends ConvertBase
             return $e->getMessage();
         }
 
-        if (strlen($value) == 10) {
+        if (strlen($value) == 10 && $value[0] === '1') {
             $high2 = substr($value, 0, 2);
             $low8 = substr($value, 2);
             $xarr = ['00' => '00000000', '01' => '00000001', '10' => 'FFFFFFFE', '11' => 'FFFFFFFF'];
@@ -144,7 +144,7 @@ class ConvertBinary extends ConvertBase
             return $e->getMessage();
         }
 
-        if (strlen($value) == 10 && substr($value, 0, 1) === '1') { //    Two's Complement
+        if (strlen($value) == 10 && $value[0] === '1') { //    Two's Complement
             return str_repeat('7', 6) . strtoupper(decoct((int) bindec("11$value")));
         }
         $octVal = (string) decoct((int) bindec($value));
@@ -155,7 +155,7 @@ class ConvertBinary extends ConvertBase
     protected static function validateBinary(string $value): string
     {
         if ((strlen($value) > preg_match_all('/[01]/', $value)) || (strlen($value) > 10)) {
-            throw new Exception(Functions::NAN());
+            throw new Exception(ExcelError::NAN());
         }
 
         return $value;

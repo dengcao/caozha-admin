@@ -3,14 +3,15 @@
 
 此文档可能不是最新，请查看网络版最新的开发手册：
 
-码云Wiki：https://gitee.com/dengzhenhua/caozha-admin/wikis
-GitHub Wiki：https://github.com/dengcao/caozha-admin/wiki
+码云Wiki：https://gitee.com/caozha/caozha-admin/wikis
+GitHub Wiki：https://github.com/cao-zha/caozha-admin/wiki
 
 【快速安装】
 
 1、安装环境：
    PHP版本：caozha-admin1.0-1.7.x 必须PHP7.1至7.3。
            caozha-admin1.8.x 必须PHP8.0.x（使用PHP8.1有部分BUG，如验证码错误，模板输出NULL时错误等）。
+           caozha-admin1.9.x 必须PHP8.0.x（经测试支持：PHP 8.0/8.1/8.2/8.3）。
 2、上传目录/Src/内所有源码到服务器，并设置网站的根目录指向目录/public/。（此为ThinkPHP6.0要求）
 3、将/Database/目录里的.sql文件导入到MYSQL数据库。
 4、修改文件/config/database.php，配置您的数据库信息（如果测试时启用了/.env，还需要修改文件/.env，系统会优先使用此配置文件）。

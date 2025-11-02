@@ -245,7 +245,7 @@ class Template
 
             // 页面缓存
             ob_start();
-            if (PHP_VERSION > 8.0) {
+            if (version_compare(PHP_VERSION, '8.0', '>=')) {
                 ob_implicit_flush(false);
             } else {
                 ob_implicit_flush(0);
@@ -1074,6 +1074,9 @@ class Template
                 switch (strtolower($fun)) {
                     case 'raw':
                         break;
+                    case 'htmlentities':
+                        $name = 'htmlentities((string) ' . $name . ')';
+                        break;                        
                     case 'date':
                         $name = 'date(' . $args[1] . ',!is_numeric(' . $name . ')? strtotime(' . $name . ') : ' . $name . ')';
                         break;

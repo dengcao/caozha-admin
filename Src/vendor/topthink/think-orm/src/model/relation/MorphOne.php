@@ -14,7 +14,6 @@ namespace think\model\relation;
 use Closure;
 use think\db\BaseQuery as Query;
 use think\db\exception\DbException as Exception;
-use think\helper\Str;
 use think\Model;
 use think\model\Relation;
 
@@ -260,6 +259,10 @@ class MorphOne extends Relation
      */
     public function save($data, bool $replace = true)
     {
+        if ($data instanceof Model) {
+            $data = $data->getData();
+        }
+
         $model = $this->make();
         return $model->replace($replace)->save($data) ? $model : false;
     }
@@ -281,7 +284,7 @@ class MorphOne extends Relation
         $data[$this->morphKey]  = $this->parent->$pk;
         $data[$this->morphType] = $this->type;
 
-        return new $this->model($data);
+        return (new $this->model($data))->setSuffix($this->getModel()->getSuffix());
     }
 
     /**

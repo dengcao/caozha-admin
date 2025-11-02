@@ -68,3 +68,6 @@ body .layui-layer-btn .layui-layer-btn1{background:#fff;}
 body .layuimini-menu-left .layui-nav-more{
     top: 40%;
 }
+
+/*表格与搜索栏之间保留空白间隔*/
+.layui-collapse{margin-bottom:5px;}

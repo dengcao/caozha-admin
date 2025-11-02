@@ -107,7 +107,7 @@
             even: false,//隔行背景
             size: "",//sm （小尺寸）       lg （大尺寸）
             cols: [[
-                {type: "checkbox", width: 40, align: "center"},
+                {type: "checkbox", width: 48, align: "center"},
                 {field: 'id', width: 75, title: 'ID', sort: true},
                 {field: 'cmtcontent', minWidth: 200, title: '评论内容'},
                 {field: 'cmtname', width: 140, title: '昵称'},
@@ -125,6 +125,7 @@
             limits: [5, 10, 15, 20, 25, 50, 100, 200, 500, 1000],
             limit: {$comment_limit},
             page: true,
+			escape:false,//默认不转义html
             skin: 'line'
         });
 

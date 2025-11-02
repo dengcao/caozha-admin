@@ -2,14 +2,29 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
 
+use Composer\Pcre\Preg;
 use Datetime;
 use PhpOffice\PhpSpreadsheet\Calculation\ArrayEnabled;
 use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 use PhpOffice\PhpSpreadsheet\Shared\Date as SharedDateHelper;
 
 class TimeValue
 {
     use ArrayEnabled;
+
+    private const EXTRACT_TIME = '/\b'
+        . '(\d+)' // match[1] - hour
+        . '(:' // start of match[2] (rest of string) - colon
+        . '(\d+' // start of match[3] - minute
+        . '(:\d+' // start of match[4] - colon and seconds
+        . '([.]\d+)?' // match[5] - optional decimal point followed by fractional seconds
+        . ')?' // end of match[4], which is optional
+        . ')' // end of match 3
+        // Excel does not require 'm' to trail 'a' or 'p'; Php does
+        . '(\s*(a|p))?' // match[6] optional whitespace followed by optional match[7] a or p
+        . ')' // end of match[2]
+        . '/i';
 
     /**
      * TIMEVALUE.
@@ -24,7 +39,7 @@ class TimeValue
      * Excel Function:
      *        TIMEVALUE(timeValue)
      *
-     * @param array|string $timeValue A text string that represents a time in any one of the Microsoft
+     * @param null|array|string $timeValue A text string that represents a time in any one of the Microsoft
      *                                    Excel time formats; for example, "6:45 PM" and "18:45" text strings
      *                                    within quotation marks that represent time.
      *                                    Date information in time_text is ignored.
@@ -41,17 +56,25 @@ class TimeValue
             return self::evaluateSingleArgumentArray([self::class, __FUNCTION__], $timeValue);
         }
 
-        $timeValue = trim($timeValue ?? '', '"');
-        $timeValue = str_replace(['/', '.'], '-', $timeValue);
+        // try to parse as time iff there is at least one digit
+        if (is_string($timeValue) && preg_match('/\d/', $timeValue) !== 1) {
+            return ExcelError::VALUE();
+        }
 
-        $arraySplit = preg_split('/[\/:\-\s]/', $timeValue) ?: [];
-        if ((count($arraySplit) == 2 || count($arraySplit) == 3) && $arraySplit[0] > 24) {
-            $arraySplit[0] = ($arraySplit[0] % 24);
-            $timeValue = implode(':', $arraySplit);
+        $timeValue = trim($timeValue ?? '', '"');
+        if (Preg::isMatch(self::EXTRACT_TIME, $timeValue, $matches)) {
+            if (empty($matches[6])) { // am/pm
+                $hour = (int) $matches[1];
+                $timeValue = ($hour % 24) . $matches[2];
+            } elseif ($matches[6] === $matches[7]) { // Excel wants space before am/pm
+                return ExcelError::VALUE();
+            } else {
+                $timeValue = $matches[0] . 'm';
+            }
         }
 
         $PHPDateArray = Helpers::dateParse($timeValue);
-        $retValue = Functions::VALUE();
+        $retValue = ExcelError::VALUE();
         if (Helpers::dateParseSucceeded($PHPDateArray)) {
             /** @var int */
             $hour = $PHPDateArray['hour'];
@@ -66,7 +89,7 @@ class TimeValue
             if ($retType === Functions::RETURNDATE_EXCEL) {
                 $retValue = (float) $excelDateValue;
             } elseif ($retType === Functions::RETURNDATE_UNIX_TIMESTAMP) {
-                $retValue = (int) $phpDateValue = SharedDateHelper::excelToTimestamp($excelDateValue + 25569) - 3600;
+                $retValue = (int) SharedDateHelper::excelToTimestamp($excelDateValue + 25569) - 3600;
             } else {
                 $retValue = new DateTime('1900-01-01 ' . $PHPDateArray['hour'] . ':' . $PHPDateArray['minute'] . ':' . $PHPDateArray['second']);
             }

@@ -19,7 +19,7 @@ namespace MyCLabs\Enum;
  * @psalm-immutable
  * @psalm-consistent-constructor
  */
-abstract class Enum implements \JsonSerializable
+abstract class Enum implements \JsonSerializable, \Stringable
 {
     /**
      * Enum value
@@ -176,6 +176,7 @@ abstract class Enum implements \JsonSerializable
 
         /** @psalm-var T $value */
         foreach (static::toArray() as $key => $value) {
+            /** @psalm-suppress UnsafeGenericInstantiation */
             $values[$key] = new static($value);
         }
 
@@ -297,6 +298,7 @@ abstract class Enum implements \JsonSerializable
                 $message = "No static method or enum constant '$name' in class " . static::class;
                 throw new \BadMethodCallException($message);
             }
+            /** @psalm-suppress UnsafeGenericInstantiation */
             return self::$instances[$class][$name] = new static($array[$name]);
         }
         return clone self::$instances[$class][$name];
@@ -308,7 +310,6 @@ abstract class Enum implements \JsonSerializable
      *
      * @return mixed
      * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @psalm-pure
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

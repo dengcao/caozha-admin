@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": ">=7.2.5",
-        "topthink/framework": "6.0.15",
+        "topthink/framework": "6.0.16",
         "topthink/think-orm": "^2.0",
         "topthink/think-view": "^1.0",
         "topthink/think-helper": "^3.1",
@@ -29,7 +29,8 @@
         "topthink/think-multi-app": "^1.0",
         "phpoffice/phpword": "^0.18.3",
         "phpoffice/phpspreadsheet": "^1.22",
-        "phpmailer/phpmailer": "^6.6"
+        "phpmailer/phpmailer": "^6.6",
+        "firebase/php-jwt": "^6.11"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",
