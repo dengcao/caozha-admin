@@ -166,7 +166,7 @@ ALTER TABLE `cz_member` CHANGE `lasttime` `lasttime` DATETIME NULL DEFAULT NULL 
 
 2、升级LayUI到最新版2.13.0，修正升级后左栏菜单显示异常的问题。如需继续使用layui2.6.8，可以恢复2个文件即可：\public\static\admin\layuimini\lib\layui-2.6.8\ 和 \public\static\admin\layuimini\js\lay-module\layuimini\miniMenu-layui2.6.8.js
 
-3、新增了firebase/php-jwt，可以生成JWT-TOKEN。有需要的可以自己引用，参考：https://blog.csdn.net/qq363685855/article/details/154290392。
+3、新增了firebase/php-jwt，可以生成JWT-TOKEN。有需要的可以自己引用，参考：https://blog.csdn.net/qq363685855/article/details/154290392
 
 
 **版本1.9.0，主要更新：**
