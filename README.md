@@ -1,3 +1,10 @@
+# 重要说明
+
+源码caozha-admin已正式修改为：dc-admin，并已更新到2.0版本，做了多项更新，ThinkPHP也从ThinkPHP6.0更新到ThinkPHP8.1。
+
+建议下载dc-admin最新版：https://github.com/dengcao/dc-admin   国内镜像：https://gitee.com/dengzhenhua/dc-admin  
+
+
 # caozha-admin 后台管理框架 1.9.2
 
 caozha-admin是一个通用的PHP网站后台管理框架，基于开源的ThinkPHP开发，特点：易上手，零门槛，界面清爽极简，极便于二次开发。
