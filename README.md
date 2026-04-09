@@ -1,8 +1,10 @@
 # 重要说明
 
-源码caozha-admin已正式更名为：dc-admin，并已更新到2.0版本，做了多项更新，ThinkPHP也从ThinkPHP6.0更新到ThinkPHP8.1，开发模式基本一致，上手快速。
+项目caozha-admin已正式更名为：dc-admin，并已更新到2.0版本，做了多项更新，ThinkPHP也从ThinkPHP6.0更新到ThinkPHP8.1，开发模式基本一致，上手快速。
 
-即日起，caozha-admin停止维护，建议使用下载dc-admin最新版：https://github.com/dengcao/dc-admin
+即日起，项目caozha-admin停止维护，整体已迁移到项目：dc-admin。
+
+建议使用下载dc-admin最新版：https://github.com/dengcao/dc-admin
 
 国内镜像：https://gitee.com/dengzhenhua/dc-admin  
 
